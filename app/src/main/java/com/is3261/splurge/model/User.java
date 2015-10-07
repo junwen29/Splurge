@@ -49,6 +49,10 @@ public class User implements Parcelable {
         this.username = username;
     }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public static final Parcelable.Creator<User> CREATOR = new Parcelable.Creator<User>() {
         public User createFromParcel(Parcel in) {
             return new User(in);
@@ -59,4 +63,7 @@ public class User implements Parcelable {
         }
     };
 
+    public String getEmail() {
+        return email;
+    }
 }

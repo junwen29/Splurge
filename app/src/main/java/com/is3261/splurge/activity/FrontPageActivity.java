@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.is3261.splurge.R;
+import com.is3261.splurge.helper.OwnerStore;
 
 public class FrontPageActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -65,7 +66,7 @@ public class FrontPageActivity extends AppCompatActivity implements View.OnClick
     }
 
     private void signup() {
-        startActivityForResult(new Intent(this,LoginActivity.class),REQ_SIGNUP);
+        startActivityForResult(new Intent(this,SignupActivity.class),REQ_SIGNUP);
     }
 
     private void login() {
@@ -80,7 +81,7 @@ public class FrontPageActivity extends AppCompatActivity implements View.OnClick
             switch (requestCode){
                 case REQ_SIGNUP:
                 case REQ_LOGIN:
-                    //TODO link to default activity
+                    startActivity(new Intent(this, MainActivity.class));
                     finish();
                     break;
                 default:

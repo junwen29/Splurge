@@ -7,7 +7,7 @@ import com.is3261.splurge.BuildConfig;
  */
 public class Endpoint {
 
-    public static final String SERVER_URL = BuildConfig.BUILD_TYPE.equals("debug") ? "http://192.168.0.100:3000/" : "https://amazingcodersrails.herokuapp.com/";
+    public static final String SERVER_URL = BuildConfig.BUILD_TYPE.equals("debug") ? "http://192.168.0.105:3000/" : "https://splurge-rails.herokuapp.com/";
 
     // Device
 //    public static final String REGISTER_DEVICE = P1_SERVER_URL + "devices";

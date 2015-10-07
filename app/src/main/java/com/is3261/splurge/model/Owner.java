@@ -38,4 +38,12 @@ public class Owner extends User {
 
         return params;
     }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getAuthToken() {
+        return authToken;
+    }
 }

@@ -3,21 +3,18 @@ package com.is3261.splurge.activity;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
-import android.content.pm.PackageManager;
-import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.app.LoaderManager.LoaderCallbacks;
-
 import android.content.CursorLoader;
 import android.content.Loader;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
-
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
@@ -29,11 +26,18 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import com.android.volley.NoConnectionError;
+import com.android.volley.VolleyError;
 import com.is3261.splurge.R;
 import com.is3261.splurge.activity.base.BaseActivity;
+import com.is3261.splurge.api.Listener;
+import com.is3261.splurge.api.VolleyErrorHelper;
+import com.is3261.splurge.api.request.LoginRequest;
+import com.is3261.splurge.helper.OwnerStore;
+import com.is3261.splurge.model.Owner;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -297,7 +301,7 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
      * Represents an asynchronous login/registration task used to authenticate
      * the user.
      */
-    public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
+    public class UserLoginTask extends AsyncTask<Void, Void, Void> {
 
         private final String mEmail;
         private final String mPassword;
@@ -308,39 +312,21 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
         }
 
         @Override
-        protected Boolean doInBackground(Void... params) {
+        protected Void doInBackground(Void... params) {
             // TODO: attempt authentication against a network service.
-
             try {
                 // Simulate network access.
                 Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                return false;
-            }
+                login(mEmail,mPassword); // do login request
+            } catch (InterruptedException ignored) {
 
-            for (String credential : DUMMY_CREDENTIALS) {
-                String[] pieces = credential.split(":");
-                if (pieces[0].equals(mEmail)) {
-                    // Account exists, return true if the password matches.
-                    return pieces[1].equals(mPassword);
-                }
             }
-
-            // TODO: register the new account here.
-            return true;
+            return null;
         }
 
         @Override
-        protected void onPostExecute(final Boolean success) {
+        protected void onPostExecute(Void aVoid) {
             mAuthTask = null;
-            showProgress(false);
-
-            if (success) {
-                finish();
-            } else {
-                mPasswordView.setError(getString(R.string.error_incorrect_password));
-                mPasswordView.requestFocus();
-            }
         }
 
         @Override
@@ -348,6 +334,49 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
             mAuthTask = null;
             showProgress(false);
         }
+    }
+
+    private void login(String email, String password){
+
+        Listener<Owner> listener = new Listener<Owner>() {
+            @Override
+            public void onResponse(Owner owner) {
+                OwnerStore ownerStore = new OwnerStore(LoginActivity.this);
+                ownerStore.storeAccountInfo(owner);
+                setResult(RESULT_OK);
+                showProgress(false);
+                finish();
+            }
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+
+                if (error instanceof NoConnectionError) {
+                    showErrorMessage(R.string.error_network);
+                    return;
+                }
+
+                int statusCode = VolleyErrorHelper.getHttpStatusCode(error);
+                if (statusCode == 0) {
+                    showErrorMessage();
+                    return;
+                }
+
+                switch (statusCode) {
+                    case VolleyErrorHelper.UNAUTHORIZED:
+//                        showErrorMessage(R.string.error_login);
+                        mPasswordView.setError(getString(R.string.error_incorrect_password));
+                        mPasswordView.requestFocus();
+                        break;
+                    default:
+                        showErrorMessage(R.string.error_default);
+                        break;
+                }
+            }
+        };
+
+        getSplurgeApi().enqueue(LoginRequest.email(email, password, listener), this);
     }
 }
 
