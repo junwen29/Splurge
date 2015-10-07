@@ -10,6 +10,10 @@ import com.android.volley.toolbox.Volley;
 import com.is3261.splurge.helper.OkHttpStack;
 import com.is3261.splurge.helper.OwnerStore;
 
+import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
+
 /**
  * Created by junwen29 on 10/7/2015.
  */
@@ -80,5 +84,17 @@ public class SplurgeApi {
     public void cancel(Object tag) {
         mRequestQueue.cancelAll(tag);
         Log.d(TAG, "Cancelling requests with tag: " + tag);
+    }
+
+    public static String acceptLanguage() {
+        return Locale.getDefault().getLanguage() +
+                "-" +
+                Locale.getDefault().getCountry().toLowerCase(Locale.US);
+    }
+
+    public static int offsetFromUtc() {
+        TimeZone tz = TimeZone.getDefault();
+        Date now = new Date();
+        return tz.getOffset(now.getTime()) / 1000;
     }
 }
