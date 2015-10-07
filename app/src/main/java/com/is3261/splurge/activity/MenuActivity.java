@@ -9,7 +9,7 @@ import android.view.MenuItem;
 import com.is3261.splurge.R;
 import com.is3261.splurge.helper.OwnerStore;
 
-public class MainActivity extends AppCompatActivity {
+public class MenuActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,9 +39,7 @@ public class MainActivity extends AppCompatActivity {
         store.clearAuthToken();
         store.clear();
 
-        Intent i = new Intent(this, FrontPageActivity.class);
-        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(i);
+        FrontPageActivity.start(this, true, null);
         finishAffinity();
     }
 }

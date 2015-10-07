@@ -1,6 +1,8 @@
 package com.is3261.splurge.activity;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -9,7 +11,6 @@ import android.view.View;
 import android.widget.Button;
 
 import com.is3261.splurge.R;
-import com.is3261.splurge.helper.OwnerStore;
 
 public class FrontPageActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -17,13 +18,26 @@ public class FrontPageActivity extends AppCompatActivity implements View.OnClick
     private static final int REQ_SIGNUP = 291;
     private static final int REQ_LOGIN = 292;
 
+    public static void start(Activity activity, boolean clear, ActivityOptions options) {
+        Intent starter = new Intent(activity, FrontPageActivity.class);
+        if (clear)
+            starter.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+        if (options == null) {
+            activity.startActivity(starter);
+            activity.overridePendingTransition(android.R.anim.slide_in_left,
+                    android.R.anim.slide_out_right);
+        } else {
+            activity.startActivity(starter, options.toBundle());
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_front_page);
         setupViews();
-        hide();
     }
 
     private void setupViews(){
@@ -35,6 +49,11 @@ public class FrontPageActivity extends AppCompatActivity implements View.OnClick
         loginButton.setOnClickListener(this);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        hide();
+    }
 
     @SuppressLint("InlinedApi")
     private void hide() {
@@ -66,11 +85,12 @@ public class FrontPageActivity extends AppCompatActivity implements View.OnClick
     }
 
     private void signup() {
-        startActivityForResult(new Intent(this,SignupActivity.class),REQ_SIGNUP);
+        SignupActivity.startForResult(this, REQ_SIGNUP, null);
     }
 
     private void login() {
-        startActivityForResult(new Intent(this,LoginActivity.class),REQ_LOGIN);
+//        startActivityForResult(new Intent(this,LoginActivity.class),REQ_LOGIN);
+        LoginActivity.startForResult(this, REQ_LOGIN, null);
     }
 
     @Override
@@ -81,7 +101,7 @@ public class FrontPageActivity extends AppCompatActivity implements View.OnClick
             switch (requestCode){
                 case REQ_SIGNUP:
                 case REQ_LOGIN:
-                    startActivity(new Intent(this, MainActivity.class));
+                    startActivity(new Intent(this, MenuActivity.class));
                     finish();
                     break;
                 default:

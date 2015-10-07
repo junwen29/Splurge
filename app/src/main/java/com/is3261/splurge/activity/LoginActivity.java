@@ -3,8 +3,11 @@ package com.is3261.splurge.activity;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.app.Activity;
+import android.app.ActivityOptions;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.CursorLoader;
+import android.content.Intent;
 import android.content.Loader;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -51,13 +54,7 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
      */
     private static final int REQUEST_READ_CONTACTS = 0;
 
-    /**
-     * A dummy authentication store containing known user names and passwords.
-     * TODO: remove after connecting to a real authentication system.
-     */
-    private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "foo@example.com:hello", "bar@example.com:world"
-    };
+
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
@@ -68,6 +65,17 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
+
+    public static void startForResult(Activity activity, int requestCode, ActivityOptions options) {
+        Intent starter = new Intent(activity, LoginActivity.class);
+        if (options == null) {
+            activity.startActivityForResult(starter, requestCode);
+            activity.overridePendingTransition(android.R.anim.slide_in_left,
+                    android.R.anim.slide_out_right);
+        } else {
+            activity.startActivityForResult(starter, requestCode, options.toBundle());
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -345,11 +353,12 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
                 ownerStore.storeAccountInfo(owner);
                 setResult(RESULT_OK);
                 showProgress(false);
-                finish();
+                finishAfterTransition();
             }
 
             @Override
             public void onErrorResponse(VolleyError error) {
+                showProgress(false);
                 error.printStackTrace();
 
                 if (error instanceof NoConnectionError) {

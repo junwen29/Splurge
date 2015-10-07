@@ -3,8 +3,11 @@ package com.is3261.splurge.activity;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.app.Activity;
+import android.app.ActivityOptions;
 import android.app.LoaderManager;
 import android.content.CursorLoader;
+import android.content.Intent;
 import android.content.Loader;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -59,6 +62,17 @@ public class SignupActivity extends BaseActivity implements LoaderManager.Loader
     private View mSignupFormView;
 
     Owner mOwner;
+
+    public static void startForResult(Activity activity, int requestCode, ActivityOptions options) {
+        Intent starter = new Intent(activity, SignupActivity.class);
+        if (options == null) {
+            activity.startActivityForResult(starter, requestCode);
+            activity.overridePendingTransition(android.R.anim.slide_in_left,
+                    android.R.anim.slide_out_right);
+        } else {
+            activity.startActivityForResult(starter, requestCode, options.toBundle());
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -221,15 +235,17 @@ public class SignupActivity extends BaseActivity implements LoaderManager.Loader
         Listener<Owner> listener = new Listener<Owner>() {
             @Override
             public void onResponse(Owner owner) {
+                showProgress(false);
                 OwnerStore ownerStore = new OwnerStore(SignupActivity.this);
                 ownerStore.storeAccountInfo(owner);
                 mOwner = owner;
                 setResult(RESULT_OK);
-                finish();
+                finishAfterTransition();
             }
 
             @Override
             public void onErrorResponse(VolleyError error) {
+                showProgress(false);
                 error.printStackTrace();
 
                 if (error instanceof NoConnectionError) {

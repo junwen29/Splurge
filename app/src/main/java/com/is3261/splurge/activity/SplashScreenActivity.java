@@ -7,8 +7,6 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
 
 import com.is3261.splurge.R;
 import com.is3261.splurge.helper.OwnerStore;
@@ -30,7 +28,7 @@ public class SplashScreenActivity extends AppCompatActivity {
             goToMain();
         }
         else {
-            startActivity(new Intent (this, FrontPageActivity.class));
+            FrontPageActivity.start(this, false, null);
         }
         //TODO create splash screen with just app logo
         setContentView(R.layout.activity_splash_screen);
@@ -39,7 +37,7 @@ public class SplashScreenActivity extends AppCompatActivity {
     }
 
     private void goToMain() {
-        startActivity(new Intent(this, MainActivity.class));
+        startActivity(new Intent(this, MenuActivity.class));
     }
 
     private void setup(){
