@@ -1,12 +1,9 @@
 package com.is3261.splurge.activity.base;
 
-import android.app.ProgressDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.android.volley.NoConnectionError;
-import com.android.volley.RequestQueue;
 import com.android.volley.VolleyError;
 import com.is3261.splurge.R;
 import com.is3261.splurge.api.SplurgeApi;
@@ -16,13 +13,7 @@ import com.is3261.splurge.api.SplurgeApi;
  */
 public abstract class BaseActivity extends AppCompatActivity {
 
-    static final String TAG = "SplurgeApi";
-
     private SplurgeApi mApi;
-    protected String mAction;
-    private ProgressDialog mProgressDialog;
-
-    private RequestQueue mRequestQueue;
 
     @Override
     protected void onStart() {
@@ -32,11 +23,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        dismissProgressDialog();
-    }
-
-    public void dismissProgressDialog() {
-        if (mProgressDialog != null && mProgressDialog.isShowing()) mProgressDialog.dismiss();
     }
 
     public SplurgeApi getSplurgeApi() {
@@ -65,6 +51,4 @@ public abstract class BaseActivity extends AppCompatActivity {
             showErrorMessage();
         }
     }
-
-
 }

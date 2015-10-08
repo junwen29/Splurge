@@ -18,6 +18,7 @@ public class OwnerStore {
     public static final String TAG = "OwnerStore";
     public static final String OWNER_PREFERENCE = "OWNER_PREF";
     public static final String OWNER_ID = "OWNER_ID"; //OWNER_ID is string
+    public static final String USERNAME = "USERNAME";
     public static final String EMAIL = "EMAIL";
     public static final String AUTH_TOKEN = "AUTH_TOKEN";
 
@@ -25,11 +26,16 @@ public class OwnerStore {
     private SharedPreferences.Editor mEditor;
     private boolean mBatchEdit;
     private Context mApplicationContext;
+    private String username;
 
     public OwnerStore(Context context) {
         mApplicationContext = context.getApplicationContext();
         mSharedPreferences = mApplicationContext.getSharedPreferences(OWNER_PREFERENCE, Activity.MODE_PRIVATE);
         mEditor = mSharedPreferences.edit();
+    }
+
+    public String getUsername() {
+        return mSharedPreferences.getString(USERNAME, null);
     }
 
     public String getAuthToken() {
@@ -69,6 +75,7 @@ public class OwnerStore {
         if (!TextUtils.isEmpty(owner.getAuthToken())) setAuthToken(owner.getAuthToken());
         setUserId(owner.id);
         setEmail(owner.getEmail());
+        setUsername(owner.getUsername());
         commit();
 
         if (BuildConfig.DEBUG) logAllEntries();
@@ -83,5 +90,10 @@ public class OwnerStore {
 
     public void clear() {
         mEditor.clear().commit();
+    }
+
+    public void setUsername(String username) {
+        mEditor.putString(USERNAME, username);
+        if(!mBatchEdit) mEditor.commit();
     }
 }

@@ -1,20 +1,27 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="Splurge" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-    </style>
-    <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+        <item name="colorPrimary">@color/splurge_primary</item>
+        <item name="colorPrimaryDark">@color/splurge_primary_dark</item>
+        <item name="colorAccent">@color/splurge_accent</item>
 
-    <style name="FullscreenTheme" parent="AppTheme">
+        <item name="android:textColorPrimary">@android:color/black</item>
+        <item name="android:textColorPrimaryInverse">@color/text_light</item>
+
+        <item name="android:statusBarColor">@color/splurge_primary_dark</item>
+        <item name="android:textColor">@color/text_dark</item>
+
+        <item name="android:windowContentTransitions">true</item>
+        <item name="android:titleTextAppearance">@style/Splurge.TextAppearance.Title</item>
+        <item name="android:windowBackground">@color/light_grey</item>
+    </style>
+
+    <style name="Splurge.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Splurge.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="FullscreenTheme" parent="Splurge">
         <item name="android:actionBarStyle">@style/FullscreenActionBarStyle</item>
         <item name="android:windowActionBarOverlay">true</item>
         <item name="android:windowBackground">@null</item>
@@ -25,5 +32,66 @@
     <style name="FullscreenActionBarStyle" parent="Widget.AppCompat.ActionBar">
         <item name="android:background">@color/black_overlay</item>
     </style>
+
+    <style name="Splurge.Blue" parent="Splurge">
+        <item name="android:colorPrimary">@color/theme_blue_primary</item>
+        <item name="android:colorPrimaryDark">@color/theme_blue_primary</item>
+        <item name="android:textColorPrimary">@color/theme_blue_text</item>
+        <item name="android:statusBarColor">@color/theme_blue_primary_dark</item>
+        <item name="android:windowBackground">@color/theme_blue_background</item>
+        <item name="android:colorAccent">@color/theme_blue_accent</item>
+    </style>
+
+    <style name="Splurge.Green" parent="Splurge">
+        <item name="android:colorPrimary">@color/theme_green_primary</item>
+        <item name="android:colorPrimaryDark">@color/theme_green_primary</item>
+        <item name="android:textColorPrimary">@color/theme_green_text</item>
+        <item name="android:statusBarColor">@color/theme_green_primary_dark</item>
+        <item name="android:windowBackground">@color/theme_green_background</item>
+        <item name="android:colorAccent">@color/theme_green_accent</item>
+    </style>
+
+    <style name="Splurge.Purple" parent="Splurge">
+        <item name="android:colorPrimary">@color/theme_purple_primary</item>
+        <item name="android:colorPrimaryDark">@color/theme_purple_primary</item>
+        <item name="android:textColorPrimary">@color/theme_purple_text</item>
+        <item name="android:statusBarColor">@color/theme_purple_primary_dark</item>
+        <item name="android:windowBackground">@color/theme_purple_background</item>
+        <item name="android:colorAccent">@color/theme_purple_accent</item>
+    </style>
+
+    <style name="Splurge.Red" parent="Splurge">
+        <item name="android:colorPrimary">@color/theme_red_primary</item>
+        <item name="android:colorPrimaryDark">@color/theme_red_primary</item>
+        <item name="android:textColorPrimary">@color/theme_red_text</item>
+        <item name="android:statusBarColor">@color/theme_red_primary_dark</item>
+        <item name="android:windowBackground">@color/theme_red_background</item>
+        <item name="android:colorAccent">@color/theme_red_accent</item>
+    </style>
+
+    <style name="Splurge.Yellow" parent="Splurge">
+        <item name="android:colorPrimary">@color/theme_yellow_primary</item>
+        <item name="android:colorPrimaryDark">@color/theme_yellow_primary</item>
+        <item name="android:textColorPrimary">@color/theme_yellow_text</item>
+        <item name="android:statusBarColor">@color/theme_yellow_primary_dark</item>
+        <item name="android:windowBackground">@color/theme_yellow_background</item>
+        <item name="android:colorAccent">@color/theme_yellow_accent</item>
+    </style>
+
+    <style name="Splurge.TextAppearance"/>
+
+    <style name="Splurge.TextAppearance.Title" parent="android:TextAppearance.Material.Title">
+        <item name="android:textColor">@color/splurge_primary</item>
+    </style>
+
+    <style name="Splurge.TextAppearance.Title.Inverse"
+        parent="android:TextAppearance.Material.Title">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <!-- Contains the enter transition for MenuActivity. -->
+    <!--<style name="Splurge.MenuActivity">-->
+        <!--<item name="android:windowSharedElementEnterTransition">@transition/menu_enter</item>-->
+    <!--</style>-->
 
 </resources>

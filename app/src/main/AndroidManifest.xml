@@ -14,11 +14,10 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/Splurge" >
         <activity
             android:name=".activity.SplashScreenActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -39,7 +38,8 @@
             android:name=".activity.SignupActivity"
             android:label="@string/title_activity_signup" >
         </activity>
-        <activity android:name=".activity.MenuActivity" >
+        <activity
+            android:name=".activity.MenuActivity">
         </activity>
     </application>
 

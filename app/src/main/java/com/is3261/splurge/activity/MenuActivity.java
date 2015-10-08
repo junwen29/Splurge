@@ -1,11 +1,13 @@
 package com.is3261.splurge.activity;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
+import android.widget.Toolbar;
 
+import com.is3261.splurge.fragment.MenuSelectionFragment;
 import com.is3261.splurge.R;
 import com.is3261.splurge.helper.OwnerStore;
 
@@ -14,7 +16,12 @@ public class MenuActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_menu);
+        setUpToolbar();
+
+        if (savedInstanceState == null) {
+            attachMenuGridFragment();
+        }
     }
 
     @Override
@@ -41,5 +48,22 @@ public class MenuActivity extends AppCompatActivity {
 
         FrontPageActivity.start(this, true, null);
         finishAffinity();
+    }
+
+    private void setUpToolbar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_menu);
+        setActionBar(toolbar);
+        //noinspection ConstantConditions
+        getActionBar().setDisplayShowTitleEnabled(false);
+        OwnerStore ownerStore = new OwnerStore(this);
+        String username = ownerStore.getUsername();
+        ((TextView) toolbar.findViewById(R.id.username)).setText(username);
+    }
+
+
+    private void attachMenuGridFragment() {
+        getFragmentManager().beginTransaction()
+                .replace(R.id.container, MenuSelectionFragment.newInstance())
+                .commit();
     }
 }
