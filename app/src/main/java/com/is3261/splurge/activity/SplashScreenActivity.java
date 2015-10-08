@@ -33,7 +33,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         //TODO create splash screen with just app logo
         setContentView(R.layout.activity_splash_screen);
         setup();
-
+        finishAfterTransition();
     }
 
     private void goToMain() {

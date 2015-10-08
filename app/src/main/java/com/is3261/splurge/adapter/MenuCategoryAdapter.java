@@ -29,6 +29,13 @@ public class MenuCategoryAdapter extends BaseAdapter{
 
     private final static int NUM_MENU_CATEGORIES = 5;
 
+    private final static String PLAN_TRIP_EXPENSES = "1";
+    private final static String RECORD_TRIP_EXPENSES = "2";
+    private final static String LOANS = "3";
+    private final static String DEBTS = "4";
+    private final static String MEAL_BILL_CALCULATOR = "5";
+
+
     public MenuCategoryAdapter(Activity activity) {
         mActivity = activity;
         mLayoutInflater = LayoutInflater.from(activity.getApplicationContext());
@@ -73,6 +80,24 @@ public class MenuCategoryAdapter extends BaseAdapter{
 
     private void setMenuCategoryIcon(MenuCategory menuCategory, ImageView icon) {
         //TODO load image icons https://www.google.com/design/icons/
+        switch (menuCategory.getId()){
+            case PLAN_TRIP_EXPENSES:
+                icon.setImageResource(R.drawable.icon_plan_trip_expenses);
+                break;
+            case RECORD_TRIP_EXPENSES:
+                icon.setImageResource(R.drawable.icon_record_trip_expenses);
+                break;
+            case LOANS:
+                icon.setImageResource(R.drawable.icon_loans);
+                break;
+            case DEBTS:
+                icon.setImageResource(R.drawable.icon_debts);
+                break;
+            case MEAL_BILL_CALCULATOR:
+                icon.setImageResource(R.drawable.icon_meal_bills_calculator);
+                break;
+            default:
+        }
     }
 
     private int getColor(@ColorRes int colorRes) {
@@ -82,11 +107,11 @@ public class MenuCategoryAdapter extends BaseAdapter{
     private List<MenuCategory> setupMenuCategories(){
         List<MenuCategory> tmpMenuCategories = new ArrayList<>(NUM_MENU_CATEGORIES);
 
-        MenuCategory menuCategory1 = new MenuCategory("Plan Trip Expenses", "1", Theme.valueOf("yellow"));
-        MenuCategory menuCategory2 = new MenuCategory("Record Trip Expenses", "2", Theme.valueOf("blue"));
-        MenuCategory menuCategory3 = new MenuCategory("Loan(s) to Others", "3", Theme.valueOf("green"));
-        MenuCategory menuCategory4 = new MenuCategory("Debt(s) to Others", "4", Theme.valueOf("red"));
-        MenuCategory menuCategory5 = new MenuCategory("Meal Bills Calculator", "5", Theme.valueOf("purple"));
+        MenuCategory menuCategory1 = new MenuCategory("Plan Trip Expenses", PLAN_TRIP_EXPENSES, Theme.valueOf("yellow"));
+        MenuCategory menuCategory2 = new MenuCategory("Record Trip Expenses", RECORD_TRIP_EXPENSES, Theme.valueOf("blue"));
+        MenuCategory menuCategory3 = new MenuCategory("Loan(s) to Others", LOANS, Theme.valueOf("green"));
+        MenuCategory menuCategory4 = new MenuCategory("Debt(s) to Others", DEBTS, Theme.valueOf("red"));
+        MenuCategory menuCategory5 = new MenuCategory("Meal Bills Calculator", MEAL_BILL_CALCULATOR, Theme.valueOf("purple"));
 
         tmpMenuCategories.add(menuCategory1);
         tmpMenuCategories.add(menuCategory2);
