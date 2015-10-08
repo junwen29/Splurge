@@ -2,7 +2,6 @@
 
     <!-- Base application theme. -->
     <style name="Splurge" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/splurge_primary</item>
         <item name="colorPrimaryDark">@color/splurge_primary_dark</item>
         <item name="colorAccent">@color/splurge_accent</item>

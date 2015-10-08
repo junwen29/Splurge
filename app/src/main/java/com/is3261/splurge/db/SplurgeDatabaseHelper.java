@@ -5,6 +5,8 @@ import android.content.res.Resources;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.is3261.splurge.model.MenuCategory;
+
 /**
  * Created by junwen29 on 10/7/2015.
  */

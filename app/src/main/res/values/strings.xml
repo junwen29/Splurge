@@ -35,4 +35,12 @@
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="menu_category">Menu Category</string>
+    <string name="title_activity_plan_trip">PlanTripActivity</string>
+    <string name="transition_toolbar">ToolbarTransition</string>
+    <string name="up">up</string>
+    <string name="transition_avatar">AvatarTransition</string>
+    <string name="title_activity_record_trip">RecordTripActivity</string>
+    <string name="title_activity_loan">LoanActivity</string>
+    <string name="title_activity_debt">DebtActivity</string>
+    <string name="title_activity_meal_bills">MealBillsActivity</string>
 </resources>

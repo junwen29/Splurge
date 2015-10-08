@@ -38,8 +38,32 @@
             android:name=".activity.SignupActivity"
             android:label="@string/title_activity_signup" >
         </activity>
+        <activity android:name=".activity.MenuActivity" >
+        </activity>
         <activity
-            android:name=".activity.MenuActivity">
+            android:name=".activity.PlanTripActivity"
+            android:label="@string/title_activity_plan_trip"
+            android:theme="@style/Splurge" >
+        </activity>
+        <activity
+            android:name=".db.RecordTripActivity"
+            android:label="@string/title_activity_record_trip"
+            android:theme="@style/Splurge" >
+        </activity>
+        <activity
+            android:name=".activity.LoanActivity"
+            android:label="@string/title_activity_loan"
+            android:theme="@style/Splurge" >
+        </activity>
+        <activity
+            android:name=".activity.DebtActivity"
+            android:label="@string/title_activity_debt"
+            android:theme="@style/Splurge" >
+        </activity>
+        <activity
+            android:name=".activity.MealBillsActivity"
+            android:label="@string/title_activity_meal_bills"
+            android:theme="@style/Splurge" >
         </activity>
     </application>
 

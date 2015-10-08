@@ -29,11 +29,11 @@ public class MenuCategoryAdapter extends BaseAdapter{
 
     private final static int NUM_MENU_CATEGORIES = 5;
 
-    private final static String PLAN_TRIP_EXPENSES = "1";
-    private final static String RECORD_TRIP_EXPENSES = "2";
-    private final static String LOANS = "3";
-    private final static String DEBTS = "4";
-    private final static String MEAL_BILL_CALCULATOR = "5";
+    public final static String PLAN_TRIP_EXPENSES = "1";
+    public final static String RECORD_TRIP_EXPENSES = "2";
+    public final static String LOANS = "3";
+    public final static String DEBTS = "4";
+    public final static String MEAL_BILL_CALCULATOR = "5";
 
 
     public MenuCategoryAdapter(Activity activity) {
