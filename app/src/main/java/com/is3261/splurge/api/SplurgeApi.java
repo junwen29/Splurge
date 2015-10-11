@@ -19,7 +19,7 @@ import java.util.TimeZone;
  */
 public class SplurgeApi {
 
-    static final String TAG = "BurppleApi";
+    static final String TAG = "SplurgeApi";
     static final String ENDPOINT_CALL = "Endpoint";
     static final int DEFAULT_TIMEOUT = 20000; // 10 s
     static final int DEFAULT_MAX_RETRY = 0;
