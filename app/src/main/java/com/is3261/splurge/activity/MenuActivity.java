@@ -11,6 +11,7 @@ import com.is3261.splurge.fragment.MenuSelectionFragment;
 import com.is3261.splurge.R;
 import com.is3261.splurge.helper.OwnerStore;
 
+//TODO deprecated
 public class MenuActivity extends NavDrawerActivity {
 
     @Override
@@ -50,14 +51,14 @@ public class MenuActivity extends NavDrawerActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void signOut(){
-        OwnerStore store = new OwnerStore(this);
-        store.clearAuthToken();
-        store.clear();
-
-        FrontPageActivity.start(this, true, null);
-        finishAffinity();
-    }
+//    private void signOut(){
+//        OwnerStore store = new OwnerStore(this);
+//        store.clearAuthToken();
+//        store.clear();
+//
+//        FrontPageActivity.start(this, true, null);
+//        finishAffinity();
+//    }
 
     private void setUpToolbar() {
         mToolbar = (Toolbar) findViewById(R.id.toolbar_menu);
