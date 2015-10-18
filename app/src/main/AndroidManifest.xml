@@ -38,7 +38,9 @@
             android:name=".activity.SignupActivity"
             android:label="@string/title_activity_signup" >
         </activity>
-        <activity android:name=".activity.MenuActivity" >
+        <activity
+            android:name=".activity.MenuActivity"
+            android:theme="@style/Splurge.StatusBarOverlay" >
         </activity>
         <activity
             android:name=".activity.PlanTripActivity"
@@ -63,6 +65,16 @@
         <activity
             android:name=".activity.MealBillsActivity"
             android:label="@string/title_activity_meal_bills"
+            android:theme="@style/Splurge" >
+        </activity>
+        <activity
+            android:name=".activity.base.NavDrawerActivity"
+            android:label="@string/title_activity_nav_drawer"
+            android:theme="@style/Splurge" >
+        </activity>
+        <activity
+            android:name=".activity.TripActivity"
+            android:label="@string/title_activity_trip"
             android:theme="@style/Splurge" >
         </activity>
     </application>

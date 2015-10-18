@@ -1,23 +1,25 @@
 package com.is3261.splurge.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
-import android.widget.Toolbar;
 
+import com.is3261.splurge.activity.base.NavDrawerActivity;
 import com.is3261.splurge.fragment.MenuSelectionFragment;
 import com.is3261.splurge.R;
 import com.is3261.splurge.helper.OwnerStore;
 
-public class MenuActivity extends AppCompatActivity {
+public class MenuActivity extends NavDrawerActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menu);
+//        setContentView(R.layout.activity_menu);
+        getLayoutInflater().inflate(R.layout.activity_menu, mContainer, true);
         setUpToolbar();
+        setUpDrawerToggle(mToolbar);
 
         if (savedInstanceState == null) {
             attachMenuGridFragment();
@@ -37,6 +39,13 @@ public class MenuActivity extends AppCompatActivity {
                 signOut();
                 return true;
             }
+            case R.id.nav:
+                startActivity(new Intent(this, NavDrawerActivity.class));
+                break;
+
+            case R.id.trip:
+                startActivity(new Intent(this,TripActivity.class));
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -51,13 +60,12 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     private void setUpToolbar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_menu);
-        setActionBar(toolbar);
+        mToolbar = (Toolbar) findViewById(R.id.toolbar_menu);
+        setSupportActionBar(mToolbar);
         //noinspection ConstantConditions
-        getActionBar().setDisplayShowTitleEnabled(false);
-        OwnerStore ownerStore = new OwnerStore(this);
-        String username = ownerStore.getUsername();
-        ((TextView) toolbar.findViewById(R.id.username)).setText(username);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+//        ((TextView) toolbar.findViewById(R.id.username)).setText(username);
     }
 
 

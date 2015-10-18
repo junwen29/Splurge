@@ -1,8 +1,15 @@
 <resources>>
-    <style name="Splurge.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
+    <style name="Splurge" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/splurge_primary</item>
+        <item name="colorPrimaryDark">@color/splurge_primary_dark</item>
+        <item name="colorAccent">@color/splurge_accent</item>
+
+        <!--<item name="windowActionBar">false</item>-->
+        <!--<item name="windowNoTitle">true</item>-->
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
-        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:statusBarColor">@color/splurge_primary_dark</item>
+        <!--<item name="android:windowTranslucentStatus">true</item>-->
     </style>
+
+
 </resources>

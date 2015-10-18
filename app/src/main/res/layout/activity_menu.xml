@@ -6,21 +6,21 @@
     android:orientation="vertical"
     tools:context="com.is3261.splurge.activity.MenuActivity">
 
-    <android.widget.Toolbar
+    <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar_menu"
         android:layout_width="match_parent"
         android:layout_height="?android:actionBarSize"
         android:background="@color/splurge_primary"
         android:elevation="@dimen/elevation_header">
 
-        <TextView
-            android:id="@+id/username"
-            style="@style/Splurge.TextAppearance.Title.Inverse"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical|start" />
+        <!--<TextView-->
+            <!--android:id="@+id/username"-->
+            <!--style="@style/Splurge.TextAppearance.Title.Inverse"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center_vertical|start" />-->
 
-    </android.widget.Toolbar>
+    </android.support.v7.widget.Toolbar>
 
     <FrameLayout
         android:id="@+id/container"

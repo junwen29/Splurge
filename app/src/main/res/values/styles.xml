@@ -9,12 +9,21 @@
         <item name="android:textColorPrimary">@android:color/black</item>
         <item name="android:textColorPrimaryInverse">@color/text_light</item>
 
-        <item name="android:statusBarColor">@color/splurge_primary_dark</item>
         <item name="android:textColor">@color/text_dark</item>
 
         <item name="android:windowContentTransitions">true</item>
         <item name="android:titleTextAppearance">@style/Splurge.TextAppearance.Title</item>
         <item name="android:windowBackground">@color/light_grey</item>
+
+        <item name="windowActionBar">false</item>
+        <item name="windowActionModeOverlay">true</item>
+
+    </style>
+
+    <style name="Splurge.StatusBarOverlay" parent="@style/Splurge">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="windowActionBarOverlay">true</item>
     </style>
 
     <style name="Splurge.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
@@ -88,9 +97,35 @@
         <item name="android:textColor">@android:color/white</item>
     </style>
 
+    <style name="Splurge.TextAppearance.Title.Overlay">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:shadowColor">@android:color/white</item>
+        <item name="android:shadowRadius">5</item>
+        <item name="android:shadowDy">0</item>
+    </style>
+
+    <style name="Splurge.Text">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="Splurge.Text.Overlay">
+        <item name="android:textStyle">bold</item>
+        <item name="android:shadowColor">@android:color/white</item>
+        <item name="android:shadowRadius">5</item>
+        <item name="android:shadowDy">0</item>
+    </style>
+
+
+
     <!-- Contains the enter transition for MenuActivity. -->
     <!--<style name="Splurge.MenuActivity">-->
         <!--<item name="android:windowSharedElementEnterTransition">@transition/menu_enter</item>-->
     <!--</style>-->
+
+    <style name="Button" parent="Base.Widget.AppCompat.Button.Borderless">
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
 
 </resources>

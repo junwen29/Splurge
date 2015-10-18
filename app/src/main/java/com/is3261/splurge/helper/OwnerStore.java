@@ -38,6 +38,10 @@ public class OwnerStore {
         return mSharedPreferences.getString(USERNAME, null);
     }
 
+    public String getEmail(){
+        return mSharedPreferences.getString(EMAIL, null);
+    }
+
     public String getAuthToken() {
         return mSharedPreferences.getString(AUTH_TOKEN, null);
     }
