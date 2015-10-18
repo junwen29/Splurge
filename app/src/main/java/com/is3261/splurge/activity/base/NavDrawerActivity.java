@@ -88,21 +88,26 @@ public abstract class NavDrawerActivity extends BaseActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camara) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        switch (id){
 
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
+            case R.id.nav_debts:
+                break;
+            case R.id.nav_loans:
+                break;
+            case R.id.nav_trips:
+                break;
+            case R.id.nav_settings:
+                break;
+            case R.id.nav_my_friends:
+                break;
+            case R.id.nav_add_friend:
+                break;
+            case R.id.nav_logout:
+                signOut();
+                break;
+            default:
+                break;
         }
-
-//        } else if (id == R.id.nav_share) {
-//
-//        } else if (id == R.id.nav_send) {
-//
-//        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
