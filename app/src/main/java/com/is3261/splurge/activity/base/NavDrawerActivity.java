@@ -16,6 +16,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.is3261.splurge.R;
+import com.is3261.splurge.activity.FrontPageActivity;
 import com.is3261.splurge.helper.OwnerStore;
 
 public abstract class NavDrawerActivity extends BaseActivity
@@ -106,5 +107,14 @@ public abstract class NavDrawerActivity extends BaseActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    protected void signOut(){
+        OwnerStore store = new OwnerStore(this);
+        store.clearAuthToken();
+        store.clear();
+
+        FrontPageActivity.start(this, true, null);
+        finishAffinity();
     }
 }

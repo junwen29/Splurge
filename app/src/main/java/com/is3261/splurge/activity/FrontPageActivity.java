@@ -101,7 +101,7 @@ public class FrontPageActivity extends AppCompatActivity implements View.OnClick
             switch (requestCode){
                 case REQ_SIGNUP:
                 case REQ_LOGIN:
-                    startActivity(new Intent(this, MenuActivity.class));
+                    startActivity(new Intent(this, TripActivity.class));
                     finish();
                     break;
                 default:

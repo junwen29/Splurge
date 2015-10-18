@@ -18,6 +18,7 @@ import android.view.animation.Interpolator;
 import com.is3261.splurge.R;
 import com.is3261.splurge.model.MenuCategory;
 
+//TODO deprecated
 public class MealBillsActivity extends Activity implements View.OnClickListener {
 
     private static final String TAG = "MealBillsActivity";

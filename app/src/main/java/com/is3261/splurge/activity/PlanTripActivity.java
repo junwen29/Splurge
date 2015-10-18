@@ -16,6 +16,7 @@ import android.widget.Toolbar;
 import com.is3261.splurge.R;
 import com.is3261.splurge.model.MenuCategory;
 
+//TODO deprecated
 public class PlanTripActivity extends Activity implements View.OnClickListener {
 
     private static final String TAG = "PlanTripActivity";
