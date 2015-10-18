@@ -4,12 +4,10 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_horizontal"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingTop="25dp"
+    android:gravity="center"
     tools:context="com.is3261.splurge.activity.SignupActivity">
+    <!--TODO dynamic change of padding top to match the height of status bar-->
 
     <!-- Register progress -->
     <ProgressBar
