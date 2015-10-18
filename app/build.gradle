@@ -44,4 +44,5 @@ dependencies {
     //3rd party libs
     compile 'com.squareup.okhttp:okhttp:2.2.0'
     compile 'com.squareup.okhttp:okhttp-urlconnection:2.2.0'
+    compile 'com.oguzdev:CircularFloatingActionMenu:1.0.2'
 }
