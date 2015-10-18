@@ -37,7 +37,7 @@ public class SplashScreenActivity extends AppCompatActivity {
     }
 
     private void goToMain() {
-        startActivity(new Intent(this, MenuActivity.class));
+        startActivity(new Intent(this, TripActivity.class));
     }
 
     private void setup(){
