@@ -1,5 +1,6 @@
 package com.is3261.splurge.activity.base;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -16,7 +17,9 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.is3261.splurge.R;
+import com.is3261.splurge.activity.AddFriendActivity;
 import com.is3261.splurge.activity.FrontPageActivity;
+import com.is3261.splurge.activity.ProfileActivity;
 import com.is3261.splurge.helper.OwnerStore;
 
 public abstract class NavDrawerActivity extends BaseActivity
@@ -99,8 +102,10 @@ public abstract class NavDrawerActivity extends BaseActivity
             case R.id.nav_settings:
                 break;
             case R.id.nav_my_friends:
+                startActivity(new Intent(this, ProfileActivity.class));
                 break;
             case R.id.nav_add_friend:
+                startActivity(new Intent(this, AddFriendActivity.class));
                 break;
             case R.id.nav_logout:
                 signOut();

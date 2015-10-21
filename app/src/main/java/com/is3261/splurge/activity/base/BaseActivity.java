@@ -1,6 +1,9 @@
 package com.is3261.splurge.activity.base;
 
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import com.android.volley.NoConnectionError;
@@ -49,6 +52,15 @@ public abstract class BaseActivity extends AppCompatActivity {
             showErrorMessage(R.string.error_network);
         } else {
             showErrorMessage();
+        }
+    }
+
+    public void hideKeyboard() {
+        InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (getCurrentFocus() != null) {
+            inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        } else {
+            getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         }
     }
 }

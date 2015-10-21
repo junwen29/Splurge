@@ -19,4 +19,8 @@ public class Endpoint {
     //owner session
     public static final String LOGIN = SERVER_URL + "accounts/sign_in";
     public static final String LOGOUT = SERVER_URL + "accounts/sign_out";
+
+    // friendship
+
+    public static final String ADD_FRIEND = SERVER_URL + "friendship/create?auth_token=%s&user_id=%s&email=%s";
 }

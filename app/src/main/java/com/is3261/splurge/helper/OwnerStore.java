@@ -46,6 +46,10 @@ public class OwnerStore {
         return mSharedPreferences.getString(AUTH_TOKEN, null);
     }
 
+    public String getOwnerId() {
+        return Long.toString(mSharedPreferences.getLong(OWNER_ID, 0));
+    }
+
     public void setAuthToken(String token) {
         mEditor.putString(AUTH_TOKEN, token).commit();
     }
