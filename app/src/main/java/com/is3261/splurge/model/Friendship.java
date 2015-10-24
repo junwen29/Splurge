@@ -19,4 +19,12 @@ public class Friendship {
     public Friendship() {
         id = 0;
     }
+
+    public User getUser() {
+        return user;
+    }
+
+    public User getFriend() {
+        return friend;
+    }
 }

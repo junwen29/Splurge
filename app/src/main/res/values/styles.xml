@@ -130,11 +130,50 @@
     </style>
 
     <style name="Button.Blue">
-        <item name="android:background">@color/splurge_primary</item>
+        <item name="android:background">@drawable/btn_blue_rounded</item>
+    </style>
+
+    <style name="Button.Grey">
+        <item name="android:background">@drawable/btn_grey_rounded</item>
     </style>
 
     <style name="CardView">
         <item name="android:layout_margin">4dp</item>
+    </style>
+
+
+    <!--Image styles-->
+    <style name="Image">
+        <item name="android:scaleType">centerCrop</item>
+        <item name="android:adjustViewBounds">true</item>
+        <item name="android:cropToPadding">true</item>
+        <item name="android:contentDescription">@string/desc_image_view</item>
+    </style>
+
+    <style name="Image.Avatar">
+        <item name="android:width">72dp</item>
+        <item name="android:layout_marginLeft">16dp</item>
+        <item name="android:layout_marginRight">16dp</item>
+    </style>
+
+    <!--Text styles-->
+    <style name="Text">
+        <item name="android:textSize">@dimen/font</item>
+        <item name="android:textColor">@color/text_dark</item>
+    </style>
+
+    <style name="Text.Card">
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="Text.Card.Title">
+        <item name="android:textColor">@color/splurge_primary</item>
+        <item name="android:textSize">@dimen/font_card_title</item>
+    </style>
+
+    <style name="Text.Card.Subtitle">
+        <item name="android:textColor">@color/text_dark</item>
     </style>
 
 </resources>

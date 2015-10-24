@@ -21,6 +21,6 @@ public class Endpoint {
     public static final String LOGOUT = SERVER_URL + "accounts/sign_out";
 
     // friendship
-
     public static final String ADD_FRIEND = SERVER_URL + "friendship/create?auth_token=%s&user_id=%s&email=%s";
+    public static final String ALL_REQUESTED_FRIENDS = SERVER_URL + "friendship/index?auth_token=%s&user_id=%s";
 }
