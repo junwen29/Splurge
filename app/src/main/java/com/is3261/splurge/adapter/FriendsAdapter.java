@@ -16,9 +16,9 @@ import java.util.ArrayList;
 /**
  * Created by junwen29 on 10/21/2015.
  */
-public class FriendshipsAdapter extends RecyclerViewAdapter<User> {
+public class FriendsAdapter extends RecyclerViewAdapter<User> {
 
-    public FriendshipsAdapter(ArrayList<User> mItems, Context context) {
+    public FriendsAdapter(ArrayList<User> mItems, Context context) {
         super(mItems, context);
     }
 

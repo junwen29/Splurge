@@ -28,4 +28,16 @@ public class FriendshipRequest {
         Type type = new TypeToken<Collection<User>>(){}.getType();
         return new GsonCollectionRequest<>(Request.Method.GET, url, type, listener);
     }
+
+    public static GsonCollectionRequest<User> loadFriendRequests(String userId, CollectionListener<User> listener){
+        String url = String.format(Endpoint.ALL_REQUESTS, SplurgeApi.getAuthToken(),userId);
+        Type type = new TypeToken<Collection<User>>(){}.getType();
+        return new GsonCollectionRequest<>(Request.Method.GET, url, type, listener);
+    }
+
+    public static GsonCollectionRequest<User> loadFriends(String userId, CollectionListener<User> listener){
+        String url = String.format(Endpoint.ALL_FRIENDS, SplurgeApi.getAuthToken(),userId);
+        Type type = new TypeToken<Collection<User>>(){}.getType();
+        return new GsonCollectionRequest<>(Request.Method.GET, url, type, listener);
+    }
 }

@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 
 import com.android.volley.VolleyError;
 import com.is3261.splurge.R;
-import com.is3261.splurge.adapter.FriendshipsAdapter;
+import com.is3261.splurge.adapter.FriendsAdapter;
 import com.is3261.splurge.api.CollectionListener;
 import com.is3261.splurge.api.request.FriendshipRequest;
 import com.is3261.splurge.fragment.base.BaseFragment;
@@ -24,14 +24,17 @@ import java.util.Collection;
 
 /**
  * Created by junwen29 on 10/18/2015.
+ *
+ * Show all the user's friend requests to others
+ *
  */
-public class FriendRequestsFragment extends BaseFragment {
+public class UserPendingFriendsFragment extends BaseFragment {
 
     private RecyclerView mRecyclerView;
-    private FriendshipsAdapter mFriendshipsAdapter;
+    private FriendsAdapter mFriendsAdapter;
     private LoadFriendRequestsTask mTask = null;
     private String mUserId;
-    private static final String TAG = "FriendRequestsFragment";
+    private static final String TAG = "UserPendingFriends";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -48,11 +51,11 @@ public class FriendRequestsFragment extends BaseFragment {
 
     private void init(View view){
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
-        mFriendshipsAdapter = new FriendshipsAdapter(new ArrayList<User>(), getContext());
+        mFriendsAdapter = new FriendsAdapter(new ArrayList<User>(), getContext());
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), null));
-        mRecyclerView.setAdapter(mFriendshipsAdapter);
+        mRecyclerView.setAdapter(mFriendsAdapter);
 
         OwnerStore ownerStore = new OwnerStore(getContext());
         mUserId = ownerStore.getOwnerId();
@@ -62,9 +65,9 @@ public class FriendRequestsFragment extends BaseFragment {
         CollectionListener<User> listener = new CollectionListener<User>() {
             @Override
             public void onResponse(Collection<User> friends) {
-                mFriendshipsAdapter.clear();
-                mFriendshipsAdapter.addAll(friends);
-                mFriendshipsAdapter.notifyDataSetChanged();
+                mFriendsAdapter.clear();
+                mFriendsAdapter.addAll(friends);
+                mFriendsAdapter.notifyDataSetChanged();
             }
 
             @Override
