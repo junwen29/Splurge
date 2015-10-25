@@ -37,4 +37,22 @@
             style="@style/Text.Card.Subtitle"/>
     </LinearLayout>
 
+    <Button
+        android:id="@+id/btn_confirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Confirm"
+        android:layout_toRightOf="@id/text_layout"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        style="@style/Button.Blue"/>
+
+    <Button
+        android:id="@+id/btn_reject"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reject"
+        android:layout_toRightOf="@id/btn_confirm"
+        style="@style/Button.Grey"/>
+
+
 </RelativeLayout>

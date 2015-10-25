@@ -11,6 +11,7 @@ import android.view.View;
 import com.is3261.splurge.R;
 import com.is3261.splurge.activity.base.NavDrawerActivity;
 import com.is3261.splurge.adapter.ViewPagerAdapter;
+import com.is3261.splurge.fragment.ApproveFriendsFragment;
 import com.is3261.splurge.fragment.UserPendingFriendsFragment;
 import com.is3261.splurge.fragment.FriendsFragment;
 
@@ -33,7 +34,8 @@ public class ProfileActivity extends NavDrawerActivity {
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new FriendsFragment(), "Friends");
-        adapter.addFragment(new UserPendingFriendsFragment(), "Requests");
+        adapter.addFragment(new ApproveFriendsFragment(), "Approve Requests");
+        adapter.addFragment(new UserPendingFriendsFragment(), "My Requests");
         viewPager.setAdapter(adapter);
     }
 

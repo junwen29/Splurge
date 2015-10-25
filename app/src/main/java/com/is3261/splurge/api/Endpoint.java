@@ -22,8 +22,10 @@ public class Endpoint {
 
     // friendship
     public static final String ADD_FRIEND = SERVER_URL + "friendship/create?auth_token=%s&user_id=%s&email=%s";
-    public static final String ALL_PENDING_FRIENDS = SERVER_URL + "friendship/pending?auth_token=%s&user_id=%s";
-    public static final String ALL_REQUESTS = SERVER_URL + "friendship/requests?auth_token=%s&user_id=%s";
+    public static final String APPROVE_FRIEND = SERVER_URL + "friendship/approve?auth_token=%s&user_id=%s&friend_id=%s";
+    public static final String REJECT_FRIEND = SERVER_URL + "friendship/reject?auth_token=%s&user_id=%s&friend_id=%s";
+    public static final String FRIENDS_REQUESTED = SERVER_URL + "friendship/pending?auth_token=%s&user_id=%s";
+    public static final String FRIENDS_FOR_APPROVAL = SERVER_URL + "friendship/requests?auth_token=%s&user_id=%s";
     public static final String ALL_FRIENDS = SERVER_URL + "friendship/friends?auth_token=%s&user_id=%s";
 
 }

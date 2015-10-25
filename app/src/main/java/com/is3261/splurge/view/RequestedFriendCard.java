@@ -19,9 +19,6 @@ public class RequestedFriendCard extends CardView {
     TextView mUsername;
     TextView mEmail;
 
-//    Button mConfirmBtn;
-//    Button mRejectBtn;
-
     User mRequestedFriend;
 
     public RequestedFriendCard(Context context) {
@@ -44,9 +41,6 @@ public class RequestedFriendCard extends CardView {
         mAvatar = (ImageView) findViewById(R.id.avatar);
         mUsername = (TextView) findViewById(R.id.title);
         mEmail = (TextView) findViewById(R.id.subtitle);
-
-//        mConfirmBtn = (Button) findViewById(R.id.btn_confirm);
-//        mRejectBtn = (Button) findViewById(R.id.btn_reject);
     }
 
     public void update(User friend){
