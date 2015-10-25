@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
@@ -14,6 +15,7 @@ import com.is3261.splurge.adapter.ViewPagerAdapter;
 import com.is3261.splurge.fragment.ApproveFriendsFragment;
 import com.is3261.splurge.fragment.UserPendingFriendsFragment;
 import com.is3261.splurge.fragment.FriendsFragment;
+import com.is3261.splurge.helper.OwnerStore;
 
 public class ProfileActivity extends NavDrawerActivity {
 
@@ -44,6 +46,12 @@ public class ProfileActivity extends NavDrawerActivity {
         setSupportActionBar(mToolbar);
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         tabLayout = (TabLayout) findViewById(R.id.tabs);
+
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar!= null){
+            String username = (new OwnerStore(this)).getUsername();
+            actionBar.setTitle(username);
+        }
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
