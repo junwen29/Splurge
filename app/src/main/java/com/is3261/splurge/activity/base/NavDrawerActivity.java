@@ -1,5 +1,6 @@
 package com.is3261.splurge.activity.base;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -16,7 +17,9 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.is3261.splurge.R;
+import com.is3261.splurge.activity.AddFriendActivity;
 import com.is3261.splurge.activity.FrontPageActivity;
+import com.is3261.splurge.activity.ProfileActivity;
 import com.is3261.splurge.helper.OwnerStore;
 
 public abstract class NavDrawerActivity extends BaseActivity
@@ -88,21 +91,28 @@ public abstract class NavDrawerActivity extends BaseActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camara) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        switch (id){
 
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
+            case R.id.nav_debts:
+                break;
+            case R.id.nav_loans:
+                break;
+            case R.id.nav_trips:
+                break;
+            case R.id.nav_settings:
+                break;
+            case R.id.nav_my_friends:
+                startActivity(new Intent(this, ProfileActivity.class));
+                break;
+            case R.id.nav_add_friend:
+                startActivity(new Intent(this, AddFriendActivity.class));
+                break;
+            case R.id.nav_logout:
+                signOut();
+                break;
+            default:
+                break;
         }
-
-//        } else if (id == R.id.nav_share) {
-//
-//        } else if (id == R.id.nav_send) {
-//
-//        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
