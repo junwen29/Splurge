@@ -2,6 +2,7 @@ package com.is3261.splurge.fragment;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -28,11 +29,13 @@ import java.util.Collection;
  * Show all the user's friend requests to others
  *
  */
-public class UserPendingFriendsFragment extends BaseFragment {
+public class UserPendingFriendsFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener {
 
+    private SwipeRefreshLayout mSwipeLayout;
     private RecyclerView mRecyclerView;
     private FriendsAdapter mFriendsAdapter;
     private LoadFriendRequestsTask mTask = null;
+    private CollectionListener<User> mListener;
     private String mUserId;
     private static final String TAG = "UserPendingFriends";
 
@@ -43,13 +46,14 @@ public class UserPendingFriendsFragment extends BaseFragment {
         init(v);
 
         //load requests
-        mTask = new LoadFriendRequestsTask();
-        mTask.execute((Void) null);
+        loadRequestedFriends();
 
         return v;
     }
 
     private void init(View view){
+        initSwipeRefreshLayout(view);
+
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
         mFriendsAdapter = new FriendsAdapter(new ArrayList<User>(), getContext());
 
@@ -61,10 +65,17 @@ public class UserPendingFriendsFragment extends BaseFragment {
         mUserId = ownerStore.getOwnerId();
     }
 
+    private void initSwipeRefreshLayout(View view){
+        mSwipeLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_container);
+        mSwipeLayout.setOnRefreshListener(this);
+        mSwipeLayout.setColorSchemeResources(R.color.splurge_primary_dark);
+    }
+
     private void loadRequestedFriends(){
-        CollectionListener<User> listener = new CollectionListener<User>() {
+        mListener = new CollectionListener<User>() {
             @Override
             public void onResponse(Collection<User> friends) {
+                mSwipeLayout.setRefreshing(false);
                 mFriendsAdapter.clear();
                 mFriendsAdapter.addAll(friends);
                 mFriendsAdapter.notifyDataSetChanged();
@@ -72,10 +83,29 @@ public class UserPendingFriendsFragment extends BaseFragment {
 
             @Override
             public void onErrorResponse(VolleyError volleyError) {
+                mSwipeLayout.setRefreshing(false);
                 Log.d(TAG, "Error: " /*+ volleyError.toString()*/);
             }
         };
-        getSplurgeApi().enqueue(FriendshipRequest.loadRequestedFriends(mUserId, listener));
+
+        if (mTask == null){
+            if (!mSwipeLayout.isRefreshing())
+                mSwipeLayout.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        mSwipeLayout.setRefreshing(true);
+                    }
+                });
+
+            mTask = new LoadFriendRequestsTask();
+            mTask.execute((Void) null);
+        }
+    }
+
+    @Override
+    public void onRefresh() {
+//        attemptLoadRequestedFriends();
+        loadRequestedFriends();
     }
 
     public class LoadFriendRequestsTask extends AsyncTask<Void,Void,Void>{
@@ -89,7 +119,7 @@ public class UserPendingFriendsFragment extends BaseFragment {
             try {
                 // Simulate network access.
                 Thread.sleep(2000);
-                loadRequestedFriends();
+                getSplurgeApi().enqueue(FriendshipRequest.loadRequestedFriends(mUserId, mListener));
             } catch (InterruptedException ignored) {
             }
             return null;
@@ -98,13 +128,11 @@ public class UserPendingFriendsFragment extends BaseFragment {
         @Override
         protected void onPostExecute(Void aVoid) {
             mTask = null;
-//            showProgress(false);
         }
 
         @Override
         protected void onCancelled() {
             mTask = null;
-//            showProgress(false);
         }
 
     }
