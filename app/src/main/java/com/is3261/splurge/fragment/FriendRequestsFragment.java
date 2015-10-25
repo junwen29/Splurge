@@ -17,6 +17,7 @@ import com.is3261.splurge.api.request.FriendshipRequest;
 import com.is3261.splurge.fragment.base.BaseFragment;
 import com.is3261.splurge.helper.OwnerStore;
 import com.is3261.splurge.model.User;
+import com.is3261.splurge.view.DividerItemDecoration;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -48,7 +49,9 @@ public class FriendRequestsFragment extends BaseFragment {
     private void init(View view){
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
         mFriendshipsAdapter = new FriendshipsAdapter(new ArrayList<User>(), getContext());
+
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), null));
         mRecyclerView.setAdapter(mFriendshipsAdapter);
 
         OwnerStore ownerStore = new OwnerStore(getContext());

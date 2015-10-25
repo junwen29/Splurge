@@ -1,4 +1,4 @@
-package com.is3261.splurge;
+package com.is3261.splurge.view;
 
 import android.content.Context;
 import android.support.v7.widget.CardView;
@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.is3261.splurge.R;
 import com.is3261.splurge.model.User;
 
 /**

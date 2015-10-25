@@ -22,5 +22,6 @@ public class Endpoint {
 
     // friendship
     public static final String ADD_FRIEND = SERVER_URL + "friendship/create?auth_token=%s&user_id=%s&email=%s";
-    public static final String ALL_REQUESTED_FRIENDS = SERVER_URL + "friendship/index?auth_token=%s&user_id=%s";
+    public static final String ALL_PENDING_FRIENDS = SERVER_URL + "friendship/pending?auth_token=%s&user_id=%s";
+
 }

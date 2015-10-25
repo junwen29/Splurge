@@ -24,7 +24,7 @@ public class FriendshipRequest {
     }
 
     public static GsonCollectionRequest<User> loadRequestedFriends(String userId, CollectionListener<User> listener){
-        String url = String.format(Endpoint.ALL_REQUESTED_FRIENDS, SplurgeApi.getAuthToken(),userId);
+        String url = String.format(Endpoint.ALL_PENDING_FRIENDS, SplurgeApi.getAuthToken(),userId);
         Type type = new TypeToken<Collection<User>>(){}.getType();
         return new GsonCollectionRequest<>(Request.Method.GET, url, type, listener);
     }

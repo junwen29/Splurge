@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.is3261.splurge.RequestedFriendCard xmlns:android="http://schemas.android.com/apk/res/android"
+<com.is3261.splurge.view.RequestedFriendCard xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/card_friend"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-</com.is3261.splurge.RequestedFriendCard>
+</com.is3261.splurge.view.RequestedFriendCard>

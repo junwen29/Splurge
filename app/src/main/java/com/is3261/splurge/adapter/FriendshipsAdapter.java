@@ -7,10 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.is3261.splurge.R;
-import com.is3261.splurge.RequestedFriendCard;
-import com.is3261.splurge.activity.base.BaseActivity;
+import com.is3261.splurge.view.RequestedFriendCard;
 import com.is3261.splurge.adapter.base.RecyclerViewAdapter;
-import com.is3261.splurge.model.Friendship;
 import com.is3261.splurge.model.User;
 
 import java.util.ArrayList;
