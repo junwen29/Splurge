@@ -1,8 +1,7 @@
 package com.is3261.splurge.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -12,10 +11,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.is3261.splurge.R;
 import com.is3261.splurge.activity.base.NavDrawerActivity;
 import com.is3261.splurge.fragment.TripFragment;
+import com.oguzdev.circularfloatingactionmenu.library.FloatingActionButton;
+import com.oguzdev.circularfloatingactionmenu.library.FloatingActionMenu;
+import com.oguzdev.circularfloatingactionmenu.library.SubActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,14 +39,35 @@ public class TripActivity extends NavDrawerActivity {
         setupViewPager(viewPager);
         tabLayout.setupWithViewPager(viewPager);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        FloatingActionButton fab = new FloatingActionButton.Builder(this).setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_addbtn)).build();
+
+
+        SubActionButton.Builder itemBuilder = new SubActionButton.Builder(this);
+//        ImageView itemIcon = new ImageView(this);
+        SubActionButton button1 = itemBuilder.build();
+
+        ImageView itemIcon2 = new ImageView(this);
+
+        SubActionButton button2 = itemBuilder.build();
+        button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+
+                Intent mealSpilt_i = new Intent(TripActivity.this, SpiltMealActivity.class);
+                startActivity(mealSpilt_i);
             }
         });
+
+
+
+
+//        ImageView itemIcon3 = new ImageView(this);
+        SubActionButton button3 = itemBuilder.build();
+
+        FloatingActionMenu actionMenu = new FloatingActionMenu.Builder(this).addSubActionView(button1)
+                                                                            .addSubActionView(button2)
+                                                                            .addSubActionView(button3).attachTo(fab).build();
+
     }
 
     @Override
@@ -108,5 +132,7 @@ public class TripActivity extends NavDrawerActivity {
             return mFragmentTitleList.get(position);
         }
     }
+
+
 
 }

@@ -77,6 +77,10 @@
             android:label="@string/title_activity_trip"
             android:theme="@style/Splurge" >
         </activity>
+        <activity
+            android:name=".activity.SpiltMealActivity"
+            android:label="@string/title_activity_spilt_meal" >
+        </activity>
     </application>
 
 </manifest>

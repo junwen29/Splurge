@@ -1,0 +1,20 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.is3261.splurge.fragment.SplitMealFragment3">
+
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/swipe_container_spilt_meal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <TextView android:layout_width="match_parent" android:layout_height="match_parent"
+        android:id = "@+id/sm_detail_userName" />
+
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+</FrameLayout>
