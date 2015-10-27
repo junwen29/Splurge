@@ -3,16 +3,24 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <CheckBox android:id="@+id/checkbox_isJoin"
+
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name" />
+
+        <TextView
+        android:id="@+id/tvCurrency"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Currency" />
 
-        android:onClick="onCheckboxClicked"/>
-
-    <TextView
-        android:id="@+id/tvName"
+        <TextView
+        android:id="@+id/tvExpense"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Name" />
+        android:text="Expense" />
+
 
 </LinearLayout>

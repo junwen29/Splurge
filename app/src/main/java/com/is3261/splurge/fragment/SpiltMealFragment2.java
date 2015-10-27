@@ -50,6 +50,9 @@ public class SpiltMealFragment2 extends BaseFragment {
                             selectedList.add(list.get(i));
                     }
                 activity.setSelectedFriendList(selectedList);
+                if(activity.getUserExpense().size() < 0) {
+                   activity.setUpUserItem(selectedList);
+                }
             }
         });
 

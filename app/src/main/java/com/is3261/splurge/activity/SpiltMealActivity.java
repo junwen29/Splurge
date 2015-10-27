@@ -19,14 +19,12 @@ import java.util.HashMap;
 public class SpiltMealActivity extends BaseActivity implements SpiltMealFragment.OnNextSelectListener{
 
 
-    HashMap<User, Boolean> userMap;
+
     LoadDummyUsers load = new LoadDummyUsers();
-
-
     ArrayList<User> currentTripFriends = load.getUserList();
+    HashMap<User, Boolean> userMap;
 
-
-
+    HashMap<User, Float> userExpense;
     ArrayList<User> selectedFriendList;
 
 
@@ -73,6 +71,7 @@ public class SpiltMealActivity extends BaseActivity implements SpiltMealFragment
 
         userMap = new HashMap<>();
 
+        userExpense = new HashMap<>();
         for (int i = 0; i < currentTripFriends.size(); i++){
             userMap.put(currentTripFriends.get(i), false);
         }
@@ -91,7 +90,16 @@ public class SpiltMealActivity extends BaseActivity implements SpiltMealFragment
         ft.commit();
 
     }
-    
+
+    public void setUpUserItem(ArrayList<User> selectedUser){
+        for(int i = 0 ; i < selectedUser.size(); i++){
+            userExpense.put(selectedUser.get(i), Float.valueOf(0));
+        }
+    }
+
+    public void addExpense(User user, Float amount){
+        userExpense.put(user, userExpense.get(user) + amount);
+    }
 
 
 
@@ -123,5 +131,13 @@ public class SpiltMealActivity extends BaseActivity implements SpiltMealFragment
 
     public void setSelectedFriendList(ArrayList<User> selectedFriendList) {
         this.selectedFriendList = selectedFriendList;
+    }
+
+    public HashMap<User, Float> getUserExpense() {
+        return userExpense;
+    }
+
+    public void setUserExpense(HashMap<User, Float> userExpense) {
+        this.userExpense = userExpense;
     }
 }
