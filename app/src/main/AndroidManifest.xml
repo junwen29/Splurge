@@ -68,14 +68,16 @@
             android:theme="@style/Splurge" >
         </activity>
         <activity
-            android:name=".activity.base.NavDrawerActivity"
-            android:label="@string/title_activity_nav_drawer"
-            android:theme="@style/Splurge" >
-        </activity>
-        <activity
             android:name=".activity.TripActivity"
             android:label="@string/title_activity_trip"
             android:theme="@style/Splurge" >
+        </activity>
+        <activity
+            android:name=".activity.ProfileActivity"
+            android:label="@string/title_activity_profile"
+            android:theme="@style/Splurge" >
+        </activity>
+        <activity android:name=".activity.AddFriendActivity" >
         </activity>
         <activity
             android:name=".activity.SpiltMealActivity"

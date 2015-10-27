@@ -21,7 +21,7 @@ public class LoadDummyUsers {
         u2.setUsername("Vicky Zheng");
         u3 = new User();
         u3.setUsername("Akira Hirakawa");
-        userList = new ArrayList<User> ();
+        userList = new ArrayList<> ();
         userList.add(u1);
         userList.add(u2);
         userList.add(u3);

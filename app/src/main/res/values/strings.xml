@@ -50,6 +50,6 @@
     <string name="title_activity_trip">TripActivity</string>
     <string name="title_activity_spilt_meal">SpiltMealActivity</string>
 
-    <string name="hello_world">Hello world!</string>
-    <string name="title_activity_main2">MainActivity2</string>
+    <string name="title_activity_profile">ProfileActivity</string>
+    <string name="desc_image_view">Image</string>
 </resources>

@@ -98,9 +98,9 @@ public class TripActivity extends NavDrawerActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new TripFragment(), "NO. ONE");
-        adapter.addFragment(new TripFragment(), "ITEM TWO");
-        adapter.addFragment(new TripFragment(), "THE THIRD");
+        adapter.addFragment(new TripFragment(), "Activity");
+        adapter.addFragment(new TripFragment(), "Balance");
+        adapter.addFragment(new TripFragment(), "Trip Expense");
         viewPager.setAdapter(adapter);
     }
 
@@ -132,7 +132,5 @@ public class TripActivity extends NavDrawerActivity {
             return mFragmentTitleList.get(position);
         }
     }
-
-
 
 }

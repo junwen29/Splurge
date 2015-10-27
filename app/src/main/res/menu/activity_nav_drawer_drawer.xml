@@ -3,32 +3,46 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camara"
+            android:id="@+id/nav_debts"
             android:icon="@drawable/ic_menu_allfriends"
-            android:title="Who still owes me" />
+            android:title="My debts" />
 
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/nav_loans"
             android:icon="@drawable/ic_menu_friendslist"
-            android:title="I owe who money" />
+            android:title="My loans to others" />
 
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/nav_trips"
             android:icon="@android:drawable/ic_menu_myplaces"
             android:title="Past trips" />
 
+        <!--TODO about us-->
         <item
-            android:id="@+id/nav_manage"
+            android:id="@+id/nav_settings"
             android:icon="@android:drawable/ic_menu_manage"
             android:title="Settings" />
     </group>
 
-    <!--<item-->
-        <!--android:title="Account">-->
-        <!--<menu>-->
-            <!--<item android:id="@+id/nav_share" android:icon="@android:drawable/ic_menu_share"-->
-                <!--android:title="Prfile" />-->
-        <!--</menu>-->
-    <!--</item>-->
+    <item
+        android:title="Account">
+        <menu>
+            <item
+                android:id="@+id/nav_my_friends"
+                android:icon="@drawable/ic_menu_cc_am"
+                android:title="My friends" />
+
+            <item
+                android:id="@+id/nav_add_friend"
+                android:icon="@drawable/ic_menu_invite"
+                android:title="Add a friend" />
+
+            <item
+                android:id="@+id/nav_logout"
+                android:icon="@android:drawable/ic_menu_close_clear_cancel"
+                android:title="Log out" />
+
+        </menu>
+    </item>
 
 </menu>

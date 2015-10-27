@@ -2,39 +2,47 @@ package com.is3261.splurge.activity;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.is3261.splurge.R;
 import com.is3261.splurge.activity.base.BaseActivity;
+import com.is3261.splurge.dummy.LoadDummyUsers;
 import com.is3261.splurge.fragment.SpiltMealFragment;
 import com.is3261.splurge.fragment.SpiltMealFragment2;
-import com.is3261.splurge.fragment.SplitMealFragment3;
-import com.is3261.splurge.fragment.base.BaseFragment;
 import com.is3261.splurge.model.User;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 
-public class SpiltMealActivity extends BaseActivity {
+public class SpiltMealActivity extends BaseActivity implements SpiltMealFragment.OnNextSelectListener{
 
-    public ViewPager viewPager;
-    User selected_user;
+
+    HashMap<User, Boolean> userMap;
+    LoadDummyUsers load = new LoadDummyUsers();
+
+
+    ArrayList<User> currentTripFriends = load.getUserList();
+
+
+
+    ArrayList<User> selectedFriendList;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_spilt_meal);
-        selected_user = new User();
-        viewPager = (ViewPager) findViewById(R.id.viewpager_spiltmeal);
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new SpiltMealFragment(), "basicInfo");
-        adapter.addFragment(new SpiltMealFragment2(), "TripMember");
-        adapter.addFragment(new SplitMealFragment3(), "Summary");
-        viewPager.setAdapter(adapter);
+
+        selectedFriendList = new ArrayList<>();
+
+        initMap();
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        SpiltMealFragment smf1 = new SpiltMealFragment();
+        ft.add(R.id.fragment_container_sm, smf1);
+        ft.commit();
 
 
     }
@@ -61,39 +69,59 @@ public class SpiltMealActivity extends BaseActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public void initMap() {
 
-    class ViewPagerAdapter extends FragmentPagerAdapter {
-        private final List<BaseFragment> mFragmentList = new ArrayList<>();
-        private final List<String> mFragmentTitleList = new ArrayList<>();
+        userMap = new HashMap<>();
 
-        public ViewPagerAdapter(FragmentManager manager) {
-            super(manager);
+        for (int i = 0; i < currentTripFriends.size(); i++){
+            userMap.put(currentTripFriends.get(i), false);
         }
 
-        @Override
-        public BaseFragment getItem(int position) {
-            return mFragmentList.get(position);
-        }
-
-        @Override
-        public int getCount() {
-            return mFragmentList.size();
-        }
-
-        public void addFragment(BaseFragment fragment, String title) {
-            mFragmentList.add(fragment);
-            mFragmentTitleList.add(title);
-        }
     }
 
-    public User getUser(){
-        System.out.println("***********SELECTED USER GETUSER():" + selected_user.getUsername());
-        return selected_user;
+
+
+
+    @Override
+    public void onNextSelected_sm1(){
+        SpiltMealFragment2 fragment2 = new SpiltMealFragment2();
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.fragment_container_sm, fragment2);
+        ft.addToBackStack(null);
+        ft.commit();
+
+    }
+    
+
+
+
+    public void setUserMap(HashMap<User, Boolean> userMap){
+        this.userMap = userMap;
     }
 
-    public void setUser(User user){
-        this.selected_user = user;
-        System.out.println("***************** User set: " + selected_user.getUsername() );
+
+    public HashMap<User, Boolean> getUserMap() {
+        return userMap;
     }
 
+    public void updateEntry(User key, Boolean newStatus){
+        userMap.put(key, newStatus);
+    }
+
+    public ArrayList<User> getCurrentTripFriends() {
+
+        return currentTripFriends;
+    }
+
+    public void setCurrentTripFriends(ArrayList<User> currentTripFriends) {
+        this.currentTripFriends = currentTripFriends;
+    }
+
+    public ArrayList<User> getSelectedFriendList() {
+        return selectedFriendList;
+    }
+
+    public void setSelectedFriendList(ArrayList<User> selectedFriendList) {
+        this.selectedFriendList = selectedFriendList;
+    }
 }

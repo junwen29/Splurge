@@ -32,8 +32,7 @@ public class SplitMealFragment3 extends BaseFragment {
 
         View view = inflater.inflate(R.layout.fragment_split_meal_fragment3, container, false);
         SpiltMealActivity activity = (SpiltMealActivity) getActivity();
-        mTv = (TextView) view.findViewById(R.id.sm_detail_userName);
-        mTv.setText(" why !!  " + activity.getUser().getUsername());
+
 
         return view;
        }

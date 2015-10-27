@@ -9,4 +9,13 @@
         android:layout_height="wrap_content"
         android:id="@+id/listView_splitmeal_members"
         android:layout_gravity="left|top" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add Expense details"
+        android:id="@+id/button_sm_next2"
+        android:layout_gravity="center_horizontal|bottom" />
+
+
 </FrameLayout>

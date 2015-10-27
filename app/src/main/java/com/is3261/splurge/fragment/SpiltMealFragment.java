@@ -1,7 +1,7 @@
 package com.is3261.splurge.fragment;
 
+import android.app.Activity;
 import android.os.Bundle;
-import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +17,7 @@ import com.is3261.splurge.fragment.base.BaseFragment;
 public class SpiltMealFragment extends BaseFragment {
 
 
+    OnNextSelectListener mCallback;
     Switch gst_switch;
     Switch svc_switch;
     EditText gst_input;
@@ -75,19 +76,31 @@ public class SpiltMealFragment extends BaseFragment {
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ViewPager vp = (ViewPager) getActivity().findViewById(R.id.viewpager_spiltmeal);
-                vp.setCurrentItem(1);
-
+                mCallback.onNextSelected_sm1();
 
             }
         });
         return view;
     }
 
+    // Container Activity must implement this interface
+    public interface OnNextSelectListener {
+        public void onNextSelected_sm1();
+    }
 
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
 
-
-
+        // This makes sure that the container activity has implemented
+        // the callback interface. If not, it throws an exception
+        try {
+            mCallback = (OnNextSelectListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement OnHeadlineSelectedListener");
+        }
+    }
 
 
 }
