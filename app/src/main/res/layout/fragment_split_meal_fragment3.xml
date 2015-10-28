@@ -3,7 +3,11 @@
     android:layout_height="match_parent"
     tools:context="com.is3261.splurge.fragment.SplitMealFragment3">
 
-
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/listView_sm_selected_members"
+        android:layout_gravity="left|top" />
 
 
 

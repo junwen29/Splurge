@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Switch;
 
 import com.is3261.splurge.R;
+import com.is3261.splurge.activity.SpiltMealActivity;
 import com.is3261.splurge.fragment.base.BaseFragment;
 
 
@@ -22,6 +23,7 @@ public class SpiltMealFragment extends BaseFragment {
     Switch svc_switch;
     EditText gst_input;
     EditText svc_input;
+    EditText currency_input;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -30,6 +32,7 @@ public class SpiltMealFragment extends BaseFragment {
         svc_switch = (Switch) view.findViewById(R.id.svc_switch);
         gst_input = (EditText) view.findViewById(R.id.gst_input);
         svc_input = (EditText) view.findViewById(R.id.svc_input);
+        currency_input = (EditText) view.findViewById(R.id.meal_currency);
 
         gst_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -76,8 +79,9 @@ public class SpiltMealFragment extends BaseFragment {
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                SpiltMealActivity activity = (SpiltMealActivity) getActivity();
+                activity.setCurrency(currency_input.getText().toString());
                 mCallback.onNextSelected_sm1();
-
             }
         });
         return view;

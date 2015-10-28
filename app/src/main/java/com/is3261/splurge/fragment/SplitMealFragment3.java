@@ -1,13 +1,12 @@
 package com.is3261.splurge.fragment;
 
 import android.app.Fragment;
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.CheckBox;
+import android.widget.BaseAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.is3261.splurge.R;
@@ -16,6 +15,7 @@ import com.is3261.splurge.fragment.base.BaseFragment;
 import com.is3261.splurge.model.User;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -28,6 +28,8 @@ import java.util.ArrayList;
 public class SplitMealFragment3 extends BaseFragment {
 
 
+    ListView lv;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -36,40 +38,63 @@ public class SplitMealFragment3 extends BaseFragment {
         View view = inflater.inflate(R.layout.fragment_split_meal_fragment3, container, false);
         SpiltMealActivity activity = (SpiltMealActivity) getActivity();
 
+        lv = (ListView) view.findViewById(R.id.listView_sm_selected_members);
 
+        System.out.println("Fragment3:" + activity.getUserExpense());
+
+        MyAdapter adapter = new MyAdapter(activity.getUserExpense());
+        lv.setAdapter(adapter);
         return view;
        }
 
 
-    public class UsersAdapter extends ArrayAdapter<User> {
+    public class MyAdapter extends BaseAdapter {
+        private final ArrayList mData;
 
-        User user;
+        public MyAdapter(Map<User, Float> map) {
+            mData = new ArrayList();
+            mData.addAll(map.entrySet());
+        }
 
-        public UsersAdapter(Context context, ArrayList<User> users) {
-            super(context, 0, users);
+        @Override
+        public int getCount() {
+            return mData.size();
+        }
 
+        @Override
+        public Map.Entry<User, Float> getItem(int position) {
+            return (Map.Entry) mData.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            // TODO implement you own logic with ID
+            return 0;
         }
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            // Get the data item for this position
-            user = getItem(position);
-            // Check if an existing view is being reused, otherwise inflate the view
+            final View result;
+
             if (convertView == null) {
-                convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_sm_member_expense_detail, parent, false);
+                result = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_sm_member_expense_detail, parent, false);
+            } else {
+                result = convertView;
             }
-            // Lookup view for data population
-            TextView tvName = (TextView) convertView.findViewById(R.id.tvName);
-            TextView tvCurrency = (TextView) convertView.findViewById(R.id.tvCurrency);
-            TextView tvExpense = (TextView) convertView.findViewById(R.id.tvExpense);
 
-            // Populate the data into the template view using the data object
-            tvName.setText(user.getUsername());
+            Map.Entry<User, Float> item = getItem(position);
+            SpiltMealActivity activity = (SpiltMealActivity) getActivity();
 
-            // Return the completed view to render on screen
-            return convertView;
+            // TODO replace findViewById by ViewHolder
+            ((TextView) result.findViewById(R.id.tvName)).setText(item.getKey().getUsername());
+            ((TextView) result.findViewById(R.id.tvCurrency)).setText(activity.getCurrency());
+            ((TextView) result.findViewById(R.id.tvExpense)).setText(item.getValue().toString());
+
+            return result;
         }
     }
+
+
 
 
 }

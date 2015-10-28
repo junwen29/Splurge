@@ -11,12 +11,16 @@ import com.is3261.splurge.activity.base.BaseActivity;
 import com.is3261.splurge.dummy.LoadDummyUsers;
 import com.is3261.splurge.fragment.SpiltMealFragment;
 import com.is3261.splurge.fragment.SpiltMealFragment2;
+import com.is3261.splurge.fragment.SplitMealFragment3;
 import com.is3261.splurge.model.User;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
-public class SpiltMealActivity extends BaseActivity implements SpiltMealFragment.OnNextSelectListener{
+public class SpiltMealActivity extends BaseActivity implements SpiltMealFragment.OnNextSelectListener,
+ SpiltMealFragment2.OnNextSelectListener{
 
 
 
@@ -28,14 +32,16 @@ public class SpiltMealActivity extends BaseActivity implements SpiltMealFragment
     ArrayList<User> selectedFriendList;
 
 
+    String currency;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_spilt_meal);
-
         selectedFriendList = new ArrayList<>();
-
         initMap();
+
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         SpiltMealFragment smf1 = new SpiltMealFragment();
@@ -72,14 +78,13 @@ public class SpiltMealActivity extends BaseActivity implements SpiltMealFragment
         userMap = new HashMap<>();
 
         userExpense = new HashMap<>();
+
         for (int i = 0; i < currentTripFriends.size(); i++){
-            userMap.put(currentTripFriends.get(i), false);
+            userMap.put(currentTripFriends.get(i), Boolean.FALSE);
         }
+        System.out.println("Finish InitMap : " + userMap.toString());
 
     }
-
-
-
 
     @Override
     public void onNextSelected_sm1(){
@@ -91,10 +96,26 @@ public class SpiltMealActivity extends BaseActivity implements SpiltMealFragment
 
     }
 
-    public void setUpUserItem(ArrayList<User> selectedUser){
-        for(int i = 0 ; i < selectedUser.size(); i++){
-            userExpense.put(selectedUser.get(i), Float.valueOf(0));
+    @Override
+    public void onNextSelected_sm2(){
+        SplitMealFragment3 fragment3 = new SplitMealFragment3();
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.fragment_container_sm, fragment3);
+        ft.addToBackStack(null);
+        ft.commit();
+    }
+
+    public void setUpUserItem(HashMap<User, Boolean> selectedUser ){
+        if(userExpense.size() == 0 ) {
+            Iterator it = selectedUser.entrySet().iterator();
+            while (it.hasNext()) {
+                Map.Entry<User, Boolean> pair = (Map.Entry) it.next();
+                if (pair.getValue()) {
+                    userExpense.put(pair.getKey(), Float.valueOf(0));
+                }
+            }
         }
+
     }
 
     public void addExpense(User user, Float amount){
@@ -139,5 +160,14 @@ public class SpiltMealActivity extends BaseActivity implements SpiltMealFragment
 
     public void setUserExpense(HashMap<User, Float> userExpense) {
         this.userExpense = userExpense;
+    }
+
+
+    public String getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(String currency) {
+        this.currency = currency;
     }
 }
