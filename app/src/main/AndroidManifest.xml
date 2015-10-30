@@ -39,11 +39,11 @@
             android:label="@string/title_activity_signup" >
         </activity>
         <activity
-            android:name=".activity.MenuActivity"
+            android:name=".activity.deprecated.MenuActivity"
             android:theme="@style/Splurge.StatusBarOverlay" >
         </activity>
         <activity
-            android:name=".activity.PlanTripActivity"
+            android:name=".activity.deprecated.PlanTripActivity"
             android:label="@string/title_activity_plan_trip"
             android:theme="@style/Splurge" >
         </activity>
@@ -53,17 +53,17 @@
             android:theme="@style/Splurge" >
         </activity>
         <activity
-            android:name=".activity.LoanActivity"
+            android:name=".activity.deprecated.LoanActivity"
             android:label="@string/title_activity_loan"
             android:theme="@style/Splurge" >
         </activity>
         <activity
-            android:name=".activity.DebtActivity"
+            android:name=".activity.deprecated.DebtActivity"
             android:label="@string/title_activity_debt"
             android:theme="@style/Splurge" >
         </activity>
         <activity
-            android:name=".activity.MealBillsActivity"
+            android:name=".activity.deprecated.MealBillsActivity"
             android:label="@string/title_activity_meal_bills"
             android:theme="@style/Splurge" >
         </activity>

@@ -14,10 +14,10 @@ import android.widget.GridView;
 
 
 import com.is3261.splurge.R;
-import com.is3261.splurge.activity.DebtActivity;
-import com.is3261.splurge.activity.LoanActivity;
-import com.is3261.splurge.activity.MealBillsActivity;
-import com.is3261.splurge.activity.PlanTripActivity;
+import com.is3261.splurge.activity.deprecated.DebtActivity;
+import com.is3261.splurge.activity.deprecated.LoanActivity;
+import com.is3261.splurge.activity.deprecated.MealBillsActivity;
+import com.is3261.splurge.activity.deprecated.PlanTripActivity;
 import com.is3261.splurge.adapter.MenuCategoryAdapter;
 import com.is3261.splurge.db.RecordTripActivity;
 import com.is3261.splurge.helper.TransitionHelper;
