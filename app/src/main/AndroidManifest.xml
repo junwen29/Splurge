@@ -70,12 +70,12 @@
         <activity
             android:name=".activity.TripActivity"
             android:label="@string/title_activity_trip"
-            android:theme="@style/Splurge" >
+            android:theme="@style/Splurge.TranslucentStatusBar" >
         </activity>
         <activity
             android:name=".activity.ProfileActivity"
             android:label="@string/title_activity_profile"
-            android:theme="@style/Splurge" >
+            android:theme="@style/Splurge.TranslucentStatusBar" >
         </activity>
         <activity android:name=".activity.AddFriendActivity" >
         </activity>

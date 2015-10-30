@@ -8,6 +8,10 @@
         <!--<item name="windowNoTitle">true</item>-->
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:statusBarColor">@color/splurge_primary_dark</item>
+        <item name="android:windowTranslucentStatus">false</item>
+    </style>
+
+    <style name="Splurge.TranslucentStatusBar">
         <item name="android:windowTranslucentStatus">true</item>
     </style>
 

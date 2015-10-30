@@ -15,6 +15,11 @@ import com.is3261.splurge.helper.OwnerStore;
 public class MenuActivity extends NavDrawerActivity {
 
     @Override
+    public void updateActiveDrawerItem() {
+
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        setContentView(R.layout.activity_menu);

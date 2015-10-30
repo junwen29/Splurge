@@ -19,10 +19,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-public class SpiltMealActivity extends BaseActivity implements SpiltMealFragment.OnNextSelectListener,
- SpiltMealFragment2.OnNextSelectListener{
-
-
+public class SpiltMealActivity extends BaseActivity implements SpiltMealFragment.OnNextSelectListener, SpiltMealFragment2.OnNextSelectListener{
 
     LoadDummyUsers load = new LoadDummyUsers();
     ArrayList<User> currentTripFriends = load.getUserList();
@@ -30,8 +27,6 @@ public class SpiltMealActivity extends BaseActivity implements SpiltMealFragment
 
     HashMap<User, Float> userExpense;
     ArrayList<User> selectedFriendList;
-
-
     String currency;
 
 

@@ -15,7 +15,7 @@
         <item
             android:id="@+id/nav_trips"
             android:icon="@android:drawable/ic_menu_myplaces"
-            android:title="Past trips" />
+            android:title="My trips" />
 
         <!--TODO about us-->
         <item
@@ -24,25 +24,25 @@
             android:title="Settings" />
     </group>
 
-    <item
-        android:title="Account">
-        <menu>
-            <item
-                android:id="@+id/nav_my_friends"
-                android:icon="@drawable/ic_menu_cc_am"
-                android:title="My friends" />
+    <group
+        android:checkableBehavior="single"
+        android:id="@+id/nav_account">
 
-            <item
-                android:id="@+id/nav_add_friend"
-                android:icon="@drawable/ic_menu_invite"
-                android:title="Add a friend" />
+        <item
+            android:id="@+id/nav_my_friends"
+            android:icon="@drawable/ic_menu_cc_am"
+            android:title="My friends" />
 
-            <item
-                android:id="@+id/nav_logout"
-                android:icon="@android:drawable/ic_menu_close_clear_cancel"
-                android:title="Log out" />
+        <item
+            android:id="@+id/nav_add_friend"
+            android:icon="@drawable/ic_menu_invite"
+            android:title="Add a friend" />
 
-        </menu>
-    </item>
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@android:drawable/ic_menu_close_clear_cancel"
+            android:title="Log out" />
+
+    </group>
 
 </menu>

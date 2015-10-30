@@ -7,6 +7,9 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.SubMenu;
 import android.view.View;
 
 import com.is3261.splurge.R;
@@ -23,7 +26,13 @@ public class ProfileActivity extends NavDrawerActivity {
     public ViewPager viewPager;
 
     @Override
+    public void updateActiveDrawerItem() {
+        mNavigationView.getMenu().findItem(R.id.nav_my_friends).setChecked(true);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
+        mSelectedDrawerItemId  = R.id.nav_my_friends;
         super.onCreate(savedInstanceState);
         getLayoutInflater().inflate(R.layout.activity_profile, mContainer, true);
 

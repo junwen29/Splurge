@@ -29,7 +29,16 @@ public class TripActivity extends NavDrawerActivity {
     public ViewPager viewPager;
 
     @Override
+    public void updateActiveDrawerItem() {
+        //set selected menu
+        mNavigationView.getMenu().findItem(mSelectedDrawerItemId).setChecked(true);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // set drawer id
+        mSelectedDrawerItemId = R.id.nav_trips;
+
         super.onCreate(savedInstanceState);
         getLayoutInflater().inflate(R.layout.activity_trip, mContainer, true);
 

@@ -51,6 +51,7 @@ public class SpiltMealFragment2 extends BaseFragment {
             @Override
             public void onClick(View view) {
                 SpiltMealActivity activity = (SpiltMealActivity) getActivity();
+                userMap = activity.getUserMap();
                 Iterator it = userMap.entrySet().iterator();
                 while (it.hasNext()) {
                     Map.Entry<User, Boolean> pair = (Map.Entry)it.next();

@@ -20,16 +20,21 @@ import com.is3261.splurge.R;
 import com.is3261.splurge.activity.AddFriendActivity;
 import com.is3261.splurge.activity.FrontPageActivity;
 import com.is3261.splurge.activity.ProfileActivity;
+import com.is3261.splurge.activity.TripActivity;
 import com.is3261.splurge.helper.OwnerStore;
 
 public abstract class NavDrawerActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    protected NavigationView mNavigationView;
     protected FrameLayout mContainer;
     protected Toolbar mToolbar;
     protected DrawerLayout mDrawerLayout;
     protected TextView mTitle;
     protected TextView mSubtitle;
+    protected int mSelectedDrawerItemId = -1;
+
+    public abstract void updateActiveDrawerItem();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,18 +42,6 @@ public abstract class NavDrawerActivity extends BaseActivity
         setContentView(R.layout.activity_nav_drawer);
 
         mContainer = (FrameLayout) findViewById(R.id.content);
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
-//
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
-
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
         // Show owner's username and email address
@@ -60,8 +53,8 @@ public abstract class NavDrawerActivity extends BaseActivity
         mTitle.setText(username);
         mSubtitle.setText(email);
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+        mNavigationView = (NavigationView) findViewById(R.id.nav_view);
+        mNavigationView.setNavigationItemSelectedListener(this);
     }
 
 
@@ -72,6 +65,12 @@ public abstract class NavDrawerActivity extends BaseActivity
                 this, mDrawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         mDrawerLayout.setDrawerListener(toggle);
         toggle.syncState();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        updateActiveDrawerItem();
     }
 
     @Override
@@ -91,6 +90,9 @@ public abstract class NavDrawerActivity extends BaseActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
+        if (id == mSelectedDrawerItemId)
+            return false;
+
         switch (id){
 
             case R.id.nav_debts:
@@ -98,14 +100,18 @@ public abstract class NavDrawerActivity extends BaseActivity
             case R.id.nav_loans:
                 break;
             case R.id.nav_trips:
+                startActivity(new Intent(this, TripActivity.class));
+                finishAffinity();//clear all previous activities
                 break;
             case R.id.nav_settings:
                 break;
             case R.id.nav_my_friends:
                 startActivity(new Intent(this, ProfileActivity.class));
+                finishAffinity();//clear all previous activities
                 break;
             case R.id.nav_add_friend:
                 startActivity(new Intent(this, AddFriendActivity.class));
+                finishAffinity();//clear all previous activities
                 break;
             case R.id.nav_logout:
                 signOut();
@@ -116,6 +122,7 @@ public abstract class NavDrawerActivity extends BaseActivity
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
+        mSelectedDrawerItemId = id;
         return true;
     }
 
