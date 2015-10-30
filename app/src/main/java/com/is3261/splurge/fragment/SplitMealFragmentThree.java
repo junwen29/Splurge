@@ -20,12 +20,12 @@ import java.util.Map;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link SplitMealFragment3.OnFragmentInteractionListener} interface
+ * {@link SplitMealFragmentThree.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link SplitMealFragment3#newInstance} factory method to
+ * Use the {@link SplitMealFragmentThree#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class SplitMealFragment3 extends BaseFragment {
+public class SplitMealFragmentThree extends BaseFragment {
 
 
     ListView lv;

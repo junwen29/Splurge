@@ -22,7 +22,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-public class SpiltMealFragment2 extends BaseFragment {
+public class SpiltMealFragmentTwo extends BaseFragment {
 
     ListView lv;
     LoadDummyUsers load = new LoadDummyUsers();

@@ -15,8 +15,7 @@ import com.is3261.splurge.activity.SpiltMealActivity;
 import com.is3261.splurge.fragment.base.BaseFragment;
 
 
-public class SpiltMealFragment extends BaseFragment {
-
+public class SpiltMealFragmentOne extends BaseFragment {
 
     OnNextSelectListener mCallback;
     Switch gst_switch;
@@ -24,9 +23,10 @@ public class SpiltMealFragment extends BaseFragment {
     EditText gst_input;
     EditText svc_input;
     EditText currency_input;
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.fragment_spilt_meal, container, false);
         gst_switch = (Switch) view.findViewById(R.id.gst_switch);
         svc_switch = (Switch) view.findViewById(R.id.svc_switch);

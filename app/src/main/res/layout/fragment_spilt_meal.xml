@@ -1,19 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.SwipeRefreshLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/swipe_container_spilt_meal"
+<LinearLayout
+    android:id="@+id/meal_spilt_form_step1"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-   <LinearLayout
-        android:id="@+id/meal_spilt_form_step1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_margin="@dimen/activity_horizontal_margin"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/activity_vertical_margin">
 
         <EditText
             android:id="@+id/descrption"
@@ -27,7 +24,8 @@
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/activity_vertical_margin">
 
         <EditText
             android:id="@+id/meal_currency"
@@ -39,19 +37,19 @@
 
     </android.support.design.widget.TextInputLayout>
 
-
     <Switch
-
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:text="GST"
         android:id="@+id/gst_switch"
         android:layout_gravity="center_vertical"
+        android:paddingBottom="@dimen/activity_vertical_margin"
         android:checked="false" />
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/activity_vertical_margin">
 
         <EditText
             android:id="@+id/gst_input"
@@ -64,19 +62,19 @@
 
     </android.support.design.widget.TextInputLayout>
 
-
-
     <Switch
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:text="Service Charge"
         android:id="@+id/svc_switch"
         android:layout_gravity="center_vertical"
-        android:checked="false" />
+        android:checked="false"
+        android:paddingBottom="@dimen/activity_vertical_margin"/>
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/activity_vertical_margin">
 
         <EditText
             android:id="@+id/svc_input"
@@ -93,8 +91,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/button_sm_next1"
-        android:text="Next" />
+        android:text="Next"
+        style="@style/Button.Blue"/>
 
-    </LinearLayout>
-
-</android.support.v4.widget.SwipeRefreshLayout>
+</LinearLayout>
