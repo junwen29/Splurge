@@ -1,7 +1,8 @@
 package com.is3261.splurge.fragment;
 
-import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,12 +18,18 @@ import com.is3261.splurge.fragment.base.BaseFragment;
 
 public class SpiltMealFragmentOne extends BaseFragment {
 
-    OnNextSelectListener mCallback;
+    // Container Activity must implement this interface
+    public interface FragmentOneListener {
+        void onFragmentOneNextSelected(String gst, String currency, String svc, String desc);
+    }
+
+    FragmentOneListener mCallback;
     Switch gst_switch;
     Switch svc_switch;
     EditText gst_input;
     EditText svc_input;
     EditText currency_input;
+    EditText description;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -33,6 +40,7 @@ public class SpiltMealFragmentOne extends BaseFragment {
         gst_input = (EditText) view.findViewById(R.id.gst_input);
         svc_input = (EditText) view.findViewById(R.id.svc_input);
         currency_input = (EditText) view.findViewById(R.id.meal_currency);
+        description = (EditText) view.findViewById(R.id.description);
 
         gst_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -79,32 +87,44 @@ public class SpiltMealFragmentOne extends BaseFragment {
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SpiltMealActivity activity = (SpiltMealActivity) getActivity();
-                activity.setCurrency(currency_input.getText().toString());
-                mCallback.onNextSelected_sm1();
+                attemptNext();
             }
         });
         return view;
     }
 
-    // Container Activity must implement this interface
-    public interface OnNextSelectListener {
-        public void onNextSelected_sm1();
-    }
+    private void attemptNext(){
+        //reset errors
+        currency_input.setError(null);
 
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
+        String gst = gst_input.getEditableText().toString();
+        String currency = currency_input.getEditableText().toString();
+        String svc = svc_input.getEditableText().toString();
+        String desc = description.getEditableText().toString();
+        View focusView = null;
+        boolean cancel = false;
 
-        // This makes sure that the container activity has implemented
-        // the callback interface. If not, it throws an exception
-        try {
-            mCallback = (OnNextSelectListener) activity;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString()
-                    + " must implement OnHeadlineSelectedListener");
+        if (TextUtils.isEmpty(currency)){
+            currency_input.setError(getString(R.string.error_field_required));
+            focusView = currency_input;
+            cancel = true;
+        }
+
+        if (cancel){
+            focusView.requestFocus();
+        } else {
+            mCallback.onFragmentOneNextSelected(gst, currency, svc, desc);
         }
     }
 
-
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        try {
+            mCallback = (FragmentOneListener) context;
+        } catch (ClassCastException e){
+            throw new ClassCastException(context.toString()
+                    + " must implement FragmentOneListener");
+        }
+    }
 }

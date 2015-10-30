@@ -3,8 +3,6 @@ package com.is3261.splurge.activity;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
 
 import com.is3261.splurge.R;
 import com.is3261.splurge.activity.base.BaseActivity;
@@ -22,7 +20,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-public class SpiltMealActivity extends BaseActivity implements SpiltMealFragmentOne.OnNextSelectListener,
+public class SpiltMealActivity extends BaseActivity implements SpiltMealFragmentOne.FragmentOneListener,
         SpiltMealFragmentTwo.OnNextSelectListener{
 
     LoadDummyUsers load = new LoadDummyUsers();
@@ -39,6 +37,12 @@ public class SpiltMealActivity extends BaseActivity implements SpiltMealFragment
     private ViewPagerAdapter mAdapter;
     private ActionBar mActionBar;
 
+    private String mGST;
+    private String mCurrency;
+    private String mSVC;
+    private String mDescription;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +53,7 @@ public class SpiltMealActivity extends BaseActivity implements SpiltMealFragment
         //configure action bar
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null){
-            actionBar.setTitle("Add an Expense");
+            actionBar.setTitle("What is the meal about ?");
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
@@ -61,6 +65,7 @@ public class SpiltMealActivity extends BaseActivity implements SpiltMealFragment
         mAdapter.addFragment(fragmentOne,"first page");
         mAdapter.addFragment(fragmentTwo,"second page");
         mAdapter.addFragment(fragmentThree,"third page");
+        mPager.setPagingEnabled(false);
         mPager.setAdapter(mAdapter);
 
         selectedFriendList = new ArrayList<>();
@@ -82,16 +87,6 @@ public class SpiltMealActivity extends BaseActivity implements SpiltMealFragment
             userMap.put(currentTripFriends.get(i), Boolean.FALSE);
         }
         System.out.println("Finish InitMap : " + userMap.toString());
-
-    }
-
-    @Override
-    public void onNextSelected_sm1(){
-//        SpiltMealFragmentTwo fragment2 = new SpiltMealFragmentTwo();
-//        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-//        ft.replace(R.id.fragment_container_sm, fragment2);
-//        ft.addToBackStack(null);
-//        ft.commit();
 
     }
 
@@ -168,5 +163,35 @@ public class SpiltMealActivity extends BaseActivity implements SpiltMealFragment
 
     public void setCurrency(String currency) {
         this.currency = currency;
+    }
+
+    /**
+     *  get the string values from fragment one and move to second fragment
+     * @param gst gst string value
+     * @param currency currency string value
+     * @param svc service charge string value
+     * @param desc
+     */
+
+    @Override
+    public void onFragmentOneNextSelected(String gst, String currency, String svc, String desc) {
+        mGST = gst;
+        mCurrency = currency;
+        mSVC = svc;
+        mDescription = desc;
+        mPager.setCurrentItem(1, true); //move to next page
+        mActionBar.setTitle("Who are with you ?");
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (mPager.getCurrentItem() == 0) {
+            // If the user is currently looking at the first step, allow the system to handle the
+            // Back button. This calls finish() on this activity and pops the back stack.
+            super.onBackPressed();
+        } else {
+            // Otherwise, select the previous step.
+            mPager.setCurrentItem(mPager.getCurrentItem() - 1);
+        }
     }
 }
