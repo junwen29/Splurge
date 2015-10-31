@@ -13,6 +13,7 @@ import com.is3261.splurge.adapter.base.ListViewAdapter;
 import com.is3261.splurge.model.User;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,6 +27,16 @@ public class CheckableFriendsAdapter extends ListViewAdapter<User> {
     public CheckableFriendsAdapter(ArrayList<User> mItems, Context mContext) {
         super(mItems, mContext);
 
+        // add all friends to a hash map
+        mMap = new HashMap<>();
+        for (User user : mItems) {
+            mMap.put(user, false);
+        }
+    }
+
+    @Override
+    public void addAll(Collection<? extends User> items) {
+        super.addAll(items);
         // add all friends to a hash map
         mMap = new HashMap<>();
         for (User user : mItems) {

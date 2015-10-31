@@ -19,7 +19,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Add Expense details"
+        android:text="Next"
         android:id="@+id/button_sm_next2"
         android:layout_alignParentBottom="true"
         style="@style/Button.Blue"/>

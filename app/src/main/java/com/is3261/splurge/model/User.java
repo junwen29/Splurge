@@ -70,4 +70,14 @@ public class User implements Parcelable {
     public String getUsername() {
         return username;
     }
+
+    /**
+     * overrider for spinner implementation
+     * @return
+     */
+
+    @Override
+    public String toString() {
+        return username;
+    }
 }

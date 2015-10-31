@@ -81,7 +81,8 @@
         </activity>
         <activity
             android:name=".activity.SpiltMealActivity"
-            android:label="@string/title_activity_spilt_meal" >
+            android:label="@string/title_activity_spilt_meal"
+            android:screenOrientation="portrait">
         </activity>
     </application>
 

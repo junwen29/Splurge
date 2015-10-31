@@ -1,100 +1,100 @@
 package com.is3261.splurge.fragment;
 
-import android.app.Fragment;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.ListView;
-import android.widget.TextView;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
+import android.widget.Spinner;
 
 import com.is3261.splurge.R;
-import com.is3261.splurge.activity.SpiltMealActivity;
 import com.is3261.splurge.fragment.base.BaseFragment;
 import com.is3261.splurge.model.User;
+import com.is3261.splurge.view.DishCard;
 
 import java.util.ArrayList;
-import java.util.Map;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link SplitMealFragmentThree.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link SplitMealFragmentThree#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class SplitMealFragmentThree extends BaseFragment {
 
-
-    ListView lv;
+    private View mView;
+    private LinearLayout mContainer;
+    private FloatingActionButton mFab;
+    private int mDishIndex = 0;
+    private ArrayList<User> mSelectedFriends;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        mView = inflater.inflate(R.layout.fragment_split_meal_fragment3, container, false);
+        init(mView);
 
-
-        View view = inflater.inflate(R.layout.fragment_split_meal_fragment3, container, false);
-        SpiltMealActivity activity = (SpiltMealActivity) getActivity();
-
-        lv = (ListView) view.findViewById(R.id.listView_sm_selected_members);
-
-        System.out.println("Fragment3:" + activity.getUserExpense());
-
-        MyAdapter adapter = new MyAdapter(activity.getUserExpense());
-        lv.setAdapter(adapter);
-        return view;
-       }
-
-
-    public class MyAdapter extends BaseAdapter {
-        private final ArrayList mData;
-
-        public MyAdapter(Map<User, Float> map) {
-            mData = new ArrayList();
-            mData.addAll(map.entrySet());
-        }
-
-        @Override
-        public int getCount() {
-            return mData.size();
-        }
-
-        @Override
-        public Map.Entry<User, Float> getItem(int position) {
-            return (Map.Entry) mData.get(position);
-        }
-
-        @Override
-        public long getItemId(int position) {
-            // TODO implement you own logic with ID
-            return 0;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            final View result;
-
-            if (convertView == null) {
-                result = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_sm_member_expense_detail, parent, false);
-            } else {
-                result = convertView;
-            }
-
-            Map.Entry<User, Float> item = getItem(position);
-            SpiltMealActivity activity = (SpiltMealActivity) getActivity();
-
-            // TODO replace findViewById by ViewHolder
-            ((TextView) result.findViewById(R.id.tvName)).setText(item.getKey().getUsername());
-            ((TextView) result.findViewById(R.id.tvCurrency)).setText(activity.getCurrency());
-            ((TextView) result.findViewById(R.id.tvExpense)).setText(item.getValue().toString());
-
-            return result;
-        }
+        mSelectedFriends = new ArrayList<>();
+        return mView;
     }
 
+    /**
+     * find all views and initialise them
+     */
+    private void init(View view){
+        mContainer = (LinearLayout) view.findViewById(R.id.container);
+        mFab = (FloatingActionButton) view.findViewById(R.id.fab);
 
+        mFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addDishCard();
+            }
+        });
+    }
 
+    private void addDishCard(){
+        if (mContainer == null) return;
 
+        mDishIndex++;
+        final DishCard dishCard = new DishCard(getContext());
+        dishCard.setTitle("Dish " + mDishIndex);
+
+        final Spinner spinner = dishCard.getSpinner();
+        ArrayAdapter<User> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item);
+        adapter.addAll(mSelectedFriends);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                spinner.setSelection(position,true);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        dishCard.getImageButton().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mContainer.removeView(dishCard);
+
+                // If there are no rows remaining, show the empty view.
+                if (mContainer.getChildCount() == 0) {
+                    mView.findViewById(R.id.empty).setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
+        mContainer.addView(dishCard);
+        dishCard.requestFocus();
+        // Hide the "empty" view since there is now at least one item in the list.
+        mView.findViewById(R.id.empty).setVisibility(View.GONE);
+    }
+
+    public void setSelectedFriends(ArrayList<User> selectedFriends){
+        if (selectedFriends != null){
+            mSelectedFriends = selectedFriends;
+        }
+    }
 }

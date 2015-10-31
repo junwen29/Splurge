@@ -67,9 +67,6 @@ public class TripActivity extends NavDrawerActivity {
             }
         });
 
-
-
-
 //        ImageView itemIcon3 = new ImageView(this);
         SubActionButton button3 = itemBuilder.build();
 

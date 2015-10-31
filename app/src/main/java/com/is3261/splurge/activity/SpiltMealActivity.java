@@ -1,6 +1,7 @@
 package com.is3261.splurge.activity;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -42,9 +43,9 @@ public class SpiltMealActivity extends BaseActivity implements SpiltMealFragment
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
-        SpiltMealFragmentOne    fragmentOne =   new SpiltMealFragmentOne();
-        SpiltMealFragmentTwo    fragmentTwo =   new SpiltMealFragmentTwo();
-        SplitMealFragmentThree  fragmentThree = new SplitMealFragmentThree();
+        SpiltMealFragmentOne    fragmentOne     =   new SpiltMealFragmentOne();
+        SpiltMealFragmentTwo    fragmentTwo     =   new SpiltMealFragmentTwo();
+        SplitMealFragmentThree  fragmentThree   =   new SplitMealFragmentThree();
 
         mAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         mAdapter.addFragment(fragmentOne,"first page");
@@ -92,6 +93,13 @@ public class SpiltMealActivity extends BaseActivity implements SpiltMealFragment
 
     @Override
     public void onFragmentTwoNextSelected(ArrayList<User> selectedFriends) {
+        // pass selected friends to fragment three
+        SplitMealFragmentThree fragment = (SplitMealFragmentThree) mAdapter.getItem(2); // do casting
+        fragment.setSelectedFriends(selectedFriends);
+
         Log.d("selected friends", selectedFriends.toString());
+        mPager.setCurrentItem(2, true); //move to next page
+        if (getSupportActionBar()!= null)
+            getSupportActionBar().setTitle("Add an expense");
     }
 }
