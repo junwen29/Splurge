@@ -4,16 +4,30 @@
     android:layout_height="match_parent"
     tools:context="com.is3261.splurge.fragment.SplitMealFragmentThree">
 
-    <!--<ListView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:id="@+id/listView_sm_selected_members"-->
-        <!--android:layout_gravity="left|top" />-->
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@android:drawable/ic_menu_add"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Next"
+        android:id="@+id/button_sm_next3"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        style="@style/Button.Blue"/>
 
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_above="@id/button_sm_next3"
+        android:paddingBottom="@dimen/activity_horizontal_margin">
 
         <LinearLayout
             android:id="@+id/container"
@@ -35,25 +49,5 @@
         android:padding="32dp"
         android:text="Click the Add button to add an expense"
         android:textColor="?android:textColorSecondary" />
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_margin="@dimen/fab_margin"
-        android:src="@android:drawable/ic_menu_add"/>
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Next"
-        android:id="@+id/button_sm_next2"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:layout_marginRight="@dimen/activity_horizontal_margin"
-        style="@style/Button.Blue"/>
 
 </RelativeLayout>
