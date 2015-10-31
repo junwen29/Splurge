@@ -20,6 +20,10 @@ public class Owner extends User {
         super();
     }
 
+    public Owner(Long id){
+        super(id);
+    }
+
     public Owner(Owner source) {
         this();
         update(source);

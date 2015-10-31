@@ -2,6 +2,7 @@ package com.is3261.splurge.fragment;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,8 @@ import android.widget.Spinner;
 
 import com.is3261.splurge.R;
 import com.is3261.splurge.fragment.base.BaseFragment;
+import com.is3261.splurge.helper.OwnerStore;
+import com.is3261.splurge.model.Owner;
 import com.is3261.splurge.model.User;
 import com.is3261.splurge.view.DishCard;
 
@@ -25,6 +28,7 @@ public class SplitMealFragmentThree extends BaseFragment {
     private FloatingActionButton mFab;
     private int mDishIndex = 0;
     private ArrayList<User> mSelectedFriends;
+    private Owner mOwner;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -32,6 +36,11 @@ public class SplitMealFragmentThree extends BaseFragment {
         init(mView);
 
         mSelectedFriends = new ArrayList<>();
+        OwnerStore ownerStore = new OwnerStore(getContext());
+        Long id = Long.parseLong(ownerStore.getOwnerId());
+        mOwner = new Owner(id);
+        mOwner.setUsername(ownerStore.getUsername());
+
         return mView;
     }
 
@@ -59,6 +68,7 @@ public class SplitMealFragmentThree extends BaseFragment {
 
         final Spinner spinner = dishCard.getSpinner();
         ArrayAdapter<User> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item);
+        adapter.add(mOwner);
         adapter.addAll(mSelectedFriends);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
