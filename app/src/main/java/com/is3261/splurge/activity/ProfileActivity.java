@@ -7,17 +7,14 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.SubMenu;
 import android.view.View;
 
 import com.is3261.splurge.R;
 import com.is3261.splurge.activity.base.NavDrawerActivity;
 import com.is3261.splurge.adapter.ViewPagerAdapter;
 import com.is3261.splurge.fragment.ApproveFriendsFragment;
-import com.is3261.splurge.fragment.UserPendingFriendsFragment;
 import com.is3261.splurge.fragment.FriendsFragment;
+import com.is3261.splurge.fragment.UserPendingFriendsFragment;
 import com.is3261.splurge.helper.OwnerStore;
 
 public class ProfileActivity extends NavDrawerActivity {

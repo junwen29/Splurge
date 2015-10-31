@@ -1,6 +1,5 @@
 package com.is3261.splurge.fragment;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,7 +13,7 @@ import com.android.volley.VolleyError;
 import com.is3261.splurge.R;
 import com.is3261.splurge.adapter.FriendsAdapter;
 import com.is3261.splurge.api.CollectionListener;
-import com.is3261.splurge.api.request.FriendshipRequest;
+import com.is3261.splurge.async_task.LoadFriendsTask;
 import com.is3261.splurge.fragment.base.BaseFragment;
 import com.is3261.splurge.helper.OwnerStore;
 import com.is3261.splurge.model.User;
@@ -32,13 +31,10 @@ import java.util.Collection;
 public class FriendsFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener {
 
     private SwipeRefreshLayout mSwipeLayout;
-    private RecyclerView mRecyclerView;
     private FriendsAdapter mFriendsAdapter;
     private LoadFriendsTask mTask = null;
-    private CollectionListener<User> mListener;
     private String mUserId;
     private static final String TAG = "FriendsFragment";
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -53,7 +49,7 @@ public class FriendsFragment extends BaseFragment implements SwipeRefreshLayout.
     private void init(View view){
         initSwipeRefreshLayout(view);
 
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
+        RecyclerView mRecyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
         mFriendsAdapter = new FriendsAdapter(new ArrayList<User>(), getContext());
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -71,19 +67,21 @@ public class FriendsFragment extends BaseFragment implements SwipeRefreshLayout.
     }
 
     private void loadFriends(){
-        mListener = new CollectionListener<User>() {
+        CollectionListener<User> mListener = new CollectionListener<User>() {
             @Override
             public void onResponse(Collection<User> friends) {
                 mSwipeLayout.setRefreshing(false);
                 mFriendsAdapter.clear();
                 mFriendsAdapter.addAll(friends);
                 mFriendsAdapter.notifyDataSetChanged();
+                mTask = null;
             }
 
             @Override
             public void onErrorResponse(VolleyError volleyError) {
                 mSwipeLayout.setRefreshing(false);
                 Log.d(TAG, "Error: " /*+ volleyError.toString()*/);
+                mTask = null;
             }
         };
 
@@ -96,7 +94,7 @@ public class FriendsFragment extends BaseFragment implements SwipeRefreshLayout.
                     }
                 });
 
-            mTask = new LoadFriendsTask();
+            mTask = new LoadFriendsTask(getContext(), mListener, mUserId);
             mTask.execute((Void) null);
         }
     }
@@ -104,34 +102,5 @@ public class FriendsFragment extends BaseFragment implements SwipeRefreshLayout.
     @Override
     public void onRefresh() {
         loadFriends();
-    }
-
-    public class LoadFriendsTask extends AsyncTask<Void,Void,Void> {
-
-        public LoadFriendsTask() {
-
-        }
-
-        @Override
-        protected Void doInBackground(Void... params) {
-            try {
-                // Simulate network access.
-                Thread.sleep(2000);
-                getSplurgeApi().enqueue(FriendshipRequest.loadFriends(mUserId, mListener));
-            } catch (InterruptedException ignored) {
-            }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            mTask = null;
-        }
-
-        @Override
-        protected void onCancelled() {
-            mTask = null;
-        }
-
     }
 }
