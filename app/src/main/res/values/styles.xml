@@ -170,6 +170,7 @@
     <style name="Text.Card.Title">
         <item name="android:textColor">@color/splurge_primary</item>
         <item name="android:textSize">@dimen/font_card_title</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="Text.Card.Subtitle">

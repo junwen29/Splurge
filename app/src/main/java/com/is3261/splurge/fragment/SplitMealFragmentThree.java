@@ -31,7 +31,7 @@ import java.util.Map;
 public class SplitMealFragmentThree extends BaseFragment implements View.OnClickListener {
 
     public interface FragmentThreeListener {
-        void onFragmentThreeNextSelected(Map<User,Float> expenseMap);
+        void onFragmentThreeNextSelected(Map<User,Float> expenseMap, ArrayList<User> spenders);
     }
 
     private View mView;
@@ -155,7 +155,20 @@ public class SplitMealFragmentThree extends BaseFragment implements View.OnClick
         if (hasEmptyFields){
             focusView.requestFocus();
         } else {
-            mCallback.onFragmentThreeNextSelected(mExpenseMap);
+            //get all possible users
+            ArrayList<User> allUsers = new ArrayList<>(mSelectedFriends);
+            allUsers.add(mOwner);
+
+            ArrayList<User> spenders = new ArrayList<>();
+            //add user if he is a spender only
+            for (User user : allUsers) {
+                if (mExpenseMap.containsKey(user)){
+                    if (mExpenseMap.get(user) > 0){
+                        spenders.add(user);
+                    }
+                }
+            }
+            mCallback.onFragmentThreeNextSelected(mExpenseMap, spenders);
         }
     }
 

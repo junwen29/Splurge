@@ -1,7 +1,6 @@
 package com.is3261.splurge.activity;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -111,9 +110,9 @@ public class SpiltMealActivity extends BaseActivity implements SpiltMealFragment
     }
 
     @Override
-    public void onFragmentThreeNextSelected(Map<User, Float> expenseMap) {
+    public void onFragmentThreeNextSelected(Map<User, Float> expenseMap, ArrayList<User> spenders) {
         SplitMealFragmentFour fragmentFour = (SplitMealFragmentFour) mAdapter.getItem(3); // do casting
-        fragmentFour.setExpenseMap(expenseMap);
+        fragmentFour.setupFragmentFourData(expenseMap, spenders);
         mPager.setCurrentItem(3, true);
         if (getSupportActionBar()!= null)
             getSupportActionBar().setTitle("Record payment");
