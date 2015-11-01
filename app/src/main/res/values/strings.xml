@@ -52,4 +52,7 @@
 
     <string name="title_activity_profile">ProfileActivity</string>
     <string name="desc_image_view">Image</string>
+    <string name="error_invalid_gst">This GST is invalid</string>
+    <string name="error_invalid_svc">This Service Charge is invalid</string>
+
 </resources>

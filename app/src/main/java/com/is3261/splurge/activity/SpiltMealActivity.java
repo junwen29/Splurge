@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 
 import com.is3261.splurge.R;
 import com.is3261.splurge.activity.base.BaseActivity;
@@ -22,6 +24,7 @@ public class SpiltMealActivity extends BaseActivity implements SpiltMealFragment
         SpiltMealFragmentTwo.FragmentTwoListener, SplitMealFragmentThree.FragmentThreeListener {
 
     private Toolbar mToolbar;
+    private TextView mSubtotal;
     private NonPagingViewPager mPager;
     private ViewPagerAdapter mAdapter;
 
@@ -61,6 +64,7 @@ public class SpiltMealActivity extends BaseActivity implements SpiltMealFragment
     private void findAllViews(){
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mPager = (NonPagingViewPager) findViewById(R.id.viewpager);
+        mSubtotal = (TextView) findViewById(R.id.subtotal);
     }
 
     /**
@@ -94,6 +98,8 @@ public class SpiltMealActivity extends BaseActivity implements SpiltMealFragment
             mPager.setCurrentItem(position);
             if (getSupportActionBar()!= null)
                 getSupportActionBar().setTitle(mAdapter.getPageTitle(position));
+
+            mSubtotal.setVisibility(View.GONE);
         }
     }
 
@@ -112,9 +118,25 @@ public class SpiltMealActivity extends BaseActivity implements SpiltMealFragment
     @Override
     public void onFragmentThreeNextSelected(Map<User, Float> expenseMap, ArrayList<User> spenders) {
         SplitMealFragmentFour fragmentFour = (SplitMealFragmentFour) mAdapter.getItem(3); // do casting
-        fragmentFour.setupFragmentFourData(expenseMap, spenders);
+
+        //setup subtotal expense
+        mSubtotal.setVisibility(View.VISIBLE);
+        Float subtotal = Float.valueOf("0.0");
+        for (User spender: spenders) {
+            if (expenseMap.containsKey(spender)){
+                subtotal += expenseMap.get(spender);
+            }
+        }
+        String subtotalString = "Total: $" + subtotal.toString();
+        mSubtotal.setText(subtotalString);
+
+        // pass all data
+        fragmentFour.setupFragmentFourData(expenseMap, spenders,subtotal,mGST, mSVC);
+
         mPager.setCurrentItem(3, true);
         if (getSupportActionBar()!= null)
             getSupportActionBar().setTitle("Record payment");
+
+
     }
 }

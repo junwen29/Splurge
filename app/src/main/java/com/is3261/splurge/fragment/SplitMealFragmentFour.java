@@ -12,7 +12,6 @@ import android.widget.LinearLayout;
 
 import com.is3261.splurge.R;
 import com.is3261.splurge.fragment.base.BaseFragment;
-import com.is3261.splurge.helper.SplurgeHelper;
 import com.is3261.splurge.model.Avatar;
 import com.is3261.splurge.model.User;
 import com.is3261.splurge.view.PaymentCard;
@@ -33,6 +32,9 @@ public class SplitMealFragmentFour extends BaseFragment implements View.OnClickL
     private ArrayList<User> mSpenders;
     private Map<User,Float> mExpenseMap;
     private Map<User,Float> mPaymentMap;
+    private Float mTotal;
+    private String mGST;
+    private String mSVC;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -61,6 +63,7 @@ public class SplitMealFragmentFour extends BaseFragment implements View.OnClickL
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.button_finish:
+                mapPayments();
                 break;
         }
     }
@@ -70,9 +73,13 @@ public class SplitMealFragmentFour extends BaseFragment implements View.OnClickL
      * @param expenseMap contains all expense data
      * @param spenders contains users who spend more than $0.00
      */
-    public void setupFragmentFourData(Map<User, Float> expenseMap, ArrayList<User> spenders) {
+    public void setupFragmentFourData(Map<User, Float> expenseMap, ArrayList<User> spenders, Float total,
+                                      String gst, String svc) {
         this.mExpenseMap = expenseMap;
         mSpenders = spenders;
+        mTotal = total;
+        mGST = gst;
+        mSVC = svc;
 
         addPaymentCards();
     }
@@ -130,20 +137,29 @@ public class SplitMealFragmentFour extends BaseFragment implements View.OnClickL
 
         if (hasEmptyFields){
             focusView.requestFocus();
+        } else if (checkPaymentTally()){
+            //proceed
         } else {
-//            //get all possible users
-//            ArrayList<User> allUsers = new ArrayList<>(mSelectedFriends);
-//            allUsers.add(mOwner);
-//
-//            ArrayList<User> spenders = new ArrayList<>();
-//            //add user if he is a spender only
-//            for (User user : allUsers) {
-//                if (mExpenseMap.containsKey(user)){
-//                    if (mExpenseMap.get(user) > 0){
-//                        spenders.add(user);
-//                    }
-//                }
+            //error
+            Snackbar.make(mContainer,"Payments do not tally.", Snackbar.LENGTH_LONG).show();
+        }
+    }
+
+    /**
+     *
+     * @return true if all payments tally after calculations
+     */
+
+    private boolean checkPaymentTally(){
+        float total = mTotal;
+        for (User spender : mSpenders) {
+            if (mPaymentMap.containsKey(spender)){
+                total -= mPaymentMap.get(spender);
             }
-//            mCallback.onFragmentThreeNextSelected(mExpenseMap, spenders);
+        }
+
+        //check if total becomes zero
+        return total == 0;
+
     }
 }

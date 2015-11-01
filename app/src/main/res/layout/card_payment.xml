@@ -29,7 +29,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="4dp"
+        android:paddingTop="8dp"
         android:orientation="horizontal">
 
         <TextView
@@ -42,8 +42,7 @@
             android:id="@+id/spend_amount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Spend Amount"
-            android:paddingTop="4dp"
+            android:text="Spent Amount"
             style="@style/Text.Card.Subtitle"/>
 
     </LinearLayout>
@@ -51,7 +50,28 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="4dp"
+        android:paddingTop="8dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="56dp"
+            android:layout_height="wrap_content"
+            android:text="Total: "
+            style="@style/Text.Card.Subtitle"/>
+
+        <TextView
+            android:id="@+id/subtotal_amount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Total Amount"
+            style="@style/Text.Card.Subtitle"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="8dp"
         android:orientation="horizontal">
 
         <TextView
@@ -64,8 +84,7 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColorHint="@color/splurge_primary"
-            android:paddingTop="4dp">
+            android:textColorHint="@color/splurge_primary">
 
             <EditText
                 android:id="@+id/pay_amount"

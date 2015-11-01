@@ -12,7 +12,6 @@ import android.widget.EditText;
 import android.widget.Switch;
 
 import com.is3261.splurge.R;
-import com.is3261.splurge.activity.SpiltMealActivity;
 import com.is3261.splurge.fragment.base.BaseFragment;
 
 
@@ -110,11 +109,34 @@ public class SpiltMealFragmentOne extends BaseFragment {
             cancel = true;
         }
 
+        if (!TextUtils.isEmpty(gst) && !isValidGstSvc(gst)){
+            gst_input.setError(getString(R.string.error_invalid_gst));
+            focusView = gst_input;
+            cancel = true;
+        }
+
+        if (!TextUtils.isEmpty(svc) && !isValidGstSvc(svc)){
+            svc_input.setError(getString(R.string.error_invalid_svc));
+            focusView = gst_input;
+            cancel = true;
+        }
+
         if (cancel){
             focusView.requestFocus();
         } else {
             mCallback.onFragmentOneNextSelected(gst, currency, svc, desc);
         }
+    }
+
+    /**
+     *
+     * @param value value
+     * @return true if gst/svc format is correct
+     */
+
+    private boolean isValidGstSvc(String value){
+        int gstValue = Integer.parseInt(value);
+        return gstValue < 100;
     }
 
     @Override
