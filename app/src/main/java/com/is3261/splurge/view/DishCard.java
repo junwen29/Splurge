@@ -63,4 +63,8 @@ public class DishCard extends CardView {
     public Spinner getSpinner() {
         return mSpinner;
     }
+
+    public EditText getEditText() {
+        return mEditText;
+    }
 }

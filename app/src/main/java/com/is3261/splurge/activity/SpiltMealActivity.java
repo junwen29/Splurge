@@ -11,14 +11,16 @@ import com.is3261.splurge.activity.base.BaseActivity;
 import com.is3261.splurge.adapter.ViewPagerAdapter;
 import com.is3261.splurge.fragment.SpiltMealFragmentOne;
 import com.is3261.splurge.fragment.SpiltMealFragmentTwo;
+import com.is3261.splurge.fragment.SplitMealFragmentFour;
 import com.is3261.splurge.fragment.SplitMealFragmentThree;
 import com.is3261.splurge.model.User;
 import com.is3261.splurge.view.NonPagingViewPager;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class SpiltMealActivity extends BaseActivity implements SpiltMealFragmentOne.FragmentOneListener,
-        SpiltMealFragmentTwo.FragmentTwoListener {
+        SpiltMealFragmentTwo.FragmentTwoListener, SplitMealFragmentThree.FragmentThreeListener {
 
     private Toolbar mToolbar;
     private NonPagingViewPager mPager;
@@ -46,11 +48,13 @@ public class SpiltMealActivity extends BaseActivity implements SpiltMealFragment
         SpiltMealFragmentOne    fragmentOne     =   new SpiltMealFragmentOne();
         SpiltMealFragmentTwo    fragmentTwo     =   new SpiltMealFragmentTwo();
         SplitMealFragmentThree  fragmentThree   =   new SplitMealFragmentThree();
+        SplitMealFragmentFour   fragmentFour    =   new SplitMealFragmentFour();
 
         mAdapter = new ViewPagerAdapter(getSupportFragmentManager());
-        mAdapter.addFragment(fragmentOne,"first page");
-        mAdapter.addFragment(fragmentTwo,"second page");
-        mAdapter.addFragment(fragmentThree,"third page");
+        mAdapter.addFragment(fragmentOne,"What is the meal about?");
+        mAdapter.addFragment(fragmentTwo,"How many friends are eating with you ?");
+        mAdapter.addFragment(fragmentThree,"Add an expense");
+        mAdapter.addFragment(fragmentFour,"Record payment");
         mPager.setPagingEnabled(false);
         mPager.setAdapter(mAdapter);
     }
@@ -87,7 +91,10 @@ public class SpiltMealActivity extends BaseActivity implements SpiltMealFragment
             super.onBackPressed();
         } else {
             // Otherwise, select the previous step.
-            mPager.setCurrentItem(mPager.getCurrentItem() - 1);
+            int position = mPager.getCurrentItem() -1;
+            mPager.setCurrentItem(position);
+            if (getSupportActionBar()!= null)
+                getSupportActionBar().setTitle(mAdapter.getPageTitle(position));
         }
     }
 
@@ -101,5 +108,14 @@ public class SpiltMealActivity extends BaseActivity implements SpiltMealFragment
         mPager.setCurrentItem(2, true); //move to next page
         if (getSupportActionBar()!= null)
             getSupportActionBar().setTitle("Add an expense");
+    }
+
+    @Override
+    public void onFragmentThreeNextSelected(Map<User, Float> expenseMap) {
+        SplitMealFragmentFour fragmentFour = (SplitMealFragmentFour) mAdapter.getItem(3); // do casting
+        fragmentFour.setExpenseMap(expenseMap);
+        mPager.setCurrentItem(3, true);
+        if (getSupportActionBar()!= null)
+            getSupportActionBar().setTitle("Record payment");
     }
 }
