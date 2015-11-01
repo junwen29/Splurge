@@ -3,7 +3,11 @@ package com.is3261.splurge.helper;
 import com.is3261.splurge.model.User;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -19,6 +23,10 @@ public class GreedyHelper {
 
     private Map<User, Float> debtMap;
     private Map<User, Float> lendMap;
+
+    //temporary sorted list
+    private Map<User, Float> sortedDebtMap;
+    private Map<User, Float> sortedLendMap;
 
     public GreedyHelper(ArrayList<User> users, Map<User, Float> expenseMap, Map<User, Float> paymentMap) {
         this.users = users;
@@ -62,5 +70,9 @@ public class GreedyHelper {
                     lendMap.put(user, lend);
             }
         }
+    }
+
+    private void constructBills(){
+
     }
 }
