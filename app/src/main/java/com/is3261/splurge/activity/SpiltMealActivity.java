@@ -21,7 +21,8 @@ import java.util.ArrayList;
 import java.util.Map;
 
 public class SpiltMealActivity extends BaseActivity implements SpiltMealFragmentOne.FragmentOneListener,
-        SpiltMealFragmentTwo.FragmentTwoListener, SplitMealFragmentThree.FragmentThreeListener {
+        SpiltMealFragmentTwo.FragmentTwoListener, SplitMealFragmentThree.FragmentThreeListener,
+        SplitMealFragmentFour.FragmentFourListener{
 
     private Toolbar mToolbar;
     private TextView mSubtotal;
@@ -119,24 +120,18 @@ public class SpiltMealActivity extends BaseActivity implements SpiltMealFragment
     public void onFragmentThreeNextSelected(Map<User, Float> expenseMap, ArrayList<User> spenders) {
         SplitMealFragmentFour fragmentFour = (SplitMealFragmentFour) mAdapter.getItem(3); // do casting
 
-        //setup subtotal expense
-        mSubtotal.setVisibility(View.VISIBLE);
-        Float subtotal = Float.valueOf("0.0");
-        for (User spender: spenders) {
-            if (expenseMap.containsKey(spender)){
-                subtotal += expenseMap.get(spender);
-            }
-        }
-        String subtotalString = "Total: $" + subtotal.toString();
-        mSubtotal.setText(subtotalString);
-
         // pass all data
-        fragmentFour.setupFragmentFourData(expenseMap, spenders,subtotal,mGST, mSVC);
+        fragmentFour.setupFragmentFourData(expenseMap, spenders,mGST, mSVC);
 
         mPager.setCurrentItem(3, true);
         if (getSupportActionBar()!= null)
             getSupportActionBar().setTitle("Record payment");
+    }
 
-
+    @Override
+    public void updateTotalAmount(Float total) {
+        mSubtotal.setVisibility(View.VISIBLE);
+        String subtotalString = "Total: $" + total.toString();
+        mSubtotal.setText(subtotalString);
     }
 }

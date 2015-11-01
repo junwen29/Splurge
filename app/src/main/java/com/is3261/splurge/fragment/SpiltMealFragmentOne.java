@@ -136,7 +136,7 @@ public class SpiltMealFragmentOne extends BaseFragment {
 
     private boolean isValidGstSvc(String value){
         int gstValue = Integer.parseInt(value);
-        return gstValue < 100;
+        return gstValue <= 100 && gstValue >= 0;
     }
 
     @Override

@@ -19,6 +19,7 @@ public class PaymentCard extends CardView {
     private AvatarView mAvatar;
     private TextView mSpenderName;
     private TextView mSpendAmount;
+    private TextView mTotalAmount;
     private EditText mPaymentEditText;
 
     private User mSpender;
@@ -43,6 +44,7 @@ public class PaymentCard extends CardView {
         mAvatar = (AvatarView) view.findViewById(R.id.avatar);
         mSpenderName = (TextView) view.findViewById(R.id.spender_name);
         mSpendAmount = (TextView) view.findViewById(R.id.spend_amount);
+        mTotalAmount = (TextView) view.findViewById(R.id.subtotal_amount);
         mPaymentEditText = (EditText) view.findViewById(R.id.pay_amount);
     }
 
@@ -68,5 +70,9 @@ public class PaymentCard extends CardView {
 
     public void setSpender(User mSpender) {
         this.mSpender = mSpender;
+    }
+
+    public TextView getTotalAmount() {
+        return mTotalAmount;
     }
 }

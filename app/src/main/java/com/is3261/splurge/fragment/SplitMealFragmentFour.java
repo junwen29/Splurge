@@ -1,5 +1,6 @@
 package com.is3261.splurge.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.text.TextUtils;
@@ -25,6 +26,10 @@ import java.util.Map;
  */
 public class SplitMealFragmentFour extends BaseFragment implements View.OnClickListener {
 
+    public interface FragmentFourListener{
+        void updateTotalAmount(Float total);
+    }
+
     private View mView;
     private LinearLayout mContainer;
     private Button mFinishButton;
@@ -35,6 +40,8 @@ public class SplitMealFragmentFour extends BaseFragment implements View.OnClickL
     private Float mTotal;
     private String mGST;
     private String mSVC;
+
+    private FragmentFourListener mCallback;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -73,11 +80,10 @@ public class SplitMealFragmentFour extends BaseFragment implements View.OnClickL
      * @param expenseMap contains all expense data
      * @param spenders contains users who spend more than $0.00
      */
-    public void setupFragmentFourData(Map<User, Float> expenseMap, ArrayList<User> spenders, Float total,
+    public void setupFragmentFourData(Map<User, Float> expenseMap, ArrayList<User> spenders,
                                       String gst, String svc) {
         this.mExpenseMap = expenseMap;
         mSpenders = spenders;
-        mTotal = total;
         mGST = gst;
         mSVC = svc;
 
@@ -88,6 +94,7 @@ public class SplitMealFragmentFour extends BaseFragment implements View.OnClickL
         mContainer.removeAllViews(); // clear all child views
 
         int numSpenders = mSpenders.size();
+        mTotal = Float.valueOf("0.00");
 
         //add in the payment cards
         for (int i = 0; i < numSpenders; i++){
@@ -98,11 +105,35 @@ public class SplitMealFragmentFour extends BaseFragment implements View.OnClickL
             paymentCard.getAvatar().setImageResource(Avatar.getRandomAvatar().getDrawableId()); // put up a random avatar
             paymentCard.setSpender(spender);
 
-            String spendAmount = "$ " + mExpenseMap.get(spender).toString(); // set expense amount
+            Float spend = mExpenseMap.get(spender);
+            if (spend == null){
+                spend = Float.valueOf("0.00");
+            }
+
+            String spendAmount = "$ " + spend.toString(); // set expense amount
             paymentCard.getSpendAmount().setText(spendAmount);
 
+            //calculate total amount after GST and SVC
+            Float total = spend;
+            if (!TextUtils.isEmpty(mSVC)){
+                Float svc = Float.parseFloat(mSVC) / 100 + 1; // service charge is taxable by gst
+                total *= svc;
+            }
+
+            if (!TextUtils.isEmpty(mGST)){
+                Float gst = Float.parseFloat(mGST) / 100 + 1;
+                total *= gst;
+            }
+
+            String totalString = "$ " + total.toString();
+            paymentCard.getTotalAmount().setText(totalString);
+
             mContainer.addView(paymentCard);
+            mTotal += total;
         }
+
+        //callback to activity to update total amount on toolbar
+        mCallback.updateTotalAmount(mTotal);
     }
 
     private void mapPayments(){
@@ -161,5 +192,16 @@ public class SplitMealFragmentFour extends BaseFragment implements View.OnClickL
         //check if total becomes zero
         return total == 0;
 
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        try {
+            mCallback = (FragmentFourListener) context;
+        } catch (ClassCastException e){
+            throw new ClassCastException(context.toString()
+                    + " must implement FragmentThreeListener");
+        }
     }
 }

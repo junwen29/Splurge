@@ -108,6 +108,8 @@ public class SplitMealFragmentThree extends BaseFragment implements View.OnClick
     public void setSelectedFriends(ArrayList<User> selectedFriends){
         if (selectedFriends != null){
             mSelectedFriends = selectedFriends;
+            mContainer.removeAllViews();
+            mDishIndex = 0;
         }
     }
 
@@ -159,16 +161,16 @@ public class SplitMealFragmentThree extends BaseFragment implements View.OnClick
             ArrayList<User> allUsers = new ArrayList<>(mSelectedFriends);
             allUsers.add(mOwner);
 
-            ArrayList<User> spenders = new ArrayList<>();
-            //add user if he is a spender only
-            for (User user : allUsers) {
-                if (mExpenseMap.containsKey(user)){
-                    if (mExpenseMap.get(user) > 0){
-                        spenders.add(user);
-                    }
-                }
-            }
-            mCallback.onFragmentThreeNextSelected(mExpenseMap, spenders);
+//            ArrayList<User> spenders = new ArrayList<>();
+//            //add user if he is a spender only
+//            for (User user : allUsers) {
+//                if (mExpenseMap.containsKey(user)){
+////                    if (mExpenseMap.get(user) > 0){
+//                        spenders.add(user);
+////                    }
+//                }
+//            }
+            mCallback.onFragmentThreeNextSelected(mExpenseMap, allUsers);
         }
     }
 
