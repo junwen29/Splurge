@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 
 import com.is3261.splurge.R;
 import com.is3261.splurge.fragment.base.BaseFragment;
+import com.is3261.splurge.helper.GreedyHelper;
 import com.is3261.splurge.model.Avatar;
 import com.is3261.splurge.model.User;
 import com.is3261.splurge.view.PaymentCard;
@@ -36,6 +37,7 @@ public class SplitMealFragmentFour extends BaseFragment implements View.OnClickL
 
     private ArrayList<User> mSpenders;
     private Map<User,Float> mExpenseMap;
+    private Map<User,Float> mTotalExpenseMap;
     private Map<User,Float> mPaymentMap;
     private Float mTotal;
     private String mGST;
@@ -49,6 +51,7 @@ public class SplitMealFragmentFour extends BaseFragment implements View.OnClickL
         init(mView);
 
         mPaymentMap = new HashMap<>();
+        mTotalExpenseMap = new HashMap<>();
 
         return mView;
     }
@@ -128,6 +131,8 @@ public class SplitMealFragmentFour extends BaseFragment implements View.OnClickL
             String totalString = "$ " + total.toString();
             paymentCard.getTotalAmount().setText(totalString);
 
+            mTotalExpenseMap.put(spender,total); // add to total expense map
+
             mContainer.addView(paymentCard);
             mTotal += total;
         }
@@ -170,6 +175,7 @@ public class SplitMealFragmentFour extends BaseFragment implements View.OnClickL
             focusView.requestFocus();
         } else if (checkPaymentTally()){
             //proceed
+            GreedyHelper greedy = new GreedyHelper(mSpenders, mTotalExpenseMap, mPaymentMap);
         } else {
             //error
             Snackbar.make(mContainer,"Payments do not tally.", Snackbar.LENGTH_LONG).show();
@@ -182,7 +188,7 @@ public class SplitMealFragmentFour extends BaseFragment implements View.OnClickL
      */
 
     private boolean checkPaymentTally(){
-        float total = mTotal;
+        Float total = mTotal;
         for (User spender : mSpenders) {
             if (mPaymentMap.containsKey(spender)){
                 total -= mPaymentMap.get(spender);

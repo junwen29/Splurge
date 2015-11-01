@@ -85,6 +85,7 @@ public class SpiltMealActivity extends BaseActivity implements SpiltMealFragment
         mPager.setCurrentItem(1, true); //move to next page
         if (getSupportActionBar()!= null)
             getSupportActionBar().setTitle("How many friends are eating with you ?");
+        hideKeyboard();
     }
 
     @Override
@@ -114,6 +115,7 @@ public class SpiltMealActivity extends BaseActivity implements SpiltMealFragment
         mPager.setCurrentItem(2, true); //move to next page
         if (getSupportActionBar()!= null)
             getSupportActionBar().setTitle("Add an expense");
+        hideKeyboard();
     }
 
     @Override
@@ -126,6 +128,7 @@ public class SpiltMealActivity extends BaseActivity implements SpiltMealFragment
         mPager.setCurrentItem(3, true);
         if (getSupportActionBar()!= null)
             getSupportActionBar().setTitle("Record payment");
+        hideKeyboard();
     }
 
     @Override
