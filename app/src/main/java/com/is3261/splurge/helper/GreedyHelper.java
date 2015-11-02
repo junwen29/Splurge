@@ -3,12 +3,9 @@ package com.is3261.splurge.helper;
 import com.is3261.splurge.model.User;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 /**
  * Created by junwen29 on 11/1/2015.
@@ -72,7 +69,39 @@ public class GreedyHelper {
         }
     }
 
+
+
     private void constructBills(){
 
+        Random generator = new Random();
+        Float currentDebt;
+        Float currentLend;
+        Float currentBalance;
+
+        while(lendMap.size() >0) {
+
+            Object[] lendValues = lendMap.keySet().toArray();
+            User randomLender = (User) lendValues[generator.nextInt(lendValues.length)];
+
+            generator = new Random();
+            Object[] debtValues = debtMap.keySet().toArray();
+            User randomDebter = (User) debtValues[generator.nextInt(debtValues.length)];
+
+            currentDebt = debtMap.get(randomDebter);
+            currentLend = lendMap.get(randomLender);
+            currentBalance = currentDebt - currentLend;
+            if(currentBalance > 0 ){
+                currentDebt = Math.abs(currentBalance);
+                lendMap.remove(randomLender);
+                debtMap.put(randomDebter, currentDebt);
+
+            }
+            else{
+                currentLend = Math.abs(currentBalance);
+                debtMap.remove(randomDebter);
+                lendMap.put(randomLender, currentLend);
+            }
+
+        }
     }
 }
