@@ -44,8 +44,8 @@ public class ExpenseCard extends CardView {
         mBorrowerAvatar = (AvatarView) findViewById(R.id.avatar_borrower);
         mBorrowerName = (TextView) findViewById(R.id.borrower_name);
 
-        mSpenderAvatar = (AvatarView) findViewById(R.id.avatar_borrower);
-        mSpenderName = (TextView) findViewById(R.id.borrower_name);
+        mSpenderAvatar = (AvatarView) findViewById(R.id.avatar_spender);
+        mSpenderName = (TextView) findViewById(R.id.spender_name);
 
         mAmount = (TextView) findViewById(R.id.amount);
 

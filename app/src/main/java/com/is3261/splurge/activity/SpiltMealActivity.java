@@ -12,8 +12,10 @@ import com.is3261.splurge.activity.base.BaseActivity;
 import com.is3261.splurge.adapter.ViewPagerAdapter;
 import com.is3261.splurge.fragment.SpiltMealFragmentOne;
 import com.is3261.splurge.fragment.SpiltMealFragmentTwo;
+import com.is3261.splurge.fragment.SplitMealFragmentFive;
 import com.is3261.splurge.fragment.SplitMealFragmentFour;
 import com.is3261.splurge.fragment.SplitMealFragmentThree;
+import com.is3261.splurge.model.Expense;
 import com.is3261.splurge.model.User;
 import com.is3261.splurge.view.NonPagingViewPager;
 
@@ -52,12 +54,15 @@ public class SpiltMealActivity extends BaseActivity implements SpiltMealFragment
         SpiltMealFragmentTwo    fragmentTwo     =   new SpiltMealFragmentTwo();
         SplitMealFragmentThree  fragmentThree   =   new SplitMealFragmentThree();
         SplitMealFragmentFour   fragmentFour    =   new SplitMealFragmentFour();
+        SplitMealFragmentFive   fragmentFive    =   new SplitMealFragmentFive();
 
         mAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         mAdapter.addFragment(fragmentOne,"What is the meal about?");
         mAdapter.addFragment(fragmentTwo,"How many friends are eating with you ?");
         mAdapter.addFragment(fragmentThree,"Add an expense");
         mAdapter.addFragment(fragmentFour,"Record payment");
+        mAdapter.addFragment(fragmentFive,"Summary");
+
         mPager.setPagingEnabled(false);
         mPager.setAdapter(mAdapter);
     }
@@ -136,5 +141,21 @@ public class SpiltMealActivity extends BaseActivity implements SpiltMealFragment
         mSubtotal.setVisibility(View.VISIBLE);
         String subtotalString = "Total: $" + total.toString();
         mSubtotal.setText(subtotalString);
+    }
+
+    @Override
+    public void onFragmentFourFinished(ArrayList<Expense> expenses) {
+        //hide the subtotal from fragment 4
+        mSubtotal.setVisibility(View.GONE);
+
+        SplitMealFragmentFive fragmentFive = (SplitMealFragmentFive) mAdapter.getItem(4); // do casting
+
+        // pass all data
+        fragmentFive.setExpenses(expenses);
+
+        mPager.setCurrentItem(4, true);
+        if (getSupportActionBar()!= null)
+            getSupportActionBar().setTitle("Summary");
+        hideKeyboard();
     }
 }

@@ -10,6 +10,9 @@ import android.widget.GridView;
 import com.is3261.splurge.R;
 import com.is3261.splurge.adapter.ExpensesAdapter;
 import com.is3261.splurge.fragment.base.BaseFragment;
+import com.is3261.splurge.model.Expense;
+
+import java.util.ArrayList;
 
 /**
  * Created by junwen29 on 11/4/2015.
@@ -20,15 +23,12 @@ public class SplitMealFragmentFive extends BaseFragment implements View.OnClickL
     Button mDoneButton;
 
     ExpensesAdapter mAdapter;
+    ArrayList<Expense> mExpenses;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_split_meal_fragment5, container, false);
         init(view);
-
-
-//        mAdapter = new ExpensesAdapter();
-
 
         return view;
     }
@@ -43,5 +43,11 @@ public class SplitMealFragmentFive extends BaseFragment implements View.OnClickL
     @Override
     public void onClick(View v) {
 
+    }
+
+    public void setExpenses(ArrayList<Expense> expenses) {
+        mExpenses = expenses;
+        mAdapter = new ExpensesAdapter(expenses, getContext());
+        mGridView.setAdapter(mAdapter);
     }
 }
