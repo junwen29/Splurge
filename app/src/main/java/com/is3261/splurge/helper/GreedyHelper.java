@@ -113,13 +113,15 @@ public class GreedyHelper {
 
 
 
-    private void constructBills(){
+    public ArrayList<Expense> constructBills(){
 
         Random generator = new Random();
         Float currentDebt;
         Float currentLend;
         Float currentBalance;
-        Expense exp;
+        Expense exp = null;
+
+        ArrayList<Expense> expenses = new ArrayList<>();
 
         while(lendMap.size() >0) {
 
@@ -140,6 +142,7 @@ public class GreedyHelper {
             if(currentBalance == 0 ){
                 lendMap.remove(randomLender);
                 debtMap.remove(randomDebter);
+                exp = new Expense((new Random()).nextInt(), currentDebt.toString(), "pay", randomLender, randomDebter, false);
             }
             if(currentBalance > 0 ){
 
@@ -158,6 +161,12 @@ public class GreedyHelper {
                 lendMap.put(randomLender, currentLend);
             }
 
+            if (exp != null){
+                expenses.add(exp);
+            }
+
         }
+
+        return expenses;
     }
 }
