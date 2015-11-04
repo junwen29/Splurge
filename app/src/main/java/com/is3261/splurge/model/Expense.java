@@ -7,7 +7,7 @@ public class Expense  {
     public final long id;
 
     protected String amount;
-    protected String pay;
+    protected String currency;
     protected User spender;
     protected User borrower;
     protected boolean isSettled;
@@ -16,10 +16,10 @@ public class Expense  {
         this.id = id;
     }
 
-    public Expense(long id, String amount, String pay, User spender, User borrower, boolean isSettled) {
+    public Expense(long id, String amount, String currency, User spender, User borrower, boolean isSettled) {
         this.id = id;
         this.amount = amount;
-        this.pay = pay;
+        this.currency = currency;
         this.spender = spender;
         this.borrower = borrower;
         this.isSettled = isSettled;
@@ -37,12 +37,12 @@ public class Expense  {
         this.amount = amount;
     }
 
-    public String getPay() {
-        return pay;
+    public String getCurrency() {
+        return currency;
     }
 
-    public void setPay(String pay) {
-        this.pay = pay;
+    public void setCurrency(String currency) {
+        this.currency = currency;
     }
 
     public User getSpender() {
