@@ -1,5 +1,6 @@
 package com.is3261.splurge.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,11 +20,18 @@ import java.util.ArrayList;
  */
 public class SplitMealFragmentFive extends BaseFragment implements View.OnClickListener {
 
+    public interface FragmentFiveListener{
+
+        void onFragmentFiveDone(ArrayList<Expense> expenses);
+    }
+
     GridView mGridView;
     Button mDoneButton;
 
     ExpensesAdapter mAdapter;
     ArrayList<Expense> mExpenses;
+
+    private FragmentFiveListener mCallback;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -42,7 +50,18 @@ public class SplitMealFragmentFive extends BaseFragment implements View.OnClickL
 
     @Override
     public void onClick(View v) {
+        mCallback.onFragmentFiveDone(mExpenses);
+    }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        try {
+            mCallback = (FragmentFiveListener) context;
+        } catch (ClassCastException e){
+            throw new ClassCastException(context.toString()
+                    + " must implement FragmentFiveListener");
+        }
     }
 
     public void setExpenses(ArrayList<Expense> expenses) {

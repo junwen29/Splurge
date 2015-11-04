@@ -212,7 +212,7 @@ public class SplitMealFragmentFour extends BaseFragment implements View.OnClickL
             mCallback = (FragmentFourListener) context;
         } catch (ClassCastException e){
             throw new ClassCastException(context.toString()
-                    + " must implement FragmentThreeListener");
+                    + " must implement FragmentFourListener");
         }
     }
 }

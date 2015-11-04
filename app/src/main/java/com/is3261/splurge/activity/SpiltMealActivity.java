@@ -7,9 +7,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.android.volley.VolleyError;
 import com.is3261.splurge.R;
 import com.is3261.splurge.activity.base.BaseActivity;
 import com.is3261.splurge.adapter.ViewPagerAdapter;
+import com.is3261.splurge.api.EmptyListener;
+import com.is3261.splurge.async_task.CreateExpenseTask;
 import com.is3261.splurge.fragment.SpiltMealFragmentOne;
 import com.is3261.splurge.fragment.SpiltMealFragmentTwo;
 import com.is3261.splurge.fragment.SplitMealFragmentFive;
@@ -24,7 +27,7 @@ import java.util.Map;
 
 public class SpiltMealActivity extends BaseActivity implements SpiltMealFragmentOne.FragmentOneListener,
         SpiltMealFragmentTwo.FragmentTwoListener, SplitMealFragmentThree.FragmentThreeListener,
-        SplitMealFragmentFour.FragmentFourListener{
+        SplitMealFragmentFour.FragmentFourListener,SplitMealFragmentFive.FragmentFiveListener {
 
     private Toolbar mToolbar;
     private TextView mSubtotal;
@@ -35,6 +38,8 @@ public class SpiltMealActivity extends BaseActivity implements SpiltMealFragment
     private String mCurrency;
     private String mSVC;
     private String mDescription;
+
+    private static final String TAG = "SpiltMealActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -157,5 +162,24 @@ public class SpiltMealActivity extends BaseActivity implements SpiltMealFragment
         if (getSupportActionBar()!= null)
             getSupportActionBar().setTitle("Summary");
         hideKeyboard();
+    }
+
+    @Override
+    public void onFragmentFiveDone(ArrayList<Expense> expenses) {
+        for (final Expense expense : expenses) {
+            EmptyListener listener = new EmptyListener() {
+                @Override
+                public void onResponse() {
+                    Log.d(TAG, "Registered expense successfully ");
+                }
+
+                @Override
+                public void onErrorResponse(VolleyError volleyError) {
+                    Log.d(TAG, "Failed to register expense ");
+                }
+            };
+            CreateExpenseTask task = new CreateExpenseTask(expense,listener,this);
+            task.execute(null,null,null);
+        }
     }
 }

@@ -28,4 +28,8 @@ public class Endpoint {
     public static final String FRIENDS_FOR_APPROVAL = SERVER_URL + "friendship/requests?auth_token=%s&user_id=%s";
     public static final String ALL_FRIENDS = SERVER_URL + "friendship/friends?auth_token=%s&user_id=%s";
 
+    //expenses
+    public static final String LENDS = SERVER_URL + "expenses/lends?auth_token=%s&user_id=%s";
+    public static final String DEBTS = SERVER_URL + "expenses/debts?auth_token=%s&user_id=%s";
+    public static final String CREATE_EXPENSE = SERVER_URL + "expenses/create?auth_token=%s&amount=%s&currency=%s&spender_id=%s&borrower_id=%s";
 }
