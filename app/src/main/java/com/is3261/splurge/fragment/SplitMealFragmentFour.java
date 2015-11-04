@@ -29,6 +29,8 @@ public class SplitMealFragmentFour extends BaseFragment implements View.OnClickL
 
     public interface FragmentFourListener{
         void updateTotalAmount(Float total);
+
+//        void onFinished()
     }
 
     private View mView;
