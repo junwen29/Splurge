@@ -10,15 +10,19 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
+import com.android.volley.VolleyError;
 import com.is3261.splurge.Constant;
 import com.is3261.splurge.R;
 import com.is3261.splurge.activity.base.BaseActivity;
+import com.is3261.splurge.api.Listener;
+import com.is3261.splurge.async_task.CreateTripTask;
 import com.is3261.splurge.dialog.TripDateSelectDialog;
 import com.is3261.splurge.helper.AlertDialogFactory;
 import com.is3261.splurge.helper.LocationFixer;
@@ -46,6 +50,8 @@ public class CreateTripActivity extends BaseActivity implements View.OnClickList
     private AlertDialog mAlertDialog;
 
     private Trip mTrip;
+    private CreateTripTask mTask = null;
+    private final String TAG = "CreateTripActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -196,11 +202,33 @@ public class CreateTripActivity extends BaseActivity implements View.OnClickList
                 Snackbar.make(mContainer, message, Snackbar.LENGTH_LONG).show();
             }
         } else {
-            submit();
+            mTrip.setTitle(title);
+            submit(mTrip);
         }
     }
 
-    private void submit(){
+    private void submit(Trip trip){
+        if (trip == null)
+            return;
 
+        if (mTask != null)
+            return;
+
+        mTask = new CreateTripTask(trip, this, new Listener<Trip>() {
+            @Override
+            public void onResponse(Trip trip) {
+                Log.d(TAG,"Posted trip successfully");
+                mTask = null;
+                finish();
+            }
+
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                Log.d(TAG,"Failed to post trip");
+                mTask = null;
+            }
+        });
+
+        mTask.execute(null,null,null);
     }
 }
