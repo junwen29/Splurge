@@ -1,6 +1,7 @@
 package com.is3261.splurge.helper;
 
 import android.content.res.Resources;
+import android.location.Location;
 import android.util.TypedValue;
 
 import java.text.SimpleDateFormat;
@@ -20,5 +21,12 @@ public class SplurgeHelper {
         SimpleDateFormat formatter = new SimpleDateFormat(format, Locale.getDefault());
         if (date == null) date = new Date();
         return formatter.format(date);
+    }
+
+    public static boolean isValidLocation(Location location) {
+        if (location == null) return false;
+        if (location.getLatitude() == 0 && location.getLongitude() == 0) return false;
+
+        return true;
     }
 }

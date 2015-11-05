@@ -1,5 +1,7 @@
 package com.is3261.splurge.activity;
 
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
@@ -17,12 +19,19 @@ public class CreateTripActivity extends BaseActivity {
 
     private Toolbar mToolbar;
 
+    private Location mTripLocation;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_trip);
 
         init();
+
+        //initialize location
+        mTripLocation = new Location(LocationManager.PASSIVE_PROVIDER);
+        mTripLocation.setLatitude(getIntent().getFloatExtra("lat", 0));
+        mTripLocation.setLongitude(getIntent().getFloatExtra("lon", 0));
     }
 
     @Override
