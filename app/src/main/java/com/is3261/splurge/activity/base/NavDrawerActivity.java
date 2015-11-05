@@ -20,6 +20,7 @@ import com.is3261.splurge.R;
 import com.is3261.splurge.activity.AddFriendActivity;
 import com.is3261.splurge.activity.DebtActivity;
 import com.is3261.splurge.activity.FrontPageActivity;
+import com.is3261.splurge.activity.LoanActivity;
 import com.is3261.splurge.activity.ProfileActivity;
 import com.is3261.splurge.activity.TripActivity;
 import com.is3261.splurge.helper.OwnerStore;
@@ -106,6 +107,8 @@ public abstract class NavDrawerActivity extends BaseActivity
                 break;
 
             case R.id.nav_loans:
+                startActivity(new Intent(this, LoanActivity.class));
+                finishAffinity();//clear all previous activities
                 break;
 
             case R.id.nav_settings:

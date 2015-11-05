@@ -10,23 +10,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingBottom="@dimen/activity_horizontal_margin"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:layout_marginRight="@dimen/activity_horizontal_margin">
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:paddingBottom="@dimen/activity_horizontal_margin">
+
+        <com.is3261.splurge.view.AvatarView
+            android:id="@+id/avatar_borrower"
+            android:layout_width="@dimen/size_avatar"
+            android:layout_height="@dimen/size_avatar"/>
 
         <TextView
-            android:id="@+id/spender_name"
+            android:id="@+id/borrower_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Name"
             android:layout_gravity="center_vertical"
             style="@style/Text.Card.Title" />
-
-        <com.is3261.splurge.view.AvatarView
-            android:id="@+id/avatar_spender"
-            android:layout_width="@dimen/size_avatar"
-            android:layout_height="@dimen/size_avatar"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"/>
 
     </LinearLayout>
 
@@ -35,7 +34,6 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:paddingTop="@dimen/activity_horizontal_margin"
-        android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:layout_marginRight="@dimen/activity_horizontal_margin">
 
         <!--<TextView-->
@@ -51,6 +49,7 @@
             android:layout_width="0dp"
             android:layout_weight="3"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:text="$"
             android:layout_gravity="center_vertical"
             style="@style/Text.Card.Title" />
@@ -111,5 +110,13 @@
             style="@style/Text.Card.Subtitle" />
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_settle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:text="Settle up"
+        style="@style/Button.Blue"/>
 
 </LinearLayout>

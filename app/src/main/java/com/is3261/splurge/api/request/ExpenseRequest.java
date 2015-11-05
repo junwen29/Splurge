@@ -41,4 +41,15 @@ public class ExpenseRequest {
         Type type = new TypeToken<Collection<Expense>>(){}.getType();
         return new GsonCollectionRequest<>(Request.Method.GET, url, type, listener);
     }
+
+    public static GsonCollectionRequest<Expense> allLends (String userId, CollectionListener<Expense> listener){
+        String url = String.format(Endpoint.ALL_LENDS, SplurgeApi.getAuthToken(),userId);
+        Type type = new TypeToken<Collection<Expense>>(){}.getType();
+        return new GsonCollectionRequest<>(Request.Method.GET, url, type, listener);
+    }
+
+    public static EmptyRequest settleUp(String expense_id, EmptyListener listener) {
+        String url = String.format(Endpoint.SETTLE_UP, SplurgeApi.getAuthToken(), expense_id);
+        return new EmptyRequest(Request.Method.PUT, url, listener);
+    }
 }

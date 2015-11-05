@@ -1,47 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge
-    android:id="@+id/container"
+<android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:fitsSystemWindows="true"
+    tools:context="com.is3261.splurge.activity.ProfileActivity">
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="@dimen/size_fab"
-        android:layout_height="@dimen/size_fab"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        android:src="@android:drawable/ic_dialog_email"
-        android:scaleX="0"
-        android:scaleY="0"
-        android:transitionName="@string/transition_avatar"/>
-
-    <LinearLayout
+    <android.support.design.widget.AppBarLayout
+        android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:theme="@style/Splurge.AppBarOverlay">
 
-        <Toolbar
+        <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?android:colorPrimary"
-            android:contentInsetStart="@dimen/spacing_huge"
-            android:elevation="@dimen/elevation_header"
-            android:navigationContentDescription="@string/up"
-            android:navigationIcon="@drawable/ic_arrow_back"
-            android:transitionName="@string/transition_toolbar">
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/Splurge.PopupOverlay" />
 
-        </Toolbar>
-
-        <FrameLayout
-            android:id="@+id/fragment_container"
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabs"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:visibility="invisible" />
+            android:layout_height="wrap_content"
+            app:tabMode="fixed"
+            app:tabGravity="fill"/>
 
-    </LinearLayout>
+    </android.support.design.widget.AppBarLayout>
 
-</merge>
+    <include layout="@layout/content_loans" />
+
+</android.support.design.widget.CoordinatorLayout>

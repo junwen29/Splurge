@@ -10,9 +10,9 @@ import android.widget.GridView;
 
 import com.android.volley.VolleyError;
 import com.is3261.splurge.R;
-import com.is3261.splurge.adapter.DebtsAdapter;
+import com.is3261.splurge.adapter.LoansAdapter;
 import com.is3261.splurge.api.CollectionListener;
-import com.is3261.splurge.async_task.LoadAllDebtsTask;
+import com.is3261.splurge.async_task.LoadAllLoansTask;
 import com.is3261.splurge.fragment.base.BaseFragment;
 import com.is3261.splurge.helper.OwnerStore;
 import com.is3261.splurge.model.Expense;
@@ -23,19 +23,19 @@ import java.util.Collection;
 /**
  * Created by junwen29 on 11/5/2015.
  */
-public class AllDebtsFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener {
+public class AllLoansFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener {
 
     private GridView mGridView;
     private SwipeRefreshLayout mSwipeLayout;
 
     private String mUserId;
-    private DebtsAdapter mAdapter;
-    private LoadAllDebtsTask mTask = null;
-    private static final String TAG = "AllDebtsFragment";
+    private LoansAdapter mAdapter;
+    private LoadAllLoansTask mTask = null;
+    private static final String TAG = "AllLoansFragment";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_all_debts, container, false);
+        View v = inflater.inflate(R.layout.fragment_all_loans, container, false);
         init(v);
 
         //load requests
@@ -47,7 +47,7 @@ public class AllDebtsFragment extends BaseFragment implements SwipeRefreshLayout
         initSwipeRefreshLayout(view);
 
         mGridView = (GridView) view.findViewById(R.id.gridview);
-        mAdapter = new DebtsAdapter(new ArrayList<Expense>(), getContext());
+        mAdapter = new LoansAdapter(new ArrayList<Expense>(), getContext());
         mGridView.setAdapter(mAdapter);
 
         OwnerStore ownerStore = new OwnerStore(getContext());
@@ -62,16 +62,16 @@ public class AllDebtsFragment extends BaseFragment implements SwipeRefreshLayout
 
     @Override
     public void onRefresh() {
-        loadAllDebts();
+        loadAllLoans();
     }
 
-    private void loadAllDebts(){
+    private void loadAllLoans(){
         CollectionListener<Expense> mListener = new CollectionListener<Expense>() {
             @Override
-            public void onResponse(Collection<Expense> debts) {
+            public void onResponse(Collection<Expense> loans) {
                 mSwipeLayout.setRefreshing(false);
                 mAdapter.clear();
-                mAdapter.addAll(debts);
+                mAdapter.addAll(loans);
                 mAdapter.notifyDataSetChanged();
                 mTask = null;
             }
@@ -93,7 +93,7 @@ public class AllDebtsFragment extends BaseFragment implements SwipeRefreshLayout
                     }
                 });
 
-            mTask = new LoadAllDebtsTask(getContext(), mListener, mUserId);
+            mTask = new LoadAllLoansTask(getContext(), mListener, mUserId);
             mTask.execute((Void) null);
         }
     }

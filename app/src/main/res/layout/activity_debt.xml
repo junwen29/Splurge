@@ -32,38 +32,3 @@
     <include layout="@layout/content_debts" />
 
 </android.support.design.widget.CoordinatorLayout>
-
-
-<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-    <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
-    <!--android:orientation="vertical"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent">-->
-
-    <!--<android.support.v7.widget.Toolbar-->
-        <!--android:id="@+id/toolbar"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="?attr/actionBarSize"-->
-        <!--android:background="?attr/colorPrimary"-->
-        <!--android:elevation="@dimen/elevation_header"-->
-        <!--app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"-->
-        <!--app:popupTheme="@style/Splurge.PopupOverlay" />-->
-
-    <!--<android.support.v4.widget.SwipeRefreshLayout-->
-        <!--android:id="@+id/swipe_container"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent">-->
-
-        <!--<GridView-->
-            <!--android:id="@+id/gridview"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:numColumns="auto_fit"-->
-            <!--android:verticalSpacing="10dp"-->
-            <!--android:horizontalSpacing="10dp"-->
-            <!--android:stretchMode="columnWidth"-->
-            <!--android:gravity="center"/>-->
-
-    <!--</android.support.v4.widget.SwipeRefreshLayout>-->
-
-<!--</LinearLayout>-->

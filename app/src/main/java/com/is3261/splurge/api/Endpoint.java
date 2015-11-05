@@ -7,7 +7,7 @@ import com.is3261.splurge.BuildConfig;
  */
 public class Endpoint {
 
-    public static final String SERVER_URL = BuildConfig.BUILD_TYPE.equals("debug") ? "http://192.168.56.1:3000/" : "https://splurge-rails.herokuapp.com/";
+    public static final String SERVER_URL = BuildConfig.BUILD_TYPE.equals("debug") ? "http://192.168.0.105:3000/" : "https://splurge-rails.herokuapp.com/";
 
     // Device
 //    public static final String REGISTER_DEVICE = P1_SERVER_URL + "devices";
@@ -30,7 +30,9 @@ public class Endpoint {
 
     //expenses
     public static final String LENDS = SERVER_URL + "expenses/lends?auth_token=%s&user_id=%s";
+    public static final String ALL_LENDS = SERVER_URL + "expenses/all_lends?auth_token=%s&user_id=%s";
     public static final String DEBTS = SERVER_URL + "expenses/debts?auth_token=%s&user_id=%s";
     public static final String ALL_DEBTS = SERVER_URL + "expenses/all_debts?auth_token=%s&user_id=%s";
     public static final String CREATE_EXPENSE = SERVER_URL + "expenses/create?auth_token=%s&amount=%s&currency=%s&spender_id=%s&borrower_id=%s";
+    public static final String SETTLE_UP = SERVER_URL + "expenses/settle?auth_token=%s&expense_id=%s";
 }
