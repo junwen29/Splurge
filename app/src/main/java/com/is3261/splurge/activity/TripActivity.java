@@ -54,6 +54,12 @@ public class TripActivity extends NavDrawerActivity {
         SubActionButton.Builder itemBuilder = new SubActionButton.Builder(this);
 //        ImageView itemIcon = new ImageView(this);
         SubActionButton button1 = itemBuilder.build();
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(TripActivity.this, CreateTripActivity.class));
+            }
+        });
 
         ImageView itemIcon2 = new ImageView(this);
 

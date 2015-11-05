@@ -94,6 +94,12 @@
             android:label="@string/title_activity_loan"
             android:theme="@style/Splurge.TranslucentStatusBar" >
         </activity>
+
+        <activity
+            android:name=".activity.CreateTripActivity"
+            android:label="@string/title_activity_create_trip"
+            android:screenOrientation="portrait">
+        </activity>
     </application>
 
 </manifest>

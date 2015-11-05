@@ -54,5 +54,9 @@
     <string name="desc_image_view">Image</string>
     <string name="error_invalid_gst">This GST is invalid</string>
     <string name="error_invalid_svc">This Service Charge is invalid</string>
+    <string name="hint_trip_location">Choose Location</string>
+    <string name="prompt_title">Trip Title</string>
+    <string name="hint_trip_day">Choose Day</string>
+    <string name="title_activity_create_trip">Create Trip</string>
 
 </resources>

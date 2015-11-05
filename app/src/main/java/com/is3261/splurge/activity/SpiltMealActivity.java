@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -76,6 +77,17 @@ public class SpiltMealActivity extends BaseActivity implements SpiltMealFragment
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mPager = (NonPagingViewPager) findViewById(R.id.viewpager);
         mSubtotal = (TextView) findViewById(R.id.subtotal);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     /**
