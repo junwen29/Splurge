@@ -30,6 +30,12 @@ public class ExpenseRequest {
         return new GsonCollectionRequest<>(Request.Method.GET, url, type, listener);
     }
 
+    public static GsonCollectionRequest<Expense> allDebts (String userId, CollectionListener<Expense> listener){
+        String url = String.format(Endpoint.ALL_DEBTS, SplurgeApi.getAuthToken(),userId);
+        Type type = new TypeToken<Collection<Expense>>(){}.getType();
+        return new GsonCollectionRequest<>(Request.Method.GET, url, type, listener);
+    }
+
     public static GsonCollectionRequest<Expense> lends (String userId, CollectionListener<Expense> listener){
         String url = String.format(Endpoint.LENDS, SplurgeApi.getAuthToken(),userId);
         Type type = new TypeToken<Collection<Expense>>(){}.getType();

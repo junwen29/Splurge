@@ -1,16 +1,27 @@
 package com.is3261.splurge.model;
 
+import com.google.gson.annotations.SerializedName;
+
+import java.util.Date;
+
 /**
  * Created by Vicky on 27/10/15.
  */
 public class Expense  {
+    @SerializedName("id")
     public final long id;
-
+    @SerializedName("amount")
     protected String amount;
+    @SerializedName("currency")
     protected String currency;
+    @SerializedName("spender")
     protected User spender;
+    @SerializedName("borrower")
     protected User borrower;
+    @SerializedName("isSettled")
     protected boolean isSettled;
+    @SerializedName("created_at")
+    private Date createdAt;
 
     public Expense(long id) {
         this.id = id;
@@ -67,5 +78,9 @@ public class Expense  {
 
     public void setIsSettled(boolean isSettled) {
         this.isSettled = isSettled;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
     }
 }

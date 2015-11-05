@@ -166,6 +166,7 @@ public class SpiltMealActivity extends BaseActivity implements SpiltMealFragment
 
     @Override
     public void onFragmentFiveDone(ArrayList<Expense> expenses) {
+        finish();
         for (final Expense expense : expenses) {
             EmptyListener listener = new EmptyListener() {
                 @Override
