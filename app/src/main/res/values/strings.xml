@@ -58,5 +58,11 @@
     <string name="prompt_title">Trip Title</string>
     <string name="hint_trip_day">Choose Day</string>
     <string name="title_activity_create_trip">Create Trip</string>
+    <string name="dialog_discard">Discard changes</string>
+    <string name="dialog_unsaved">Your unsaved changes will be lost.</string>
+    <string name="ok">Okay</string>
+    <string name="cancel">Cancel</string>
+    <string name="title_activity_select_location">Select Location</string>
+    <string name="menu_action_search">Search</string>
 
 </resources>

@@ -10,7 +10,6 @@ import android.widget.GridView;
 
 import com.android.volley.VolleyError;
 import com.is3261.splurge.R;
-import com.is3261.splurge.adapter.DebtsAdapter;
 import com.is3261.splurge.adapter.LoansAdapter;
 import com.is3261.splurge.api.CollectionListener;
 import com.is3261.splurge.async_task.LoadLoansTask;

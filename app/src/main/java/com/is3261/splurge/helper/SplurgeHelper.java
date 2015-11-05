@@ -24,9 +24,22 @@ public class SplurgeHelper {
     }
 
     public static boolean isValidLocation(Location location) {
-        if (location == null) return false;
-        if (location.getLatitude() == 0 && location.getLongitude() == 0) return false;
+        return location != null && !(location.getLatitude() == 0 && location.getLongitude() == 0);
 
-        return true;
+    }
+
+    public static String sanitize(String string) {
+        return sanitize(string, "");
+    }
+
+    public static String sanitize(String string, String replacement) {
+        if (string == null) return replacement;
+        return string;
+    }
+
+    public static String locationToString(Location location) {
+        if (location == null) return null;
+
+        return String.format(Locale.US, "%f,%f", location.getLatitude(), location.getLongitude());
     }
 }
