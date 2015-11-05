@@ -64,5 +64,8 @@
     <string name="cancel">Cancel</string>
     <string name="title_activity_select_location">Select Location</string>
     <string name="menu_action_search">Search</string>
+    <string name="today">Today</string>
+    <string name="dialog_pick_date">When is the trip ?</string>
+    <string name="done">Done</string>
 
 </resources>

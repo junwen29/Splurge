@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/container"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -41,7 +42,7 @@
                         android:paddingBottom="@dimen/activity_horizontal_margin">
 
                         <EditText
-                            android:id="@+id/username"
+                            android:id="@+id/title"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="@string/prompt_title"
@@ -84,7 +85,23 @@
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 style="@style/Button.Blue"/>
 
+            <Button
+                android:id="@+id/button_done"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:drawableStart="@drawable/ic_done_white_24dp"
+                android:gravity="end|center_vertical"
+                android:minHeight="0dp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:text="@string/done"
+                android:padding="@dimen/action_button_margin"
+                android:layout_margin="@dimen/activity_horizontal_margin"
+                style="@style/Button.Blue"/>
+
         </LinearLayout>
+
 
     </android.support.v4.widget.NestedScrollView>
 

@@ -3,12 +3,9 @@ package com.is3261.splurge.activity;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBar;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
+import android.view.View;
 
 import com.is3261.splurge.R;
 import com.is3261.splurge.activity.base.BaseActivity;
@@ -51,25 +48,18 @@ public class SelectLocationActivity extends BaseActivity implements SelectLocati
         mLocationFixer = new LocationFixer(this);
     }
 
-    private void init(){
+    private void init() {
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mToolbar.inflateMenu(R.menu.select_location);
 
-//        setSupportActionBar(mToolbar);
-//        ActionBar actionBar = getSupportActionBar();
-//        if (actionBar!= null){
-//            actionBar.setTitle("Select Location");
-//            actionBar.setDisplayHomeAsUpEnabled(true);
-//        }
+        mToolbar.setNavigationIcon(R.drawable.ic_keyboard_backspace_white_24dp);
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
     }
-
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        MenuInflater inflater = getMenuInflater();
-//        inflater.inflate(R.menu.select_location, menu);
-//
-//        return true;
-//    }
 
     @Override
     protected void onStart() {
@@ -83,16 +73,6 @@ public class SelectLocationActivity extends BaseActivity implements SelectLocati
         mLocationFixer.stop();
     }
 
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        switch (item.getItemId()) {
-//            // Respond to the action bar's Up/Home button
-//            case android.R.id.home:
-//                onBackPressed();
-//                return true;
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {

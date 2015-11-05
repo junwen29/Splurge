@@ -6,4 +6,5 @@ package com.is3261.splurge;
 public class Constant {
     public static final String EXPENSE_DATE_FORMAT = "EEE, MMM d, yyyy";
     public static final String DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss'Z'Z";
+    public static final String TRIP_DATE_FORMAT = "EEE, MMM d, yyyy";
 }
