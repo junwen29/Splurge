@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import com.is3261.splurge.R;
 import com.is3261.splurge.fragment.base.BaseFragment;
 import com.is3261.splurge.helper.GreedyHelper;
 import com.is3261.splurge.model.Avatar;
+import com.is3261.splurge.model.Expense;
 import com.is3261.splurge.model.User;
 import com.is3261.splurge.view.PaymentCard;
 
@@ -176,6 +178,8 @@ public class SplitMealFragmentFour extends BaseFragment implements View.OnClickL
         } else if (checkPaymentTally()){
             //proceed
             GreedyHelper greedy = new GreedyHelper(mSpenders, mTotalExpenseMap, mPaymentMap);
+            ArrayList<Expense> expenses = greedy.constructBills();
+            Log.d("Expenese","End");
         } else {
             //error
             Snackbar.make(mContainer,"Payments do not tally.", Snackbar.LENGTH_LONG).show();
