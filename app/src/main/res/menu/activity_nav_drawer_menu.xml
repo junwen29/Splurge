@@ -3,6 +3,11 @@
 
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/nav_trips"
+            android:icon="@android:drawable/ic_menu_myplaces"
+            android:title="My trips" />
+
+        <item
             android:id="@+id/nav_debts"
             android:icon="@drawable/ic_menu_allfriends"
             android:title="My debts" />
@@ -11,11 +16,6 @@
             android:id="@+id/nav_loans"
             android:icon="@drawable/ic_menu_friendslist"
             android:title="My loans to others" />
-
-        <item
-            android:id="@+id/nav_trips"
-            android:icon="@android:drawable/ic_menu_myplaces"
-            android:title="My trips" />
 
         <!--TODO about us-->
         <item

@@ -4,16 +4,22 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.android.volley.VolleyError;
 import com.is3261.splurge.R;
 import com.is3261.splurge.activity.base.BaseActivity;
 import com.is3261.splurge.adapter.ViewPagerAdapter;
+import com.is3261.splurge.api.EmptyListener;
+import com.is3261.splurge.async_task.CreateExpenseTask;
 import com.is3261.splurge.fragment.SpiltMealFragmentOne;
 import com.is3261.splurge.fragment.SpiltMealFragmentTwo;
+import com.is3261.splurge.fragment.SplitMealFragmentFive;
 import com.is3261.splurge.fragment.SplitMealFragmentFour;
 import com.is3261.splurge.fragment.SplitMealFragmentThree;
+import com.is3261.splurge.model.Expense;
 import com.is3261.splurge.model.User;
 import com.is3261.splurge.view.NonPagingViewPager;
 
@@ -22,7 +28,7 @@ import java.util.Map;
 
 public class SpiltMealActivity extends BaseActivity implements SpiltMealFragmentOne.FragmentOneListener,
         SpiltMealFragmentTwo.FragmentTwoListener, SplitMealFragmentThree.FragmentThreeListener,
-        SplitMealFragmentFour.FragmentFourListener{
+        SplitMealFragmentFour.FragmentFourListener,SplitMealFragmentFive.FragmentFiveListener {
 
     private Toolbar mToolbar;
     private TextView mSubtotal;
@@ -33,6 +39,8 @@ public class SpiltMealActivity extends BaseActivity implements SpiltMealFragment
     private String mCurrency;
     private String mSVC;
     private String mDescription;
+
+    private static final String TAG = "SpiltMealActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,12 +60,15 @@ public class SpiltMealActivity extends BaseActivity implements SpiltMealFragment
         SpiltMealFragmentTwo    fragmentTwo     =   new SpiltMealFragmentTwo();
         SplitMealFragmentThree  fragmentThree   =   new SplitMealFragmentThree();
         SplitMealFragmentFour   fragmentFour    =   new SplitMealFragmentFour();
+        SplitMealFragmentFive   fragmentFive    =   new SplitMealFragmentFive();
 
         mAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         mAdapter.addFragment(fragmentOne,"What is the meal about?");
         mAdapter.addFragment(fragmentTwo,"How many friends are eating with you ?");
         mAdapter.addFragment(fragmentThree,"Add an expense");
         mAdapter.addFragment(fragmentFour,"Record payment");
+        mAdapter.addFragment(fragmentFive,"Summary");
+
         mPager.setPagingEnabled(false);
         mPager.setAdapter(mAdapter);
     }
@@ -66,6 +77,17 @@ public class SpiltMealActivity extends BaseActivity implements SpiltMealFragment
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mPager = (NonPagingViewPager) findViewById(R.id.viewpager);
         mSubtotal = (TextView) findViewById(R.id.subtotal);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     /**
@@ -136,5 +158,41 @@ public class SpiltMealActivity extends BaseActivity implements SpiltMealFragment
         mSubtotal.setVisibility(View.VISIBLE);
         String subtotalString = "Total: $" + total.toString();
         mSubtotal.setText(subtotalString);
+    }
+
+    @Override
+    public void onFragmentFourFinished(ArrayList<Expense> expenses) {
+        //hide the subtotal from fragment 4
+        mSubtotal.setVisibility(View.GONE);
+
+        SplitMealFragmentFive fragmentFive = (SplitMealFragmentFive) mAdapter.getItem(4); // do casting
+
+        // pass all data
+        fragmentFive.setExpenses(expenses);
+
+        mPager.setCurrentItem(4, true);
+        if (getSupportActionBar()!= null)
+            getSupportActionBar().setTitle("Summary");
+        hideKeyboard();
+    }
+
+    @Override
+    public void onFragmentFiveDone(ArrayList<Expense> expenses) {
+        finish();
+        for (final Expense expense : expenses) {
+            EmptyListener listener = new EmptyListener() {
+                @Override
+                public void onResponse() {
+                    Log.d(TAG, "Registered expense successfully ");
+                }
+
+                @Override
+                public void onErrorResponse(VolleyError volleyError) {
+                    Log.d(TAG, "Failed to register expense ");
+                }
+            };
+            CreateExpenseTask task = new CreateExpenseTask(expense,listener,this);
+            task.execute(null,null,null);
+        }
     }
 }

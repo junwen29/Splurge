@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/container"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="@dimen/elevation_header"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/Splurge.PopupOverlay" />
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.CardView
+                android:layout_margin="@dimen/activity_horizontal_margin"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:elevation="@dimen/cardview_default_elevation">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="@dimen/activity_horizontal_margin"
+                        android:paddingBottom="@dimen/activity_horizontal_margin">
+
+                        <EditText
+                            android:id="@+id/title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/prompt_title"
+                            android:inputType="textVisiblePassword|textNoSuggestions"
+                            android:maxLines="1"
+                            android:singleLine="true" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <Button
+                android:id="@+id/button_location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_location_on_white_24dp"
+                android:gravity="start|center_vertical"
+                android:minHeight="0dp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:text="@string/hint_trip_location"
+                android:padding="@dimen/action_button_margin"
+                android:layout_margin="@dimen/activity_horizontal_margin"
+                style="@style/Button.Blue"/>
+
+            <Button
+                android:id="@+id/button_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_today_white_24dp"
+                android:gravity="start|center_vertical"
+                android:minHeight="0dp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:text="@string/hint_trip_day"
+                android:padding="@dimen/action_button_margin"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                style="@style/Button.Blue"/>
+
+            <Button
+                android:id="@+id/button_done"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:drawableStart="@drawable/ic_done_white_24dp"
+                android:gravity="end|center_vertical"
+                android:minHeight="0dp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:text="@string/done"
+                android:padding="@dimen/action_button_margin"
+                android:layout_margin="@dimen/activity_horizontal_margin"
+                style="@style/Button.Blue"/>
+
+        </LinearLayout>
+
+
+    </android.support.v4.widget.NestedScrollView>
+
+</LinearLayout>

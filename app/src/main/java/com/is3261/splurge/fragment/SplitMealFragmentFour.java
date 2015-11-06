@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +30,8 @@ public class SplitMealFragmentFour extends BaseFragment implements View.OnClickL
 
     public interface FragmentFourListener{
         void updateTotalAmount(Float total);
+
+        void onFragmentFourFinished(ArrayList<Expense> expenses);
     }
 
     private View mView;
@@ -179,7 +180,7 @@ public class SplitMealFragmentFour extends BaseFragment implements View.OnClickL
             //proceed
             GreedyHelper greedy = new GreedyHelper(mSpenders, mTotalExpenseMap, mPaymentMap);
             ArrayList<Expense> expenses = greedy.constructBills();
-            Log.d("Expenese","End");
+            mCallback.onFragmentFourFinished(expenses);
         } else {
             //error
             Snackbar.make(mContainer,"Payments do not tally.", Snackbar.LENGTH_LONG).show();
@@ -211,7 +212,7 @@ public class SplitMealFragmentFour extends BaseFragment implements View.OnClickL
             mCallback = (FragmentFourListener) context;
         } catch (ClassCastException e){
             throw new ClassCastException(context.toString()
-                    + " must implement FragmentThreeListener");
+                    + " must implement FragmentFourListener");
         }
     }
 }

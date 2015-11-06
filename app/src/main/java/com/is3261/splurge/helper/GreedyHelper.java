@@ -142,11 +142,11 @@ public class GreedyHelper {
             if(currentBalance == 0 ){
                 lendMap.remove(randomLender);
                 debtMap.remove(randomDebter);
-                exp = new Expense((new Random()).nextInt(), currentDebt.toString(), "pay", randomLender, randomDebter, false);
+                exp = new Expense((new Random()).nextInt(), currentDebt.toString(), "currency", randomLender, randomDebter, false);
             }
             if(currentBalance > 0 ){
 
-                exp = new Expense((new Random()).nextInt(), currentLend.toString(), "pay", randomLender, randomDebter, false);
+                exp = new Expense((new Random()).nextInt(), currentLend.toString(), "currency", randomLender, randomDebter, false);
                 System.out.println(exp.getBorrower() + " borrows " + exp.getSpender() + " " + exp.getAmount());
                 currentDebt = Math.abs(currentBalance);
                 lendMap.remove(randomLender);
@@ -154,7 +154,7 @@ public class GreedyHelper {
             }
             if(currentBalance < 0)
             {
-                exp = new Expense((new Random()).nextInt(), currentDebt.toString(), "pay", randomLender, randomDebter, false);
+                exp = new Expense((new Random()).nextInt(), currentDebt.toString(), "currency", randomLender, randomDebter, false);
                 System.out.println(exp.getBorrower() + " borrows " + exp.getSpender() + " " + exp.getAmount());
                 currentLend = Math.abs(currentBalance);
                 debtMap.remove(randomDebter);
