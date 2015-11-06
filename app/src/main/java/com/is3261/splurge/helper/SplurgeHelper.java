@@ -4,6 +4,7 @@ import android.content.res.Resources;
 import android.location.Location;
 import android.util.TypedValue;
 
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -41,5 +42,9 @@ public class SplurgeHelper {
         if (location == null) return null;
 
         return String.format(Locale.US, "%f,%f", location.getLatitude(), location.getLongitude());
+    }
+
+    public static Float round(Float d, int decimalPlace) {
+        return BigDecimal.valueOf(d).setScale(decimalPlace, BigDecimal.ROUND_HALF_UP).floatValue();
     }
 }

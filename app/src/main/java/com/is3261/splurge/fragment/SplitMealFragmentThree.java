@@ -8,14 +8,11 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.is3261.splurge.R;
 import com.is3261.splurge.fragment.base.BaseFragment;
@@ -66,19 +63,20 @@ public class SplitMealFragmentThree extends BaseFragment implements View.OnClick
      */
     private void init(View view){
         mContainer = (LinearLayout) view.findViewById(R.id.container);
-        mFab = (FloatingActionButton) view.findViewById(R.id.fab);
+//        mFab = (FloatingActionButton) view.findViewById(R.id.fab);
         mNextButton = (Button) view.findViewById(R.id.button_sm_next3);
 
-        mFab.setOnClickListener(this);
+//        mFab.setOnClickListener(this);
         mNextButton.setOnClickListener(this);
     }
 
-    private void addDishCard(){
+    // called by splitmealactivity to add dish card via the menu item
+    public void addDishCard(){
         if (mContainer == null) return;
 
         mDishIndex++;
         final DishCard dishCard = new DishCard(getContext());
-        dishCard.setTitle("Dish " + mDishIndex);
+        dishCard.setTitle("Expense " + mDishIndex);
 
         final Spinner spinner = dishCard.getSpinner();
         ArrayAdapter<User> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item);
@@ -179,9 +177,9 @@ public class SplitMealFragmentThree extends BaseFragment implements View.OnClick
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.fab:
-                addDishCard();
-                break;
+//            case R.id.fab:
+//                addDishCard();
+//                break;
             case R.id.button_sm_next3:
                 mapExpeneses();
                 break;

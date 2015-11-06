@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import com.is3261.splurge.R;
 import com.is3261.splurge.fragment.base.BaseFragment;
 import com.is3261.splurge.helper.GreedyHelper;
+import com.is3261.splurge.helper.SplurgeHelper;
 import com.is3261.splurge.model.Avatar;
 import com.is3261.splurge.model.Expense;
 import com.is3261.splurge.model.User;
@@ -116,6 +117,9 @@ public class SplitMealFragmentFour extends BaseFragment implements View.OnClickL
                 spend = Float.valueOf("0.00");
             }
 
+            // round up spend to 2 dp
+            spend = SplurgeHelper.round(spend, 2);
+
             String spendAmount = "$ " + spend.toString(); // set expense amount
             paymentCard.getSpendAmount().setText(spendAmount);
 
@@ -130,6 +134,9 @@ public class SplitMealFragmentFour extends BaseFragment implements View.OnClickL
                 Float gst = Float.parseFloat(mGST) / 100 + 1;
                 total *= gst;
             }
+
+            // round up total to 2 dp
+            total = SplurgeHelper.round(total, 2);
 
             String totalString = "$ " + total.toString();
             paymentCard.getTotalAmount().setText(totalString);

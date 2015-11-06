@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -40,6 +41,8 @@ public class SpiltMealActivity extends BaseActivity implements SpiltMealFragment
     private String mSVC;
     private String mDescription;
 
+    MenuItem mAddExpenseMenuItem;
+
     private static final String TAG = "SpiltMealActivity";
 
     @Override
@@ -63,8 +66,8 @@ public class SpiltMealActivity extends BaseActivity implements SpiltMealFragment
         SplitMealFragmentFive   fragmentFive    =   new SplitMealFragmentFive();
 
         mAdapter = new ViewPagerAdapter(getSupportFragmentManager());
-        mAdapter.addFragment(fragmentOne,"What is the meal about?");
-        mAdapter.addFragment(fragmentTwo,"How many friends are eating with you ?");
+        mAdapter.addFragment(fragmentOne,"How did you Splurge ?");
+        mAdapter.addFragment(fragmentTwo,"Who are with you ?");
         mAdapter.addFragment(fragmentThree,"Add an expense");
         mAdapter.addFragment(fragmentFour,"Record payment");
         mAdapter.addFragment(fragmentFive,"Summary");
@@ -80,14 +83,30 @@ public class SpiltMealActivity extends BaseActivity implements SpiltMealFragment
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_create_trip, menu);
+        mAddExpenseMenuItem  = menu.findItem(R.id.add_expense);
+
+        // disable the menu item first
+        mAddExpenseMenuItem.setVisible(false);
+        mAddExpenseMenuItem.setEnabled(false);
+
+        return true;
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             // Respond to the action bar's Up/Home button
             case android.R.id.home:
                 onBackPressed();
                 return true;
+            case R.id.add_expense:
+                SplitMealFragmentThree fragment = (SplitMealFragmentThree) mAdapter.getItem(2); // do casting
+                fragment.addDishCard();
+                break;
         }
-        return super.onOptionsItemSelected(item);
+        return true;
     }
 
     /**
@@ -106,7 +125,7 @@ public class SpiltMealActivity extends BaseActivity implements SpiltMealFragment
         mDescription = desc;
         mPager.setCurrentItem(1, true); //move to next page
         if (getSupportActionBar()!= null)
-            getSupportActionBar().setTitle("How many friends are eating with you ?");
+            getSupportActionBar().setTitle("Who are with you ?");
         hideKeyboard();
     }
 
@@ -124,6 +143,15 @@ public class SpiltMealActivity extends BaseActivity implements SpiltMealFragment
                 getSupportActionBar().setTitle(mAdapter.getPageTitle(position));
 
             mSubtotal.setVisibility(View.GONE);
+
+            //toggle the enabling of the menu item
+            if (position == 2){
+                mAddExpenseMenuItem.setVisible(true);
+                mAddExpenseMenuItem.setEnabled(true);
+            } else {
+                mAddExpenseMenuItem.setVisible(false);
+                mAddExpenseMenuItem.setEnabled(false);
+            }
         }
     }
 
@@ -138,6 +166,10 @@ public class SpiltMealActivity extends BaseActivity implements SpiltMealFragment
         if (getSupportActionBar()!= null)
             getSupportActionBar().setTitle("Add an expense");
         hideKeyboard();
+
+        // enable the button
+        mAddExpenseMenuItem.setVisible(true);
+        mAddExpenseMenuItem.setEnabled(true);
     }
 
     @Override
@@ -151,6 +183,10 @@ public class SpiltMealActivity extends BaseActivity implements SpiltMealFragment
         if (getSupportActionBar()!= null)
             getSupportActionBar().setTitle("Record payment");
         hideKeyboard();
+
+        // disable the button
+        mAddExpenseMenuItem.setVisible(false);
+        mAddExpenseMenuItem.setEnabled(false);
     }
 
     @Override

@@ -14,7 +14,7 @@ public class SplurgeGson {
     public static Gson getInstance() {
         if (sInstance == null) {
             sInstance = new GsonBuilder()
-                    .setDateFormat(Constant.GENERIC_DATE_FORMAT)
+                    .setDateFormat(Constant.DATE_FORMAT)
                     .create();
         }
         return sInstance;
