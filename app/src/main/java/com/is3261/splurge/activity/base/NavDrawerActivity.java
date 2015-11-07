@@ -107,7 +107,6 @@ public abstract class NavDrawerActivity extends BaseActivity
 
             case R.id.nav_settings:
                 startActivity(new Intent(this, AboutUsActivity.class));
-                finishAffinity();//clear all previous activities
                 break;
 
             case R.id.nav_my_friends:
