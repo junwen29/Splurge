@@ -38,5 +38,5 @@ public class Endpoint {
 
     // trips
     public static final String POST_TRIP = SERVER_URL + "trips";
-
+    public static final String ALL_TRIPS = SERVER_URL + "trips?auth_token=%s&user_id=%s";
 }

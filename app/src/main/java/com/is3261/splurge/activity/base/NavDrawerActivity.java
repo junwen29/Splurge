@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.is3261.splurge.R;
 import com.is3261.splurge.activity.AboutUsActivity;
 import com.is3261.splurge.activity.AddFriendActivity;
+import com.is3261.splurge.activity.BatteryActivity;
 import com.is3261.splurge.activity.DebtActivity;
 import com.is3261.splurge.activity.FrontPageActivity;
 import com.is3261.splurge.activity.LoanActivity;
@@ -94,17 +95,14 @@ public abstract class NavDrawerActivity extends BaseActivity
         switch (id){
             case R.id.nav_trips:
                 startActivity(new Intent(this, TripActivity.class));
-                finishAffinity();//clear all previous activities
                 break;
 
             case R.id.nav_debts:
                 startActivity(new Intent(this, DebtActivity.class));
-                finishAffinity();//clear all previous activities
                 break;
 
             case R.id.nav_loans:
                 startActivity(new Intent(this, LoanActivity.class));
-                finishAffinity();//clear all previous activities
                 break;
 
             case R.id.nav_settings:
@@ -114,12 +112,14 @@ public abstract class NavDrawerActivity extends BaseActivity
 
             case R.id.nav_my_friends:
                 startActivity(new Intent(this, ProfileActivity.class));
-                finishAffinity();//clear all previous activities
                 break;
 
             case R.id.nav_add_friend:
                 startActivity(new Intent(this, AddFriendActivity.class));
-                finishAffinity();//clear all previous activities
+                break;
+
+            case R.id.nav_battery:
+                startActivity(new Intent(this, BatteryActivity.class));
                 break;
 
             case R.id.nav_logout:

@@ -18,7 +18,7 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"
-            android:text="Dish No."
+            android:text="Expense No."
             android:singleLine="true"
             android:ellipsize="end"
             android:gravity="center_vertical"/>
@@ -43,7 +43,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:text="Payer: "/>
+            android:text="Belongs to: "/>
 
         <Spinner
             android:id="@+id/spinner"

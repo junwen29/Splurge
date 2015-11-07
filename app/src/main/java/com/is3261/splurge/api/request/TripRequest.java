@@ -1,16 +1,21 @@
 package com.is3261.splurge.api.request;
 
 import com.android.volley.Request;
+import com.google.gson.reflect.TypeToken;
 import com.is3261.splurge.Constant;
+import com.is3261.splurge.api.CollectionListener;
 import com.is3261.splurge.api.Endpoint;
+import com.is3261.splurge.api.GsonCollectionRequest;
 import com.is3261.splurge.api.GsonRequest;
 import com.is3261.splurge.api.Listener;
 import com.is3261.splurge.api.SplurgeApi;
 import com.is3261.splurge.model.Trip;
 import com.is3261.splurge.model.TripLocation;
 
+import java.lang.reflect.Type;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -27,6 +32,12 @@ public class TripRequest {
         params.put("user_id", user_id);
 
         return new GsonRequest<>(Request.Method.POST, url, params, Trip.class, listener);
+    }
+
+    public static GsonCollectionRequest<Trip> loadTrips(String userId, CollectionListener<Trip> listener){
+        String url = String.format(Endpoint.ALL_TRIPS, SplurgeApi.getAuthToken(),userId);
+        Type type = new TypeToken<Collection<Trip>>(){}.getType();
+        return new GsonCollectionRequest<>(Request.Method.GET, url, type, listener);
     }
 
 

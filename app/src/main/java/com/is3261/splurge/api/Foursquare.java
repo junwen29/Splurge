@@ -1,6 +1,5 @@
 package com.is3261.splurge.api;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.support.v4.util.Pair;
 import android.text.TextUtils;

@@ -39,6 +39,11 @@
             android:title="Add a friend" />
 
         <item
+            android:id="@+id/nav_battery"
+            android:icon="@drawable/ic_battery_unknown_white_24dp"
+            android:title="Battery Status" />
+
+        <item
             android:id="@+id/nav_logout"
             android:icon="@android:drawable/ic_menu_close_clear_cancel"
             android:title="Log out" />

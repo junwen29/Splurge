@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.is3261.splurge.view.TripCard xmlns:android="http://schemas.android.com/apk/res/android"
+android:id="@+id/card_trip"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+style="@style/CardView">
+
+</com.is3261.splurge.view.TripCard>
