@@ -155,19 +155,21 @@ public class TripActivity extends NavDrawerActivity implements OnMapReadyCallbac
         ImageView itemIcon4 = new ImageView(this);
         itemIcon4.setImageResource(R.drawable.icon_add_friend);
 
-        SubActionButton button4 = itemBuilder.setContentView(itemIcon4).build();
-        button4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent webView_i = new Intent(TripActivity.this, WebViewActivity.class);
-                startActivity(webView_i);
-            }
-        });
+//        SubActionButton button4 = itemBuilder.setContentView(itemIcon4).build();
+//        button4.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                Intent webView_i = new Intent(TripActivity.this, WebViewActivity.class);
+//                startActivity(webView_i);
+//            }
+//        });
 
         FloatingActionMenu actionMenu = new FloatingActionMenu.Builder(this).addSubActionView(button1)
-                                                                            .addSubActionView(button2)
-                                                                            .addSubActionView(button3).addSubActionView(button4).attachTo(fab).build();
+                .addSubActionView(button2)
+                .addSubActionView(button3)
+//                .addSubActionView(button4)
+                .attachTo(fab).build();
 
 
     }

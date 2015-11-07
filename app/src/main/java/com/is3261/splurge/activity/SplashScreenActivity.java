@@ -28,7 +28,7 @@ public class SplashScreenActivity extends AppCompatActivity {
             goToMain();
         }
         else {
-            FrontPageActivity.start(this, false, null);
+            startActivity(new Intent(this, WebViewActivity.class));
         }
         //TODO create splash screen with just app logo
         setContentView(R.layout.activity_splash_screen);

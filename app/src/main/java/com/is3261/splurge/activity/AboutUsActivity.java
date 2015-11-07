@@ -81,4 +81,8 @@ public class AboutUsActivity extends NavDrawerActivity {
         startActivity(Intent.createChooser(emailIntent, "Send your email in:"));
 
     }
+
+    public void onClickTutorial(View view) {
+        startActivity(new Intent(this,WebViewActivity.class));
+    }
 }

@@ -111,6 +111,7 @@
     <string name="avatar">Avatar</string>
     <string name="desc_drawer_open">Open navigation drawer</string>
     <string name="desc_drawer_close">Close navigation drawer</string>
+    <string name="tutorial">Tutorial</string>
 
 
 </resources>
