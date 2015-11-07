@@ -22,6 +22,10 @@ public class OwnerStore {
     public static final String EMAIL = "EMAIL";
     public static final String AUTH_TOKEN = "AUTH_TOKEN";
 
+    //GCM
+    public static final String GCM_REG_ID = "GCM_REG_ID"; // GCM Registration ID
+
+
     private SharedPreferences mSharedPreferences;
     private SharedPreferences.Editor mEditor;
     private boolean mBatchEdit;
@@ -103,5 +107,16 @@ public class OwnerStore {
     public void setUsername(String username) {
         mEditor.putString(USERNAME, username);
         if(!mBatchEdit) mEditor.commit();
+    }
+
+    public void storeRegistrationId(Context context, String regId) {
+//        int appVersion = Helper.getAppVersion(context);
+        mEditor.putString(GCM_REG_ID, regId);
+//        mEditor.putInt(GCM_REG_APP_VERSION, appVersion);
+        mEditor.commit();
+    }
+
+    public String getGCMRegistrationId() {
+        return mSharedPreferences.getString(GCM_REG_ID, "");
     }
 }

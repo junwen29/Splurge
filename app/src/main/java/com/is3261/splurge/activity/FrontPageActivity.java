@@ -3,20 +3,33 @@ package com.is3261.splurge.activity;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ActivityOptions;
+import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.is3261.splurge.R;
+import com.is3261.splurge.helper.OwnerStore;
+import com.is3261.splurge.service.UpdateServerService;
+
+import java.io.IOException;
 
 public class FrontPageActivity extends AppCompatActivity implements View.OnClickListener {
 
     private View mContentView;
     private static final int REQ_SIGNUP = 291;
     private static final int REQ_LOGIN = 292;
+
+    // GCM
+    private GoogleCloudMessaging mGCM;
+    private String mRegId;
+    private static final String GCM_SENDER_ID = "829855570993"; //Google API Project Number
 
     public static void start(Activity activity, boolean clear, ActivityOptions options) {
         Intent starter = new Intent(activity, FrontPageActivity.class);
@@ -107,7 +120,56 @@ public class FrontPageActivity extends AppCompatActivity implements View.OnClick
                 default:
                     //do nothing
             }
-            //TODO register GCM no matter login or signup
+            //register GCM no matter login or signup
+            registerGCM();
         }
     }
+
+    private void registerGCM(){
+        mGCM = GoogleCloudMessaging.getInstance(this);
+        mRegId = getGCMRegId();
+        if (mRegId.isEmpty()){
+            registerGCMInBackground();
+        }
+    }
+
+    private void registerGCMInBackground() {
+        new AsyncTask<Void, Void, String>() {
+            @Override
+            protected String doInBackground(Void... params) {
+                String msg = "";
+                Context context = getApplicationContext();
+                try{
+                    if (mGCM == null){
+                        mGCM = GoogleCloudMessaging.getInstance(context);
+                    }
+                    mRegId = mGCM.register(GCM_SENDER_ID);
+                    msg = "Device registered, registration ID= "+ mRegId;
+
+                    startService(UpdateServerService.deviceToken(context, true, mRegId));
+                    // Persist the regID - no need to register again.
+                    OwnerStore store = new OwnerStore(context);
+                    store.storeRegistrationId(context, mRegId);
+
+                    Log.i("GCM", msg);
+                } catch (IOException e) {
+                    msg = "Error: " + e.getMessage();
+                    e.printStackTrace();
+                }
+
+                return msg;
+            }
+        }.execute(null, null, null);
+    }
+
+    private String getGCMRegId(){
+        OwnerStore store = new OwnerStore(getApplicationContext());
+        String registrationId = store.getGCMRegistrationId();
+        if (registrationId.isEmpty()){
+            Log.d("getGCMRegID", "GCM Registration ID not found.");
+            return "";
+        }
+        return registrationId;
+    }
+
 }
