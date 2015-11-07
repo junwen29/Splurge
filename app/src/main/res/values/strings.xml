@@ -96,5 +96,6 @@
         <item quantity="one">%d year ago</item>
         <item quantity="other">%d years ago</item>
     </plurals>
+    <string name="title_activity_maps">Map</string>
 
 </resources>

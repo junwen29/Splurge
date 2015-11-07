@@ -9,7 +9,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
-    <!--Google maps-->
+    <!-- Google maps -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
@@ -19,6 +19,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Splurge" >
+
         <activity
             android:name=".activity.SplashScreenActivity"
             android:label="@string/app_name" >
@@ -86,7 +87,7 @@
         <activity
             android:name=".activity.SpiltMealActivity"
             android:label="@string/title_activity_spilt_meal"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".activity.DebtActivity"
@@ -98,19 +99,26 @@
             android:label="@string/title_activity_loan"
             android:theme="@style/Splurge.TranslucentStatusBar" >
         </activity>
-
         <activity
             android:name=".activity.CreateTripActivity"
             android:label="@string/title_activity_create_trip"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
         </activity>
-
         <activity
             android:name=".activity.SelectLocationActivity"
             android:label="@string/title_activity_select_location"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
         </activity>
 
+        <activity
+            android:name=".activity.MapsActivity"
+            android:label="@string/title_activity_maps" >
+        </activity>
+
+        <!--Google Maps API-->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
     </application>
 
 </manifest>

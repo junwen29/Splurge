@@ -1,5 +1,6 @@
 package com.is3261.splurge.model;
 
+import com.google.android.gms.maps.model.LatLng;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
@@ -60,5 +61,9 @@ public class Trip {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public LatLng getLatLng() {
+        return new LatLng(lat, lng);
     }
 }
