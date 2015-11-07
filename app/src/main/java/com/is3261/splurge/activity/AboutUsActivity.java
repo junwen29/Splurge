@@ -5,21 +5,29 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.is3261.splurge.R;
+import com.is3261.splurge.activity.base.NavDrawerActivity;
 
-public class AboutUsActivity extends AppCompatActivity {
+public class AboutUsActivity extends NavDrawerActivity {
 
 
     private Toolbar mToolbar;
 
     @Override
+    public void updateActiveDrawerItem() {
+        mNavigationView.getMenu().findItem(mSelectedDrawerItemId).setChecked(true);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
+        mSelectedDrawerItemId = R.id.nav_settings;
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_about_us);
+        getLayoutInflater().inflate(R.layout.activity_about_us, mContainer, true);
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
@@ -45,10 +53,18 @@ public class AboutUsActivity extends AppCompatActivity {
             case android.R.id.home:
                 onBackPressed();
                 return true;
+
+
+            case R.id.notifications:
+                if (mDrawerLayout.isDrawerOpen(Gravity.LEFT))
+                    mDrawerLayout.closeDrawer(Gravity.LEFT);
+
+                mDrawerLayout.openDrawer(Gravity.RIGHT);
+                return true;
+
         }
         return true;
     }
-
 
     public void onClickSendEmail(View view){
 

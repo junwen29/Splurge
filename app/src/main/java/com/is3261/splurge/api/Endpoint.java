@@ -40,7 +40,11 @@ public class Endpoint {
     public static final String POST_TRIP = SERVER_URL + "trips";
     public static final String ALL_TRIPS = SERVER_URL + "trips?auth_token=%s&user_id=%s";
 
-    // Device
+    // device
     public static final String REGISTER_DEVICE = SERVER_URL + "devices";
     public static final String UNREGISTER_DEVICE = SERVER_URL + "devices?auth_token=%s&device_token=%s&device_type=android";
+
+    // notification
+    public static final String NOTIFICATIONS = SERVER_URL + "notifications?auth_token=%s&user_id=%s";
+
 }
