@@ -2,21 +2,17 @@ package com.is3261.splurge.activity.base;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.is3261.splurge.R;
+import com.is3261.splurge.activity.AboutUsActivity;
 import com.is3261.splurge.activity.AddFriendActivity;
 import com.is3261.splurge.activity.DebtActivity;
 import com.is3261.splurge.activity.FrontPageActivity;
@@ -112,6 +108,8 @@ public abstract class NavDrawerActivity extends BaseActivity
                 break;
 
             case R.id.nav_settings:
+                startActivity(new Intent(this, AboutUsActivity.class));
+                finishAffinity();//clear all previous activities
                 break;
 
             case R.id.nav_my_friends:

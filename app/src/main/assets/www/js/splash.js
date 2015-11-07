@@ -1,0 +1,4 @@
+
+function onClickGetStart(){
+   getStartedBtn.getStarted();
+}

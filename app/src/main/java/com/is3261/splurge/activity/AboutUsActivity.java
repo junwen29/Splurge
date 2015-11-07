@@ -1,34 +1,28 @@
 package com.is3261.splurge.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.webkit.WebChromeClient;
-import android.webkit.WebView;
+import android.view.View;
 
 import com.is3261.splurge.R;
-import com.is3261.splurge.WebAppInterface;
 
-public class WebViewActivity extends AppCompatActivity {
+public class AboutUsActivity extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_web_view);
-
-        WebView wv = (WebView)findViewById(R.id.webView);
-        wv.getSettings().setJavaScriptEnabled(true);
-        wv.setWebChromeClient(new WebChromeClient());
-        wv.loadUrl("file:///android_asset/www/splash.html");
-        wv.addJavascriptInterface(new WebAppInterface(this), "getStartedBtn");
+        setContentView(R.layout.activity_about_us);
 
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_web_view, menu);
+        getMenuInflater().inflate(R.menu.menu_about_us, menu);
         return true;
     }
 
@@ -47,9 +41,22 @@ public class WebViewActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+
+    public void onClickSendEmail(View view){
+
+        String aEmailList[] = { "misscooh92@gmail.com" };
+
+        Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
+
+        emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, aEmailList);
+
+        emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "My feedback to Splurge");
+
+        emailIntent.setType("plain/text");
+        emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, "Feedback Content..");
+
+        startActivity(emailIntent);
+        startActivity(Intent.createChooser(emailIntent, "Send your email in:"));
+
+    }
 }
-
-
-
-
-
