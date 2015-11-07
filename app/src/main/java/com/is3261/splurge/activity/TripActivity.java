@@ -3,13 +3,11 @@ package com.is3261.splurge.activity;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Intent;
-import android.graphics.BitmapFactory;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -23,7 +21,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -112,11 +109,17 @@ public class TripActivity extends NavDrawerActivity implements OnMapReadyCallbac
 
         loadTrips();
 
-        FloatingActionButton fab = new FloatingActionButton.Builder(this).setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_addbtn)).build();
 
+        //setup floating menu
+        ImageView icon = new ImageView(this);
+        icon.setImageResource(R.drawable.ic_addbtn);
+        FloatingActionButton fab = new FloatingActionButton.Builder(this).setBackgroundDrawable(R.drawable.ic_addbtn).build();
+
+        //set up floating sub icon 1
         SubActionButton.Builder itemBuilder = new SubActionButton.Builder(this);
-//        ImageView itemIcon = new ImageView(this);
-        SubActionButton button1 = itemBuilder.build();
+        ImageView itemIcon1 = new ImageView(this);
+        itemIcon1.setImageResource(R.drawable.icon_add_trip);
+        SubActionButton button1 = itemBuilder.setContentView(itemIcon1).build();
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -124,24 +127,34 @@ public class TripActivity extends NavDrawerActivity implements OnMapReadyCallbac
             }
         });
 
+        //set up floating sub icon 2
         ImageView itemIcon2 = new ImageView(this);
-
-        SubActionButton button2 = itemBuilder.build();
+        itemIcon2.setImageResource(R.drawable.icon_add_expense);
+        SubActionButton button2 = itemBuilder.setContentView(itemIcon2).build();
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 Intent mealSpilt_i = new Intent(TripActivity.this, SpiltMealActivity.class);
                 startActivity(mealSpilt_i);
             }
         });
 
-//        ImageView itemIcon3 = new ImageView(this);
-        SubActionButton button3 = itemBuilder.build();
+        //set up floating sub icon 3
+        ImageView itemIcon3 = new ImageView(this);
+        itemIcon3.setImageResource(R.drawable.icon_add_friend);
+        SubActionButton button3 = itemBuilder.setContentView(itemIcon3).build();
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(TripActivity.this, AddFriendActivity.class));
+            }
+        });
 
         //test SplashScreen
-        SubActionButton button4 = itemBuilder.build();
+        ImageView itemIcon4 = new ImageView(this);
+        itemIcon4.setImageResource(R.drawable.icon_add_friend);
 
+        SubActionButton button4 = itemBuilder.setContentView(itemIcon4).build();
         button4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
