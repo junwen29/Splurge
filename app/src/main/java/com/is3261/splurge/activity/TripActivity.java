@@ -16,6 +16,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -199,12 +200,20 @@ public class TripActivity extends NavDrawerActivity implements OnMapReadyCallbac
             case R.id.refresh:
                 loadTrips();
                 return true;
+
             case R.id.toggle:
                 if (mMapVisible) {
                     hideMap();
                 } else {
                     showMap();
                 }
+                return true;
+
+            case R.id.notifications:
+                if (mDrawerLayout.isDrawerOpen(Gravity.LEFT))
+                    mDrawerLayout.closeDrawer(Gravity.LEFT);
+
+                mDrawerLayout.openDrawer(Gravity.RIGHT);
                 return true;
         }
 
