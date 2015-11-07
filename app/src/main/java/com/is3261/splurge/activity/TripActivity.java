@@ -139,9 +139,22 @@ public class TripActivity extends NavDrawerActivity implements OnMapReadyCallbac
 //        ImageView itemIcon3 = new ImageView(this);
         SubActionButton button3 = itemBuilder.build();
 
+        //test SplashScreen
+        SubActionButton button4 = itemBuilder.build();
+
+        button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent webView_i = new Intent(TripActivity.this, WebViewActivity.class);
+                startActivity(webView_i);
+            }
+        });
+
         FloatingActionMenu actionMenu = new FloatingActionMenu.Builder(this).addSubActionView(button1)
-                .addSubActionView(button2)
-                .addSubActionView(button3).attachTo(fab).build();
+                                                                            .addSubActionView(button2)
+                                                                            .addSubActionView(button3).addSubActionView(button4).attachTo(fab).build();
+
 
     }
 

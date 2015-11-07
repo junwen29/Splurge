@@ -122,6 +122,17 @@
         </activity>
 
         <activity
+            android:name=".activity.WebViewActivity"
+            android:hardwareAccelerated="false"
+            android:label="@string/title_activity_web_view" >
+        </activity>
+        <activity
+            android:name=".activity.AboutUsActivity"
+            android:label="@string/title_activity_about_us" >
+        </activity>
+
+
+        <activity
             android:name=".activity.MapsActivity"
             android:label="@string/title_activity_maps" >
         </activity>
