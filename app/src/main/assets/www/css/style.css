@@ -8,20 +8,12 @@ right:0px;
 }
 
 
-.carousel-caption{
-margin-bottom:30px;
-}
-
-.splash-image{
- width:150px;
- height:400px;
-}
 
 #row-carousel{
  width:90%;
  text-align:center;
  margin:auto;
- margin-top:10%;
+ margin-top:8%;
 }
 
 #row-btn{
@@ -38,6 +30,15 @@ color:#f2ae44;
 
 .glyphicon-chevron-right, .glyphicon-chevron-left{
 color:#0096A6;
+}
+
+.button{
+width:25%;
+font-weight:bold;
+}
+
+.carousel-caption{
+margin-bottom:10%;
 }
 
 
