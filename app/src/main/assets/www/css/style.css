@@ -1,21 +1,49 @@
 body{
 background:#0096A6;
+position:fixed;
+bottom:0px;
+top:0px;
+left:0px;
+right:0px;
 }
 
 
-.carousel-caption{
-color:white;
-}
-
-.splash-image{
-height:700px;
-}
 
 #row-carousel{
-margin-top:30px;
+ width:90%;
+ text-align:center;
+ margin:auto;
+ margin-top:8%;
 }
 
 #row-btn{
-padding:10px;
+margin:5%;
 text-align:center;
 }
+
+
+
+h2{
+color:#f2ae44;
+
+}
+
+.glyphicon-chevron-right, .glyphicon-chevron-left{
+color:#0096A6;
+}
+
+.button{
+width:25%;
+font-weight:bold;
+}
+
+.carousel-caption{
+margin-bottom:10%;
+}
+
+
+
+
+
+
+

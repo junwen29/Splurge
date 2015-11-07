@@ -2,20 +2,40 @@ package com.is3261.splurge.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.is3261.splurge.R;
+import com.is3261.splurge.activity.base.NavDrawerActivity;
 
-public class AboutUsActivity extends AppCompatActivity {
+public class AboutUsActivity extends NavDrawerActivity {
 
 
     @Override
+    public void updateActiveDrawerItem() {
+        mNavigationView.getMenu().findItem(mSelectedDrawerItemId).setChecked(true);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
+        mSelectedDrawerItemId = R.id.nav_settings;
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_about_us);
+        getLayoutInflater().inflate(R.layout.activity_about_us, mContainer, true);
+
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
+
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null){
+            actionBar.setTitle("About Us");
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+
 
     }
 
@@ -28,19 +48,21 @@ public class AboutUsActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                onBackPressed();
+                return true;
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+            case R.id.notifications:
+                if (mDrawerLayout.isDrawerOpen(Gravity.LEFT))
+                    mDrawerLayout.closeDrawer(Gravity.LEFT);
+
+                mDrawerLayout.openDrawer(Gravity.RIGHT);
+                return true;
         }
-
-        return super.onOptionsItemSelected(item);
+        return true;
     }
-
 
     public void onClickSendEmail(View view){
 
@@ -58,5 +80,9 @@ public class AboutUsActivity extends AppCompatActivity {
         startActivity(emailIntent);
         startActivity(Intent.createChooser(emailIntent, "Send your email in:"));
 
+    }
+
+    public void onClickTutorial(View view) {
+        startActivity(new Intent(this,WebViewActivity.class));
     }
 }

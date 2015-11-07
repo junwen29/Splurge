@@ -25,4 +25,30 @@
         app:headerLayout="@layout/nav_header_nav_drawer"
         app:menu="@menu/activity_nav_drawer_menu" />
 
+    <!--Notification Drawer on the right-->
+    <LinearLayout
+        android:id="@+id/notification_drawer_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        android:orientation="vertical"
+        android:background="@color/light_grey">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/splurge_primary"
+            android:text="@string/notifications"
+            android:gravity="center"
+            android:drawableLeft="@drawable/ic_launcher"
+            android:drawablePadding="@dimen/activity_horizontal_margin"
+            style="@style/Splurge.TextAppearance.Title.Inverse"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/notification_drawer"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
+
 </android.support.v4.widget.DrawerLayout>

@@ -16,6 +16,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -154,19 +155,21 @@ public class TripActivity extends NavDrawerActivity implements OnMapReadyCallbac
         ImageView itemIcon4 = new ImageView(this);
         itemIcon4.setImageResource(R.drawable.icon_add_friend);
 
-        SubActionButton button4 = itemBuilder.setContentView(itemIcon4).build();
-        button4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent webView_i = new Intent(TripActivity.this, WebViewActivity.class);
-                startActivity(webView_i);
-            }
-        });
+//        SubActionButton button4 = itemBuilder.setContentView(itemIcon4).build();
+//        button4.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                Intent webView_i = new Intent(TripActivity.this, WebViewActivity.class);
+//                startActivity(webView_i);
+//            }
+//        });
 
         FloatingActionMenu actionMenu = new FloatingActionMenu.Builder(this).addSubActionView(button1)
-                                                                            .addSubActionView(button2)
-                                                                            .addSubActionView(button3).addSubActionView(button4).attachTo(fab).build();
+                .addSubActionView(button2)
+                .addSubActionView(button3)
+//                .addSubActionView(button4)
+                .attachTo(fab).build();
 
 
     }
@@ -199,12 +202,20 @@ public class TripActivity extends NavDrawerActivity implements OnMapReadyCallbac
             case R.id.refresh:
                 loadTrips();
                 return true;
+
             case R.id.toggle:
                 if (mMapVisible) {
                     hideMap();
                 } else {
                     showMap();
                 }
+                return true;
+
+            case R.id.notifications:
+                if (mDrawerLayout.isDrawerOpen(Gravity.LEFT))
+                    mDrawerLayout.closeDrawer(Gravity.LEFT);
+
+                mDrawerLayout.openDrawer(Gravity.RIGHT);
                 return true;
         }
 
