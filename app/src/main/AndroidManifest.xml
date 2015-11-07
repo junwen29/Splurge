@@ -20,6 +20,17 @@
         android:supportsRtl="true"
         android:theme="@style/Splurge" >
 
+        <!--gcm receiver-->
+        <receiver android:name=".receiver.PushReceiver" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+            </intent-filter>
+        </receiver>
+
+        <!-- services -->
+        <service android:name=".service.UpdateServerService" />
+
+        <!--activities-->
         <activity
             android:name=".activity.SplashScreenActivity"
             android:label="@string/app_name" >
