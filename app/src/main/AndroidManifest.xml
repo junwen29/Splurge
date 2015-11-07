@@ -115,6 +115,12 @@
             android:label="@string/title_activity_maps" >
         </activity>
 
+        <activity
+            android:name=".activity.BatteryActivity"
+            android:label="@string/title_activity_battery"
+            android:theme="@style/Splurge.TranslucentStatusBar" >
+        </activity>
+
         <!--Google Maps API-->
         <meta-data
             android:name="com.google.android.geo.API_KEY"

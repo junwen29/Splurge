@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="@dimen/elevation_header"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/Splurge.PopupOverlay" />
+
+    <android.support.v7.widget.CardView
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        style="@style/CardView">
+
+        <TextView
+            android:id="@+id/batterylevel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Battery Level:"
+            style="@style/Text.Card.Title"
+            android:gravity="center_vertical"
+            android:drawableLeft="@drawable/ic_battery_unknown_black_36dp"
+            android:drawablePadding="@dimen/activity_horizontal_margin"
+            android:drawableTint="@color/splurge_primary_dark"/>
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        style="@style/CardView">
+
+        <TextView
+            android:id="@+id/batteryvoltage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Battery Voltage:"
+            style="@style/Text.Card.Title"
+            android:gravity="center_vertical"
+            android:drawableLeft="@drawable/ic_flash_on_black_36dp"
+            android:drawablePadding="@dimen/activity_horizontal_margin"
+            android:drawableTint="@color/splurge_primary_dark"/>
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        style="@style/CardView">
+
+        <TextView
+            android:id="@+id/batterytemperature"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Battery Temperature:"
+            style="@style/Text.Card.Title"
+            android:gravity="center_vertical"
+            android:drawableLeft="@drawable/ic_whatshot_black_36dp"
+            android:drawablePadding="@dimen/activity_horizontal_margin"
+            android:drawableTint="@color/splurge_primary_dark"/>
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        style="@style/CardView">
+
+        <TextView
+            android:id="@+id/batterytechology"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Technology:"
+            style="@style/Text.Card.Title"
+            android:gravity="center_vertical"
+            android:drawableLeft="@drawable/ic_info_black_36dp"
+            android:drawablePadding="@dimen/activity_horizontal_margin"
+            android:drawableTint="@color/splurge_primary_dark"/>
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        style="@style/CardView">
+
+        <TextView
+            android:id="@+id/batterystatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Text.Card.Title"
+            android:gravity="center_vertical"
+            android:textSize="28sp"
+            android:drawableLeft="@drawable/ic_mood_bad_black_36dp"
+            android:drawablePadding="@dimen/activity_horizontal_margin"
+            android:drawableTint="@color/splurge_primary_dark"/>
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        style="@style/CardView">
+
+        <TextView
+            android:id="@+id/batteryhealth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Health:"
+            style="@style/Text.Card.Title"
+            android:textAlignment="viewEnd"
+            android:textSize="28sp"
+            android:gravity="center_vertical"
+            android:drawableRight="@drawable/ic_local_hospital_black_36dp"
+            android:drawablePadding="@dimen/activity_horizontal_margin"
+            android:drawableTint="@color/splurge_primary_dark"/>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>
