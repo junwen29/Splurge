@@ -9,7 +9,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
-    <!--Google maps-->
+    <!-- Google maps -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
@@ -86,7 +86,7 @@
         <activity
             android:name=".activity.SpiltMealActivity"
             android:label="@string/title_activity_spilt_meal"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".activity.DebtActivity"
@@ -98,19 +98,21 @@
             android:label="@string/title_activity_loan"
             android:theme="@style/Splurge.TranslucentStatusBar" >
         </activity>
-
         <activity
             android:name=".activity.CreateTripActivity"
             android:label="@string/title_activity_create_trip"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
         </activity>
-
         <activity
             android:name=".activity.SelectLocationActivity"
             android:label="@string/title_activity_select_location"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
         </activity>
-
+        <activity
+            android:name=".activity.WebViewActivity"
+            android:hardwareAccelerated="false"
+            android:label="@string/title_activity_web_view" >
+        </activity>
     </application>
 
 </manifest>

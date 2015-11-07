@@ -67,5 +67,8 @@
     <string name="today">Today</string>
     <string name="dialog_pick_date">When is the trip ?</string>
     <string name="done">Done</string>
+    <string name="title_activity_web_view">WebViewActivity</string>
+
+    <string name="hello_world">Hello world!</string>
 
 </resources>
