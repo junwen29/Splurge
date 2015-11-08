@@ -5,6 +5,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.WakefulBroadcastReceiver;
@@ -13,6 +14,7 @@ import com.is3261.splurge.R;
 import com.is3261.splurge.activity.DebtActivity;
 import com.is3261.splurge.activity.TripActivity;
 import com.is3261.splurge.helper.NotificationStore;
+import com.is3261.splurge.model.Avatar;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -92,7 +94,8 @@ public class PushReceiver extends WakefulBroadcastReceiver {
 
         // configure the notification builder
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
-        builder.setSmallIcon(R.mipmap.ic_launcher)
+        builder.setSmallIcon(R.drawable.ic_notifications_white_36dp)
+                .setLargeIcon(BitmapFactory.decodeResource(context.getResources(),R.drawable.ic_launcher))
                 .setContentTitle(extras != null ? extras.getString("item_name") : context.getResources().getString(R.string.app_name))
                 .setContentText(latest)
                 .setContentIntent(pendingIntent)
