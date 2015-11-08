@@ -65,7 +65,7 @@ public class AboutUsActivity extends NavDrawerActivity {
 
     public void onClickSendEmail(View view){
 
-        String aEmailList[] = { "ask@splurgeapp.com" };
+        String aEmailList[] = { "misscooh92@gmail.com" };
 
         Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
 
