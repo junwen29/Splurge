@@ -3,7 +3,6 @@ package com.is3261.splurge.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.Menu;
@@ -66,7 +65,7 @@ public class AboutUsActivity extends NavDrawerActivity {
 
     public void onClickSendEmail(View view){
 
-        String aEmailList[] = { "misscooh92@gmail.com" };
+        String aEmailList[] = { "ask@splurgeapp.com" };
 
         Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
 
